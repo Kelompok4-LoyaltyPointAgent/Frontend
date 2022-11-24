@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
-import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
-import "../assets/style/login.css";
 import NavTitle from "../components/NavTitle";
+import "../assets/style/register.css";
 
-export default function Login() {
-  const dispatch = useDispatch();
-  const [usernameR, setUserName] = useState("");
-  const [passwordR, setPassword] = useState("");
+export default function Register() {
+  const [usernameR, setUserName] = useState();
+  const [passwordR, setPassword] = useState();
+  const [cofPasswordR, setCofPassword] = useState();
   const [loading, setLoading] = useState(false);
-  const [tempAdmin, setTempAdmin] = useState({
-    token: "4gfnc1",
-    id: 1,
-    username: "Budi",
-  });
   const navigate = useNavigate();
 
   useEffect(() => {
     async function cek() {
-      dispatch(addTokenAdmin(tempAdmin));
-      Swal.fire({
-        title: "Login Succes!",
-        text: "Welcome!",
-        type: "success",
-      }).then(function () {
-        navigate("/");
-      });
+      if (passwordR != cofPasswordR) {
+        alert("Password yang dimasukkan tidak sesuai dengan yang sebelumnya");
+      } else {
+        Swal.fire({
+          title: "Create New Accout Succes!",
+          text: "Your Account has Already Created, Now You can Login!",
+          icon: "success",
+        }).then(function () {
+          console.log("test");
+          navigate("/login");
+        });
+      }
+      setLoading(false);
     }
     if (loading) {
       cek();
@@ -40,35 +38,43 @@ export default function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="register">
       <NavTitle></NavTitle>
       <div className="space">
-        <h1 className="text-center">Login</h1>
+        <h1 className="text-center">Register</h1>
         <form onSubmit={handleSubmit}>
-          <p>Username</p>
+          <p>New Username</p>
           <div class="input-group mb-3">
             <input
               type="text"
               class="form-control"
-              placeholder="Username..."
-              name="username"
+              placeholder="New Username..."
               onChange={(e) => setUserName(e.target.value)}
               aria-label="Username"
               aria-describedby="basic-addon1"
               required
             />
           </div>
-
           <p>Password</p>
-
           <div class="input-group mb-3">
             <input
               type="password"
               class="form-control"
               placeholder="Password..."
-              name="password"
               onChange={(e) => setPassword(e.target.value)}
               aria-label="password"
+              aria-describedby="basic-addon1"
+              required
+            />
+          </div>
+          <p>Confirm Password</p>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Confirm Password..."
+              onChange={(e) => setCofPassword(e.target.value)}
+              aria-label="confirmPassword"
               aria-describedby="basic-addon1"
               required
             />
@@ -76,18 +82,18 @@ export default function Login() {
           <div className="tombol">
             <center>
               <button
-                type="submit"
                 className="btn btn-outline-primary"
+                type="submit"
                 data-testid="enter"
               >
-                Submit
+                Make New Account
               </button>
             </center>
           </div>
         </form>
         <div className="text-center">
           <p>
-            Dont Have Account? <Link to="/register">Register</Link>
+            Already Have Account? <Link to="/login">Login</Link>
           </p>
         </div>
       </div>

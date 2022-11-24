@@ -19,7 +19,7 @@ const NavTitle = () => {
                 paddingLeft: "10px",
               }}
             >
-              Pulsa
+              HolaPulsa
             </h1>
           </a>
           <button
