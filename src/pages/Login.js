@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { addTokenAdmin } from "../store/auth";
+import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "../assets/style/login.css";
 import NavTitle from "../components/NavTitle";
@@ -23,7 +23,7 @@ export default function Login() {
       dispatch(addTokenAdmin(tempAdmin));
       Swal.fire({
         title: "Login Succes!",
-        text: "Welcome To Quizz!",
+        text: "Welcome!",
         type: "success",
       }).then(function () {
         navigate("/");

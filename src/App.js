@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import AuthLogin from "./components/AuthLogin";
+import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Products from "./pages/Products";
 import Register from "./pages/Register";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/register" element={<Register></Register>} />
           <Route element={<AuthLogin token={token}></AuthLogin>}>
             <Route path="/" element={<Dashboard></Dashboard>} />
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/admin" element={<Admin/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

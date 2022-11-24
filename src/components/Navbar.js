@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteToken } from "../store/auth";
+import { deleteToken } from "../stores/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
