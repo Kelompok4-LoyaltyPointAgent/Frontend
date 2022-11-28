@@ -1,16 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteToken } from "../stores/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const NavTitle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const logOut = (e) => {
-    e.preventDefault();
-    dispatch(deleteToken());
-    navigate("/login");
-  };
 
   const account = useSelector((state) => state.token.account);
   const usernameUser = useSelector((state) => state.token.username);
@@ -25,7 +19,7 @@ const NavTitle = () => {
     <div>
       <nav
         className="navbar navbar-expand-lg fixed-top navbar-dark"
-        style={{ backgroundColor: "#1b1c1d", height: "70px" }}
+        style={{ backgroundColor: "#1b1c1d", height: "60px" }}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -57,27 +51,19 @@ const NavTitle = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <Link className="nav-link active" to="/">
-                Home
-              </Link>
-              <Link className="nav-link" to="/">
-                About
-              </Link>
-              <Link className="nav-link" to="/">
-                Contact
-              </Link>
-              <a className="nav-link ms-5" style={{ color: "#fff" }}>
-                <i class="bi bi-person-circle"></i>
-                {admin()}
-              </a>
               <a
-                className="nav-link"
-                onClick={logOut}
-                style={{ color: "#ed4949" }}
-                href=""
+                className="nav-link ms-5"
+                style={{
+                  color: "#000",
+                  backgroundColor: "#fff",
+                  borderRadius: "50% 50%",
+                  fontSize: "15px",
+                }}
               >
-                <i class="bi bi-box-arrow-in-right"></i>
-                Log Out
+                <i class="bi bi-bell"></i>
+              </a>
+              <a className="nav-link ms-5" style={{ color: "#fff" }}>
+                Hi, {admin()}!
               </a>
             </div>
           </div>
