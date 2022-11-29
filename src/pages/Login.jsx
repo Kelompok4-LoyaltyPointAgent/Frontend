@@ -40,10 +40,13 @@ export default function Login() {
   };
 
   return (
-    <div className="login">
-      <NavTitle></NavTitle>
+    <div className="d-flex flex-column  align-items-center">
+      <div className="mt-5 d-flex flex-column justify-content-center align-items-center">
+        <img alt="logo" style={{width: "200px", height: "200px", borderRadius: "50px"}}src={require('../assets/images/IMG20221016160000.jpg')}/>
+        <p>awokawkoawkowk aiwkaikwikwiakwikwi</p>
+      </div>
+      <div className="login">
       <div className="space">
-        <h1 className="text-center">Login</h1>
         <form onSubmit={handleSubmit}>
           <p>Username</p>
           <div class="input-group mb-3">
@@ -92,5 +95,7 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }

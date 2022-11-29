@@ -76,7 +76,7 @@ const Sidebar = () => {
               className="text-decoration-none"
               style={{ color: "inherit" }}
             >
-              Sidebar
+            <img style={{width: "200px", height: "200px", borderRadius: "50px"}}src={require('../assets/images/IMG20221016160000.jpg')} alt="logo" />
             </a>
           </CDBSidebarHeader>
 
