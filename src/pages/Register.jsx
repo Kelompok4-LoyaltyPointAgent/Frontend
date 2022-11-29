@@ -13,7 +13,7 @@ export default function Register() {
 
   useEffect(() => {
     async function cek() {
-      if (passwordR != cofPasswordR) {
+      if (passwordR !== cofPasswordR) {
         alert("Password yang dimasukkan tidak sesuai dengan yang sebelumnya");
       } else {
         Swal.fire({

@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const StokPaketData = () => {
   return (
     <div className="d-flex w-100">
