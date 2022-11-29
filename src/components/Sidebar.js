@@ -87,15 +87,15 @@ const Sidebar = () => {
                   Dashboard
                 </CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/products" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="table">Products</CDBSidebarMenuItem>
+              <NavLink exact to="/kelolapengguna" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon="table">Kelola Pengguna</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/admin" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="user">Admin page</CDBSidebarMenuItem>
+              <NavLink exact to="/kelolatransaksi" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon="user">Kelola Transaksi</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <NavLink exact to="/kelolastok" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="chart-line">
-                  Analytics
+                  Kelola Stok
                 </CDBSidebarMenuItem>
               </NavLink>
             </CDBSidebarMenu>
