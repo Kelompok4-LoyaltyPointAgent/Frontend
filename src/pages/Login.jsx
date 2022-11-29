@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
-import "../assets/style/login.css";
+import "../assets/styles/login.css";
 import NavTitle from "../components/NavTitle";
 
 export default function Login() {
