@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 import NavTitle from "../components/NavTitle";
-import "../assets/style/register.css";
+import "../assets/styles/register.css";
 
 export default function Register() {
   const [usernameR, setUserName] = useState();
@@ -13,7 +13,7 @@ export default function Register() {
 
   useEffect(() => {
     async function cek() {
-      if (passwordR != cofPasswordR) {
+      if (passwordR !== cofPasswordR) {
         alert("Password yang dimasukkan tidak sesuai dengan yang sebelumnya");
       } else {
         Swal.fire({

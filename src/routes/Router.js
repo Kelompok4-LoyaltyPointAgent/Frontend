@@ -2,11 +2,12 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthLoggedIn from "./AuthLoggedIn";
 import AuthLogin from "./AuthLogin";
-import Admin from "../pages/Admin";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
-import Products from "../pages/Products";
 import Register from "../pages/Register";
+import KelolaStok from "../pages/KelolaStok/KelolaStok";
+import KelolaTransaksi from "../pages/KelolaTransaksi";
+import KelolaPengguna from "../pages/KelolaPengguna/KelolaPengguna";
 
 function Router() {
   const token = useSelector((state) => state.token.tokens);
@@ -21,9 +22,10 @@ function Router() {
           </Route>
 
           <Route element={<AuthLogin token={token}></AuthLogin>}>
-            <Route path="/" element={<Dashboard></Dashboard>} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/" element={<Dashboard></Dashboard>} />            
+            <Route path="/kelolaPengguna" element={<KelolaPengguna/>}/>
+            <Route path="/kelolatransaksi" element={<KelolaTransaksi/>} />
+            <Route path="/kelolastok" element={<KelolaStok/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
