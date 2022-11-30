@@ -33,9 +33,6 @@ const Sidebar = ({ list }) => {
   return (
     <div className="sidebar">
       <div className="container-fluid float-end verbar">
-        <a className="me-3">
-          <i class="bi bi-bell"></i>
-        </a>
         <a className="me-3">Hi, {admin()}!</a>
         <img
           className="me-3"
