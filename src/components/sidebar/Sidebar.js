@@ -13,7 +13,7 @@ import { deleteToken } from "../../stores/auth";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ list }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOut = (e) => {
@@ -29,13 +29,10 @@ const Sidebar = () => {
       return usernameUser;
     }
   };
-
+  console.log(list);
   return (
     <div className="sidebar">
       <div className="container-fluid float-end verbar">
-        <a className="me-3">
-          <i class="bi bi-bell"></i>
-        </a>
         <a className="me-3">Hi, {admin()}!</a>
         <img
           className="me-3"
@@ -44,17 +41,17 @@ const Sidebar = () => {
       </div>
       <div className="sideNavbar">
         <CDBSidebar className="CDBSidebar">
-          <CDBSidebarHeader
-            className="CDBSidebarHeader"
-            prefix={<i className="fa fa-bars fa-large"></i>}
-          >
+          <CDBSidebarHeader className="CDBSidebarHeader">
             <img src={require("../../assets/images/Logo.png")} alt="logo" />
           </CDBSidebarHeader>
 
-          <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarContent className="sidebar-content CDBSidebarContent">
             <CDBSidebarMenu>
               <NavLink exact to="/" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="columns">
+                <CDBSidebarMenuItem
+                  icon="columns"
+                  className={list == 1 ? "isActive" : "noActive"}
+                >
                   Dashboard
                 </CDBSidebarMenuItem>
               </NavLink>
@@ -63,7 +60,10 @@ const Sidebar = () => {
                 to="/kelolapengguna"
                 activeClassName="activeClicked"
               >
-                <CDBSidebarMenuItem icon="table">
+                <CDBSidebarMenuItem
+                  icon="table"
+                  className={list == 2 ? "isActive" : "noActive"}
+                >
                   Kelola Pengguna
                 </CDBSidebarMenuItem>
               </NavLink>
@@ -72,12 +72,18 @@ const Sidebar = () => {
                 to="/kelolatransaksi"
                 activeClassName="activeClicked"
               >
-                <CDBSidebarMenuItem icon="user">
+                <CDBSidebarMenuItem
+                  icon="user"
+                  className={list == 3 ? "isActive" : "noActive"}
+                >
                   Kelola Transaksi
                 </CDBSidebarMenuItem>
               </NavLink>
               <NavLink exact to="/kelolastok" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="chart-line">
+                <CDBSidebarMenuItem
+                  icon="chart-line"
+                  className={list == 4 ? "isActive" : "noActive"}
+                >
                   Kelola Stok
                 </CDBSidebarMenuItem>
               </NavLink>
@@ -85,13 +91,11 @@ const Sidebar = () => {
           </CDBSidebarContent>
           <CDBSidebarFooter className="CDBSidebarFooter">
             <CDBSidebarMenuItem
-              className="sidebar-logout"
-              style={{ padding: " 8px 2px 8px 2px" }}
+              className="sidebar-logout logout"
+              icon={"bi bi-box-arrow-in-right pe-2"}
+              onClick={logOut}
             >
-              <a className="nav-link" onClick={logOut}>
-                <i class="bi bi-box-arrow-in-right pe-2"></i>
-                Log Out
-              </a>
+              Log Out
             </CDBSidebarMenuItem>
           </CDBSidebarFooter>
         </CDBSidebar>
