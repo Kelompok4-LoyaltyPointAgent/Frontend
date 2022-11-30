@@ -29,7 +29,6 @@ const Sidebar = ({ list }) => {
       return usernameUser;
     }
   };
-  console.log(list);
   return (
     <div className="sidebar">
       <div className="container-fluid float-end verbar">

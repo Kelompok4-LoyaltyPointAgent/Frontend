@@ -4,7 +4,6 @@ import AuthLoggedIn from "./AuthLoggedIn";
 import AuthLogin from "./AuthLogin";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
 import KelolaStok from "../pages/KelolaStok/KelolaStok";
 import KelolaTransaksi from "../pages/KelolaTransaksi";
 import KelolaPengguna from "../pages/KelolaPengguna/KelolaPengguna";
@@ -18,14 +17,13 @@ function Router() {
         <Routes>
           <Route element={<AuthLoggedIn token={token}></AuthLoggedIn>}>
             <Route path="/login" element={<Login></Login>} />
-            <Route path="/register" element={<Register></Register>} />
           </Route>
 
           <Route element={<AuthLogin token={token}></AuthLogin>}>
-            <Route path="/" element={<Dashboard></Dashboard>} />            
-            <Route path="/kelolaPengguna" element={<KelolaPengguna/>}/>
-            <Route path="/kelolatransaksi" element={<KelolaTransaksi/>} />
-            <Route path="/kelolastok" element={<KelolaStok/>}/>
+            <Route path="/" element={<Dashboard></Dashboard>} />
+            <Route path="/kelolaPengguna" element={<KelolaPengguna />} />
+            <Route path="/kelolatransaksi" element={<KelolaTransaksi />} />
+            <Route path="/kelolastok" element={<KelolaStok />} />
           </Route>
         </Routes>
       </BrowserRouter>
