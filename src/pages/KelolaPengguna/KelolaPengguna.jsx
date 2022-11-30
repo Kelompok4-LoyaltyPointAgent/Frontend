@@ -55,7 +55,7 @@ export default function KelolaPengguna() {
   return (
     <>
       <div className="d-flex">
-        <Sidebar />
+        <Sidebar list={2} />
         <div className="mt-5 pt-5 ps-3 pe-3 w-100">
         <Card className='d-flex'>
           <div style={{ backgroundColor: 'whitesmoke' }}>
