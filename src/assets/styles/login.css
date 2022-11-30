@@ -4,6 +4,17 @@
   font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.login {
+  background: url(../images/BackgroundLogin.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+}
+
 .login .header {
   position: absolute;
   top: 7%;
@@ -49,70 +60,4 @@
 
 .forms a {
   text-decoration: none;
-}
-
-/* Frame */
-.frame .ellipse1 {
-  position: absolute;
-  left: 0;
-  top: 0px;
-}
-.frame .ellipse2 {
-  position: absolute;
-
-  left: 0;
-  top: 61px;
-}
-.frame .ellipse3 {
-  position: absolute;
-  right: 40px;
-  bottom: 160px;
-}
-.frame .ellipse4 {
-  position: absolute;
-
-  right: 0px;
-  bottom: 0px;
-}
-.frame .vector3 {
-  position: absolute;
-  width: 800px;
-  left: 0px;
-  bottom: 0px;
-}
-.frame .vector4 {
-  position: absolute;
-  width: 980px;
-  right: 0px;
-  top: 0px;
-}
-.frame .vector5 {
-  position: absolute;
-  width: 980px;
-  right: 0px;
-  top: 0px;
-}
-.frame .vector6 {
-  position: absolute;
-  width: 980px;
-  right: 0px;
-  top: 0px;
-}
-.frame .vector7 {
-  position: absolute;
-  width: 980px;
-  right: 0px;
-  top: 0px;
-}
-.frame .vector8 {
-  position: absolute;
-  width: 830px;
-  left: 0px;
-  bottom: 0px;
-}
-.frame .vector9 {
-  position: absolute;
-  width: 790px;
-  left: 0px;
-  bottom: 0px;
 }
