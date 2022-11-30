@@ -10,15 +10,14 @@
 
 .popup-box .box h2 {
   color: #fbb505;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 700;
+  font-weight: bolder;
   font-size: 32px;
   line-height: 36px;
 }
 
 .popup-box .box label {
   color: #01478c;
+  font-weight: 600;
 }
 .popup-box .box input[type="text"],
 .popup-box .box select,
