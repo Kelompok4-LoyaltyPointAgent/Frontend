@@ -39,53 +39,8 @@ export default function Login() {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center login">
-      <div className="frame">
-        <img
-          className="ellipse1"
-          src={require("../assets/images/login/Ellipse1.png")}
-        />
-        <img
-          className="ellipse2"
-          src={require("../assets/images/login/Ellipse2.png")}
-        />
-        <img
-          className="ellipse4"
-          src={require("../assets/images/login/Ellipse4.png")}
-        />
-        <img
-          className="ellipse3"
-          src={require("../assets/images/login/Ellipse3.png")}
-        />
-        <img
-          className="vector9"
-          src={require("../assets/images/login/Vector9.png")}
-        />
-        <img
-          className="vector8"
-          src={require("../assets/images/login/Vector8.png")}
-        />
-        <img
-          className="vector3"
-          src={require("../assets/images/login/Vector3.png")}
-        />
-        <img
-          className="vector6"
-          src={require("../assets/images/login/Vector6.png")}
-        />
-        <img
-          className="vector7"
-          src={require("../assets/images/login/Vector7.png")}
-        />
-        <img
-          className="vector5"
-          src={require("../assets/images/login/Vector5.png")}
-        />
-        <img
-          className="vector4"
-          src={require("../assets/images/login/Vector4.png")}
-        />
-      </div>
+    <div className="d-flex flex-column align-items-center login ">
+      <div className="background"></div>
       <div className="mt-5 d-flex flex-column justify-content-center align-items-center header">
         <img alt="logo" src={require("../assets/images/LoginLogo.png")} />
         <p>
