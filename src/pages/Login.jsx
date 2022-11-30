@@ -42,60 +42,63 @@ export default function Login() {
   return (
     <div className="d-flex flex-column  align-items-center">
       <div className="mt-5 d-flex flex-column justify-content-center align-items-center">
-        <img alt="logo" style={{width: "200px", height: "200px", borderRadius: "50px"}}src={require('../assets/images/IMG20221016160000.jpg')}/>
-        <p>awokawkoawkowk aiwkaikwikwiakwikwi</p>
+        <img
+          alt="logo"
+          style={{ width: "200px", height: "200px", borderRadius: "50px" }}
+          src={require("../assets/images/Logo.png")}
+        />
+        <p>Welcome</p>
       </div>
       <div className="login">
-      <div className="space">
-        <form onSubmit={handleSubmit}>
-          <p>Username</p>
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Username..."
-              name="username"
-              onChange={(e) => setUserName(e.target.value)}
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-              required
-            />
-          </div>
+        <div className="space">
+          <form onSubmit={handleSubmit}>
+            <p>Username</p>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username..."
+                name="username"
+                onChange={(e) => setUserName(e.target.value)}
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
 
-          <p>Password</p>
+            <p>Password</p>
 
-          <div class="input-group mb-3">
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password..."
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              aria-label="password"
-              aria-describedby="basic-addon1"
-              required
-            />
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password..."
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                aria-label="password"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
+            <div className="tombol">
+              <center>
+                <button
+                  type="submit"
+                  className="btn btn-outline-primary"
+                  data-testid="enter"
+                >
+                  Submit
+                </button>
+              </center>
+            </div>
+          </form>
+          <div className="text-center">
+            <p>
+              Dont Have Account? <Link to="/register">Register</Link>
+            </p>
           </div>
-          <div className="tombol">
-            <center>
-              <button
-                type="submit"
-                className="btn btn-outline-primary"
-                data-testid="enter"
-              >
-                Submit
-              </button>
-            </center>
-          </div>
-        </form>
-        <div className="text-center">
-          <p>
-            Dont Have Account? <Link to="/register">Register</Link>
-          </p>
         </div>
       </div>
     </div>
-    </div>
-    
   );
 }
