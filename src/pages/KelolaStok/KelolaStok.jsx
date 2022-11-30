@@ -1,15 +1,14 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import StokPulsa from './StokPulsa';
-import Sidebar from '../../components/Sidebar';
-import StokPaketData from './StokPaketData';
-import { Button, Card } from 'react-bootstrap';
-import {AiOutlinePlusSquare} from 'react-icons/ai';
-
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import StokPulsa from "./StokPulsa";
+import Sidebar from "../../components/sidebar/Sidebar";
+import StokPaketData from "./StokPaketData";
+import { Button, Card } from "react-bootstrap";
+import { AiOutlinePlusSquare } from "react-icons/ai";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,7 +39,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -53,33 +52,44 @@ export default function KelolaStok() {
 
   return (
     <>
-    <div className="d-flex">
-      <Sidebar/>
-      <div className="mt-5 pt-5 ps-3 pe-3 w-100">
-      <Card className='d-flex p-3'>
-      <p className='mb-4 mt-1'>Kelola Stok</p>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Pulsa" {...a11yProps(0)} />
-            <Tab label="Paket Data" {...a11yProps(1)} />
-          </Tabs>
-        </Box>
-        <div className='d-flex flex-row mb-3 mt-3'>
-          <Button> <AiOutlinePlusSquare style={{width: "20px",
-           height : "25px", marginRight: "5px", 
-           paddingBottom: "3px"}}/>Tambah Produk</Button>
+      <div className="d-flex">
+        <Sidebar />
+        <div className="mt-5 pt-5 ps-3 pe-3 w-100">
+          <Card className="d-flex p-3">
+            <p className="mb-4 mt-1">Kelola Stok</p>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Pulsa" {...a11yProps(0)} />
+                <Tab label="Paket Data" {...a11yProps(1)} />
+              </Tabs>
+            </Box>
+            <div className="d-flex flex-row mb-3 mt-3">
+              <Button>
+                {" "}
+                <AiOutlinePlusSquare
+                  style={{
+                    width: "20px",
+                    height: "25px",
+                    marginRight: "5px",
+                    paddingBottom: "3px",
+                  }}
+                />
+                Tambah Produk
+              </Button>
+            </div>
+            <TabPanel value={value} index={0}>
+              <StokPulsa />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <StokPaketData />
+            </TabPanel>
+          </Card>
         </div>
-        <TabPanel value={value} index={0}>
-          <StokPulsa/>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <StokPaketData/>
-        </TabPanel>
-      </Card>
       </div>
-    </div>      
-   
     </>
-      
   );
 }

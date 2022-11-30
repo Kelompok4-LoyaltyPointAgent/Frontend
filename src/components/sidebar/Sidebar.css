@@ -1,0 +1,55 @@
+.sidebar .verbar {
+  background: #f3f4f5;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.12);
+  height: 74px;
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  gap: 30px;
+  align-items: center;
+}
+
+.sidebar .verbar a:first-child {
+  color: #000;
+  background-color: #fff;
+  width: 40px;
+  height: auto;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 50%;
+}
+
+.sidebar .verbar a:nth-child(2) {
+  font-style: normal;
+  font-weight: 550;
+  font-size: 18px;
+  color: #013b75;
+  text-decoration: none;
+}
+
+.sidebar .verbar img {
+  border-radius: 50%;
+  width: 35px;
+}
+
+.sidebar .sideNavbar {
+  height: 100vh;
+  overflow: scroll initial;
+}
+
+.sidebar .sideNavbar .CDBSidebar {
+  color: #fff;
+  background: linear-gradient(186.12deg, #041d36 -11.19%, #013b75 72.67%);
+}
+
+.sidebar .sideNavbar .CDBSidebar .CDBSidebarHeader img {
+  width: 170px;
+  height: auto;
+  margin: 20px;
+}
+
+.sidebar .sideNavbar .CDBSidebarFooter a {
+  color: #ed4949;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
