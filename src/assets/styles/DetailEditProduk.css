@@ -1,0 +1,19 @@
+.list-detail{
+    display: flex;
+    margin-left: 90px;
+    margin-right: 90px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+    background-color: #FEF0CD;
+    border-radius: 50px;
+    margin-bottom: 20px;   
+}
+.detail-produk-text{
+    margin:6px;
+}
+.button-ubah{
+    position: fixed;
+    left: 50%;
+    bottom: 6%;
+}
