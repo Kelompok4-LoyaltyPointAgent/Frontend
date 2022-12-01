@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
-import AddStockPaket from "./AddStockPaket";
+import AddStockPulsa from "./AddStockPulsa";
 
 const StokPulsa = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ const StokPulsa = () => {
   };
   return (
     <div className="w-100">
-      {isOpen && <AddStockPaket handleClose={togglePopUp} />}
+      {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
       <div className="d-flex flex-row justify-content-between mb-3">
         <Button variant="success" onClick={togglePopUp}>
           <AiOutlinePlusSquare
@@ -45,7 +45,7 @@ const StokPulsa = () => {
         </div>
       </div>
       <div className="">
-        <Button href='/kelolastok/detaileditstok/pulsa'>Detail Tes</Button>
+        <Button href='/kelolastok/detaileditproduk/pulsa'>Detail Tes</Button>
         Pulsa
       </div>
     </div>

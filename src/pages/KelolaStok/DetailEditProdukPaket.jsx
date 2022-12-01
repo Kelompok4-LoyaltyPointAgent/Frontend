@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { Card, Button, Row, Col} from 'react-bootstrap'
 import Sidebar from '../../components/sidebar/Sidebar'
 import '../../assets/styles/DetailEditProduk.css'
-import EditProdukPulsa from './EditProdukPulsa';
+import EditProdukPaket from './EditProdukPaket';
 
-const DetailEditProdukPulsa = () => {
+const DetailEditProdukPaket = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,18 +22,18 @@ const DetailEditProdukPulsa = () => {
     <div className='d-flex'>
       <Sidebar list={4}/>
       <div className='mt-5 pt-5 ps-3 pe-3 w-100'>
-      {isOpen && <EditProdukPulsa handleClose={togglePopUp} />}
+      {isOpen && <EditProdukPaket handleClose={togglePopUp} />}
         <Card border='dark'>
           <Card.Img style={{padding:'10px', height:'250px'}} src={require('../../assets/images/ProdukPulsa/Vector 2.png')}/>
           <Card.ImgOverlay>
               <Row>
                 <Col sm={2} lg={2} className='d-flex justify-content-end'>
                 <i><img style={{height:'120px'}}
-                alt='iconproduk' src={require('../../assets/images/ProdukPulsa/Frame 33773.png')}/></i>
+                alt='iconproduk' src={require('../../assets/images/ProdukPaket/Frame 33773.png')}/></i>
                 </Col>
                 <Col sm={8} lg={8} className='d-flex flex-column justify-content-center align-items-center'>
-                <p className='mt-4' style={{color:'white'}}><h4>Detail Pulsa</h4></p>
-                <p className='text-harga'><h2>Harga</h2></p>
+                <p className='mt-4' style={{color:'white'}}><h4>Detail Paket Data</h4></p>
+                <p className='text-harga'><h2>DUAAARRR!!! SAKTI 50GB</h2></p>
                 <p className='text-provider'>Provider</p>
                 </Col>
                 <Col sm={2} lg={2} className='d-flex justify-content-end pe-4'>
@@ -84,4 +84,4 @@ const DetailEditProdukPulsa = () => {
   )
 }
 
-export default DetailEditProdukPulsa
+export default DetailEditProdukPaket;
