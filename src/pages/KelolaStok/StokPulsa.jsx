@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
@@ -44,7 +44,10 @@ const StokPulsa = () => {
           </div>
         </div>
       </div>
-      <div className="">Pulsa</div>
+      <div className="">
+        <Button href='/kelolastok/detaileditstok/pulsa'>Detail Tes</Button>
+        Pulsa
+      </div>
     </div>
   );
 };
