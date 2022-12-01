@@ -12,8 +12,16 @@
 .detail-produk-text{
     margin:6px;
 }
-.button-ubah{
-    position: fixed;
-    left: 50%;
-    bottom: 6%;
+.text-harga{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color: white;
+}
+.text-provider{
+    color: #ffff;
+    font-size: large;
+    background-color: #991628;
+    padding: 10px 40px 10px 40px;
+    border-radius: 50px;
 }
