@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../assets/styles/PopUp.css";
 
-const EditProdukPulsa = (props) => {
+const EditProdukPaket = (props) => {
   const [data, setData] = useState({
     nama: "",
     provider: "",
@@ -11,7 +11,9 @@ const EditProdukPulsa = (props) => {
     stock: "",
     rekomendasi: "",
     periodeAktif: "",
-    nilai: "",
+    internet: "",
+    nelpon: "",
+    sms: "",
     deskripsi: "",
   });
   const handleInput = (e) => {
@@ -209,19 +211,55 @@ const EditProdukPulsa = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputNilai"
+              for="inputInternet"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Nilai
+              Internet
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputNilai"
-                name="nilai"
+                id="inputInternet"
+                name="internet"
                 onChange={handleInput}
-                value={data.nilai}
+                value={data.internet}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputNelpon"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Nelpon
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputNelpon"
+                name="nelpon"
+                onChange={handleInput}
+                value={data.nelpon}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputSms"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              SMS
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputSms"
+                name="sms"
+                onChange={handleInput}
+                value={data.sms}
               />
             </div>
           </div>
@@ -246,7 +284,7 @@ const EditProdukPulsa = (props) => {
 
           <div className="button mt-4">
             <center>
-              <button type="submit" className="btn mx-3" 
+              <button type="submit" className="btn mx-3"
               style={{backgroundColor:'#006BA0', color:'white'}}>
                 Update
               </button>
@@ -263,4 +301,4 @@ const EditProdukPulsa = (props) => {
     </div>
   );
 };
-export default EditProdukPulsa;
+export default EditProdukPaket;
