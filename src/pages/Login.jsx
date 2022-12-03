@@ -7,36 +7,58 @@ import "../assets/styles/login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [usernameR, setUserName] = useState("");
-  const [passwordR, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [tempAdmin, setTempAdmin] = useState({
-    token: "4gfnc1",
-    id: 1,
-    username: "Admin",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("")
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function cek() {
-      dispatch(addTokenAdmin(tempAdmin));
-      Swal.fire({
-        title: "Login Succes!",
-        text: "Welcome!",
-        icon: "success",
-      }).then(function () {
-        navigate("/");
-      });
-    }
-    if (loading) {
-      cek();
-    }
-  }, [loading]);
+  // const [usernameR, setUserName] = useState("");
+  // const [passwordR, setPassword] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [tempAdmin, setTempAdmin] = useState({
+  //   token: "4gfnc1",
+  //   id: 1,
+  //   username: "Admin",
+  // });
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-  };
+  // useEffect(() => {
+  //   async function cek() {
+  //     dispatch(addTokenAdmin(token));
+  //     Swal.fire({
+  //       title: "Login Succes!",
+  //       text: "Welcome!",
+  //       icon: "success",
+  //     }).then(function () {
+  //       navigate("/");
+  //     });
+  //   }
+  //   if (loading) {
+  //     cek();
+  //   }
+  // }, [loading]);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(e)
+  //   setLoading(true);
+  // };
+
+  async function login(){
+    console.warn(email,password)
+    let item = {email,password};
+    let result = await fetch("https://loyaltypointagent-staging-7vx5k3vnra-uc.a.run.app/api/v1/login",
+    {
+      method: 'POST',
+      headers:{
+        "Content-Type" : "application/json",
+        "Accept" : 'application/json'
+      },
+      body: JSON.stringify(item)
+    });
+    result = await result.json();
+    navigate("/")
+  }
 
   return (
     <div className="d-flex flex-column align-items-center login ">
@@ -56,9 +78,8 @@ export default function Login() {
               <input
                 type="text"
                 class="form-control"
-                placeholder="Username..."
-                name="username"
-                onChange={(e) => setUserName(e.target.value)}
+                placeholder="Email..."
+                onChange={(e) => setEmail(e.target.value)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 required
@@ -71,7 +92,6 @@ export default function Login() {
                 type="password"
                 class="form-control"
                 placeholder="Password..."
-                name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 aria-label="password"
                 aria-describedby="basic-addon1"
@@ -85,7 +105,7 @@ export default function Login() {
         </div>
         <div className="tombol">
           <button
-            onClick={handleSubmit}
+            onClick={login}
             className="btn btn-warning"
             data-testid="enter"
           >
