@@ -14,7 +14,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const axiosInstance = axios.create({
-    baseURL: "https://loyaltypointagent-staging-7vx5k3vnra-uc.a.run.app/api/v1",
+    baseURL: CONST.BASE_URL_API,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
