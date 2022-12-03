@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { CONST } from "../utils/Constants";
 import "../assets/styles/login.css";
 
 export default function Login() {
@@ -11,38 +13,42 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const axiosInstance = axios.create({
+    baseURL: "https://loyaltypointagent-staging-7vx5k3vnra-uc.a.run.app/api/v1",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let result = await fetch(
-      "https://loyaltypointagent-staging-7vx5k3vnra-uc.a.run.app/api/v1/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      }
-    );
-
-    result = await result.json();
-    console.log(result);
-    if (result.message == "success") {
-      dispatch(addTokenAdmin(result.data));
-      Swal.fire({
-        title: "Login Succes!",
-        text: "Welcome!",
-        icon: "success",
-      }).then(function () {
-        navigate("/");
+    const result = await axiosInstance
+      .post("/login", {
+        email,
+        password,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.data.message == "success") {
+          dispatch(addTokenAdmin(result.data.data));
+          Swal.fire({
+            title: "Login Succes!",
+            text: "Welcome!",
+            icon: "success",
+          }).then(function () {
+            navigate("/");
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.data.message == "failed") {
+          Swal.fire({
+            title: "Failed Login",
+            text: "Wrong Username or passowrd",
+            icon: "warning",
+          });
+        }
       });
-    } else if (result.message == "failed") {
-      Swal.fire({
-        title: "Failed Login",
-        text: "Wrong Username or passowrd",
-        icon: "warning",
-      }).then(function () {});
-    }
   };
 
   return (
