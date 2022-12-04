@@ -39,7 +39,7 @@ const AddUser = (props) => {
         <form onSubmit="">
           <div className="form-group row mb-2">
             <label
-              for="inputNama"
+              for="inputNamaLengkap"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
               Nama Lengkap
@@ -48,10 +48,10 @@ const AddUser = (props) => {
               <input
                 type="text"
                 className="form-control"
-                id="inputNama"
+                id="inputNamaLengkap"
                 name="namaLengkap"
                 onChange={handleInput}
-                value={data.nama}
+                value={data.namaLengkap}
                 required
               />
             </div>
@@ -70,7 +70,7 @@ const AddUser = (props) => {
                 id="inputEmail"
                 name="email"
                 onChange={handleInput}
-                value={data.harga}
+                value={data.email}
                 required
               />
             </div>
@@ -127,7 +127,7 @@ const AddUser = (props) => {
                 id="inputKonfirmasiPassword"
                 name="konfirmasiPassword"
                 onChange={handleInput}
-                value={data.konfirmasipassword}
+                value={data.konfirmasiPassword}
                 required
               />
             </div>

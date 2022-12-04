@@ -27,18 +27,20 @@ const DetailEditPengguna = () => {
                         <Card.Header>
                             <div className='d-flex flex-row'>
                                 <div>
-                                <img alt="" 
-                            style={{paddingTop: "10px",paddingBottom: "10px", width:"150px", height: "150px"}}
-                            src={require('../../assets/images/User/Rectangle 20.png')}/>
+                                    <img alt=""
+                                        style={{ paddingTop: "10px", paddingBottom: "10px", width: "150px", height: "150px" }}
+                                        src={require('../../assets/images/User/Rectangle 20.png')} />
                                 </div>
-                                <div style={{paddingTop: "10px",marginTop: "15px" ,marginLeft: "20px"}}>
-                                <p style={{color:"#01478C"}}><h3>Kartika Noviyanti</h3></p>
-                                <p style={{padding:"10px", backgroundColor:"#CFD0D4", borderRadius:"50px",
-                                 textAlign:"center", width:"80%", fontSize:"19px"}}>
-                                    Siver Member</p>
+                                <div style={{ paddingTop: "10px", marginTop: "15px", marginLeft: "20px" }}>
+                                    <p style={{ color: "#01478C" }}><h3>Kartika Noviyanti</h3></p>
+                                    <p style={{
+                                        padding: "10px", backgroundColor: "#CFD0D4", borderRadius: "50px",
+                                        textAlign: "center", width: "80%", fontSize: "19px"
+                                    }}>
+                                        Siver Member</p>
                                 </div>
                             </div>
-                            
+
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>
@@ -61,11 +63,11 @@ const DetailEditPengguna = () => {
                                     <p className='detail-produk-text'>Password</p>
                                     <p className='detail-produk-text'>Ayo tebak...</p>
                                 </div>
-                               <br/><br/><br/><br/><br/>
+                                <br /><br /><br /><br /><br />
                                 <div style={{ position: 'relative' }} className='mb-2 d-flex justify-content-center gap-5'>
                                     <Button style={{ backgroundColor: '#006BA0', borderColor: '#006BA0' }} onClick={togglePopUp} >Ubah</Button>
                                     <Button style={{ backgroundColor: '#D15F02', borderColor: '#D15F02' }} onClick={handleGoBack}>Kembali</Button>
-                                    <Button style={{ backgroundColor: '#FCC12F', borderColor: '#FCC12F', color: "#013B75"}}>
+                                    <Button style={{ backgroundColor: '#FCC12F', borderColor: '#FCC12F', color: "#013B75" }}>
                                         Lihat Riwayat Transaksi
                                     </Button>
                                 </div>
