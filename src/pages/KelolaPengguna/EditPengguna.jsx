@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../assets/styles/PopUp.css";
 
-const AddUser = (props) => {
+const EditPengguna = (props) => {
   const [data, setData] = useState({
     namaLengkap: "",
     email: "",
@@ -34,7 +34,7 @@ const AddUser = (props) => {
           x
         </span>
         <h2 className="mb-4 mt-2">
-          <center>Tambah Pengguna</center>
+          <center>Edit Pengguna</center>
         </h2>
         <form onSubmit="">
           <div className="form-group row mb-2">
@@ -135,8 +135,9 @@ const AddUser = (props) => {
 
           <div className="button mt-4">
             <center>
-              <button type="submit" className="btn btn-success mx-3">
-                Tambah Pengguna
+              <button type="submit" className="btn mx-3"
+              style={{backgroundColor:"#006BA0", color:"white"}}>
+                Update
               </button>
               <button
                 className="btn btn-danger mx-3"
@@ -151,4 +152,4 @@ const AddUser = (props) => {
     </div>
   );
 };
-export default AddUser;
+export default EditPengguna;

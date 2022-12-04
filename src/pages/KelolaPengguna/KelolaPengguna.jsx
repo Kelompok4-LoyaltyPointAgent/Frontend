@@ -79,7 +79,6 @@ export default function KelolaPengguna() {
               <ListUser />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <ListAdmin />
             </TabPanel>
           </Card>
         </div>

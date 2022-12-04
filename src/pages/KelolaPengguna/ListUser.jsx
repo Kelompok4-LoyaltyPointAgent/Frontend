@@ -46,7 +46,7 @@ const ListUser = () => {
       </div>
     </div>
     <div className="">
-      <Button href='/kelolastok/detaileditproduk/pulsa'>Detail User Tes</Button>
+      <Button href="/kelolaPengguna/detaileditpengguna/user" >Detail User Tes</Button>
       User
     </div>
   </div>
