@@ -11,6 +11,7 @@ const ListUser = () => {
   const togglePopUp = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <div className="w-100">
     {isOpen && <AddUser handleClose={togglePopUp} />}
@@ -24,7 +25,7 @@ const ListUser = () => {
             marginRight: "10px",
           }}
         />
-        Tambah Produk
+        Tambah Pengguna
       </Button>
       <div className="d-flex flex-row gap-2 pe-3">
         <div className="">

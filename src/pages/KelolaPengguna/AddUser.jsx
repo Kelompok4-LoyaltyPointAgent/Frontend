@@ -26,7 +26,7 @@ const AddUser = (props) => {
       [name]: check,
     });
   };
-
+ 
   return (
     <div className="popup-box">
       <div className="box">
