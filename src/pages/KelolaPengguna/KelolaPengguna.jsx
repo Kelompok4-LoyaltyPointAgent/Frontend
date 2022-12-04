@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -11,6 +11,7 @@ import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from '@mui/material';
 import {BiSearch, BiSortDown} from 'react-icons/bi'
+import AddUser from "./AddUser";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +47,12 @@ function a11yProps(index) {
 }
 
 export default function KelolaPengguna() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopUp = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -56,6 +62,8 @@ export default function KelolaPengguna() {
     <>
       <div className="d-flex">
         <Sidebar list={2} />
+        {isOpen && <AddUser handleClose={togglePopUp} />}
+
         <div className="mt-5 pt-5 ps-3 pe-3 w-100">
         <Card className='d-flex'>
           <div style={{ backgroundColor: 'whitesmoke' }}>
@@ -67,27 +75,6 @@ export default function KelolaPengguna() {
               </Tabs>
             </div>
           </div>
-          
-          <div className='d-flex flex-row justify-content-between mb-3 mt-3 ps-3'>
-              <Button variant='success'> 
-              {""}
-              <AiOutlinePlusSquare style={{width: "20px",
-              height : "25px", marginRight: "5px", 
-              paddingBottom: "3px"}}/>
-              Tambah Produk</Button>
-              <div className='d-flex flex-row gap-2 pe-3'>
-              <div className="">
-              <TextField
-                id="search"
-                variant="outlined"
-                label={<p style={{fontSize:'13px', fontWeight:'540'}}><BiSearch style={{height:'20px', width:'20px'}}/>Cari</p>}
-                size='small'
-              /></div>
-              <div>
-                <BiSortDown style={{height: '40px', width: '30px'}}/>
-              </div>
-              </div>
-            </div>
             <TabPanel value={value} index={0}>
               <ListUser />
             </TabPanel>

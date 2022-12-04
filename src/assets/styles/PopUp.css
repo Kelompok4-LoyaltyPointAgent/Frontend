@@ -19,7 +19,10 @@
   color: #01478c;
   font-weight: 600;
 }
-.popup-box .box input[type="text"],
+.popup-box 
+.box input[type="number"],
+.box input[type="text"],
+.box input[type="password"],
 .popup-box .box select,
 .popup-box .box textarea {
   background-color: #ccdae8;
