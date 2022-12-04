@@ -1,41 +1,54 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { CONST } from "../utils/Constants";
 import "../assets/styles/login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [usernameR, setUserName] = useState("");
-  const [passwordR, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [tempAdmin, setTempAdmin] = useState({
-    token: "4gfnc1",
-    id: 1,
-    username: "Admin",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function cek() {
-      dispatch(addTokenAdmin(tempAdmin));
-      Swal.fire({
-        title: "Login Succes!",
-        text: "Welcome!",
-        icon: "success",
-      }).then(function () {
-        navigate("/");
-      });
-    }
-    if (loading) {
-      cek();
-    }
-  }, [loading]);
-
-  const handleSubmit = (e) => {
+  const axiosInstance = axios.create({
+    baseURL: CONST.BASE_URL_API,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    const result = await axiosInstance
+      .post("/login", {
+        email,
+        password,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.data.message == "success") {
+          dispatch(addTokenAdmin(result.data.data));
+          Swal.fire({
+            title: "Login Succes!",
+            text: "Welcome!",
+            icon: "success",
+          }).then(function () {
+            navigate("/");
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.data.message == "failed") {
+          Swal.fire({
+            title: "Failed Login",
+            text: "Wrong Username or passowrd",
+            icon: "warning",
+          });
+        }
+      });
   };
 
   return (
@@ -56,9 +69,8 @@ export default function Login() {
               <input
                 type="text"
                 class="form-control"
-                placeholder="Username..."
-                name="username"
-                onChange={(e) => setUserName(e.target.value)}
+                placeholder="Email..."
+                onChange={(e) => setEmail(e.target.value)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 required
@@ -71,7 +83,6 @@ export default function Login() {
                 type="password"
                 class="form-control"
                 placeholder="Password..."
-                name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 aria-label="password"
                 aria-describedby="basic-addon1"
