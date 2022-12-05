@@ -1,34 +1,63 @@
 * {
   margin: 0px;
-  font-weight: 500;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-style: bold;
 }
 
-.login .space {
-  /* center Vertical and horizontal */
-  margin: 0;
-  padding: 50px;
+.login {
+  background: url(../images/BackgroundLogin.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+}
+
+.login .header {
   position: absolute;
-  top: 60%;
+  top: 7%;
+}
+.login .header img {
+  width: 90px;
+  height: 95px;
+}
+.login .header p {
+  color: #005985;
+  margin-top: 8px;
+  font-weight: bolder;
+}
+
+.forms .space {
+  margin: 0;
+  padding: 30px 30px 30px 30px;
+  position: absolute;
+  background-color: #ccdae8;
+  border-radius: 12px;
+  top: 55%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  /* Other CSS */
-  width: 40%;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  width: 30%;
 }
 
-.login .space h1 {
-  font-weight: 600;
+.forms .space label {
+  margin-bottom: 5px;
+  color: #fbb505;
+  font-weight: bolder;
 }
 
-.login .tombol button {
-  margin-bottom: 30px;
-  width: 50%;
+.forms .space input {
+  border-color: #fbb505;
+}
+.forms .tombol button {
+  position: absolute;
+  bottom: 20%;
+  width: 12%;
+  left: 44.2%;
 }
 
-.login a {
+.forms a {
   text-decoration: none;
 }

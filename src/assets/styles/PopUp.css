@@ -1,0 +1,64 @@
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.popup-box .box h2 {
+  color: #fbb505;
+  font-weight: bolder;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+.popup-box .box label {
+  color: #01478c;
+  font-weight: 600;
+}
+.popup-box 
+.box input[type="number"],
+.box input[type="text"],
+.box input[type="password"],
+.popup-box .box select,
+.popup-box .box textarea {
+  background-color: #ccdae8;
+}
+
+.popup-box .box .toggle input {
+  height: 30px;
+  width: 55px;
+}
+
+.box {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 90vh;
+  margin-top: calc(92vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(85vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 16px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}

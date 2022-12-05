@@ -1,101 +1,109 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addTokenAdmin } from "../stores/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { CONST } from "../utils/Constants";
 import "../assets/styles/login.css";
-import NavTitle from "../components/NavTitle";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const [usernameR, setUserName] = useState("");
-  const [passwordR, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [tempAdmin, setTempAdmin] = useState({
-    token: "4gfnc1",
-    id: 1,
-    username: "Budi",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function cek() {
-      dispatch(addTokenAdmin(tempAdmin));
-      Swal.fire({
-        title: "Login Succes!",
-        text: "Welcome!",
-        icon: "success",
-      }).then(function () {
-        navigate("/");
-      });
-    }
-    if (loading) {
-      cek();
-    }
-  }, [loading]);
-
-  const handleSubmit = (e) => {
+  const axiosInstance = axios.create({
+    baseURL: CONST.BASE_URL_API,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    const result = await axiosInstance
+      .post("/login", {
+        email,
+        password,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.data.message == "success") {
+          dispatch(addTokenAdmin(result.data.data));
+          Swal.fire({
+            title: "Login Succes!",
+            text: "Welcome!",
+            icon: "success",
+          }).then(function () {
+            navigate("/");
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.data.message == "failed") {
+          Swal.fire({
+            title: "Failed Login",
+            text: "Wrong Username or passowrd",
+            icon: "warning",
+          });
+        }
+      });
   };
 
   return (
-    <div className="d-flex flex-column  align-items-center">
-      <div className="mt-5 d-flex flex-column justify-content-center align-items-center">
-        <img alt="logo" style={{width: "200px", height: "200px", borderRadius: "50px"}}src={require('../assets/images/IMG20221016160000.jpg')}/>
-        <p>awokawkoawkowk aiwkaikwikwiakwikwi</p>
+    <div className="d-flex flex-column align-items-center login ">
+      <div className="background"></div>
+      <div className="mt-5 d-flex flex-column justify-content-center align-items-center header">
+        <img alt="logo" src={require("../assets/images/LoginLogo.png")} />
+        <p>
+          Haaaiiii, Semoga harimu menyenangkan <br />
+          Masuk dulu yukk untuk melanjutkan...
+        </p>
       </div>
-      <div className="login">
-      <div className="space">
-        <form onSubmit={handleSubmit}>
-          <p>Username</p>
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Username..."
-              name="username"
-              onChange={(e) => setUserName(e.target.value)}
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-              required
-            />
-          </div>
+      <div className="forms">
+        <div className="space">
+          <form>
+            <label>Nama Pengguna</label>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Email..."
+                onChange={(e) => setEmail(e.target.value)}
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
 
-          <p>Password</p>
-
-          <div class="input-group mb-3">
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password..."
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              aria-label="password"
-              aria-describedby="basic-addon1"
-              required
-            />
+            <label>Password</label>
+            <div class="input-group mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password..."
+                onChange={(e) => setPassword(e.target.value)}
+                aria-label="password"
+                aria-describedby="basic-addon1"
+                required
+              />
+            </div>
+          </form>
+          <div className="text-end">
+            <a href="">Lupa Kata Sandi</a>
           </div>
-          <div className="tombol">
-            <center>
-              <button
-                type="submit"
-                className="btn btn-outline-primary"
-                data-testid="enter"
-              >
-                Submit
-              </button>
-            </center>
-          </div>
-        </form>
-        <div className="text-center">
-          <p>
-            Dont Have Account? <Link to="/register">Register</Link>
-          </p>
+        </div>
+        <div className="tombol">
+          <button
+            onClick={handleSubmit}
+            className="btn btn-warning"
+            data-testid="enter"
+          >
+            Masuk
+          </button>
         </div>
       </div>
     </div>
-    </div>
-    
   );
 }

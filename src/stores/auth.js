@@ -13,8 +13,8 @@ export const listAuth = createSlice({
   reducers: {
     addTokenAdmin: (state, action) => {
       state.tokens = action.payload.token;
-      state.id = action.payload.id;
-      state.username = action.payload.username;
+      state.id = 1;
+      state.username = "Admin";
       state.account = "Admin";
     },
 
