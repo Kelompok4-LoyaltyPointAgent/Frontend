@@ -6,11 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ListUser from "./ListUser";
-import ListAdmin from "./ListAdmin";
-import { Button, Card } from "react-bootstrap";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from '@mui/material';
-import {BiSearch, BiSortDown} from 'react-icons/bi'
+import { Card } from "react-bootstrap";
 import AddUser from "./AddUser";
 
 function TabPanel(props) {
