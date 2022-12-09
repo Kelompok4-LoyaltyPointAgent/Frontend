@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthLoggedIn from "./AuthLoggedIn";
 import AuthLogin from "./AuthLogin";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/Login";
 import KelolaStok from "../pages/KelolaStok/KelolaStok";
 import KelolaTransaksi from "../pages/KelolaTransaksi";

@@ -1,0 +1,15 @@
+.card-shadow-pengunjung{
+    box-shadow: #D15F02 0px 5px 2px;
+}
+.card-shadow-pembeli{
+    box-shadow: #006BA0 0px 5px 2px;
+}
+.card-shadow-apk{
+    box-shadow: #197722 0px 5px 2px;
+}
+.card-shadow-transaksi{
+    box-shadow: #FBB505 0px 5px 2px;
+}
+.card-shadow-info{
+    box-shadow: #838587 0px 2px 4px;
+}
