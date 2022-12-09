@@ -1,85 +1,148 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Sidebar from "../../components/sidebar/Sidebar";
-import ListUser from "./ListUser";
 import ListAdmin from "./ListAdmin";
 import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from '@mui/material';
-import {BiSearch, BiSortDown} from 'react-icons/bi'
+import { TextField } from "@mui/material";
+import { BiSearch, BiSortDown } from "react-icons/bi";
 import AddUser from "./AddUser";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+import ItemUser from "./ItemUser";
+import Pagination from "../../components/Pagination";
 
 export default function KelolaPengguna() {
-  const [value, setValue] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [posts, setPosts] = useState([
+    {
+      nama: "diaken",
+      email: "d@wow",
+      role: "admin",
+      poin: "1000",
+    },
+    {
+      nama: "dery",
+      email: "der@wow",
+      role: "admin",
+      poin: "2000",
+    },
+    {
+      nama: "dik",
+      email: "dik@wow",
+      role: "admin",
+      poin: "3000",
+    },
+  ]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(2);
+
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  //     setPosts(res.data);
+  //   };
+
+  //   fetchPosts();
+  // }, []);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const togglePopUp = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
   return (
     <>
       <div className="d-flex">
         <Sidebar list={2} />
-        {isOpen && <AddUser handleClose={togglePopUp} />}
-
         <div className="mt-5 pt-5 ps-3 pe-3 w-100">
-        <Card className='d-flex'>
-          <div style={{ backgroundColor: 'whitesmoke' }}>
-          <p className='mb-4 mt-1 ps-3 pt-3'>Kelola Pengguna</p>
-            <div className="d-flex ps-3" >
-              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="User" {...a11yProps(0)} />
-                <Tab label="Admin" {...a11yProps(1)} />
-              </Tabs>
+          <Card className="d-flex">
+            <div style={{ backgroundColor: "whitesmoke" }}>
+              <p className="mb-4 mt-1 ps-3 pt-3">Kelola Pengguna</p>
             </div>
-          </div>
-            <TabPanel value={value} index={0}>
-              <ListUser />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-            </TabPanel>
+            <Box sx={{ p: 3 }}>
+              <Typography>
+                <div className="w-100">
+                  {isOpen && <AddUser handleClose={togglePopUp} />}
+                  <div className="d-flex flex-row justify-content-between mb-3">
+                    <Button variant="success" onClick={togglePopUp}>
+                      <AiOutlinePlusSquare
+                        style={{
+                          width: "20px",
+                          height: "25px",
+                          paddingBottom: "3px",
+                          marginRight: "10px",
+                        }}
+                      />
+                      Tambah Pengguna
+                    </Button>
+                    <div className="d-flex flex-row gap-2 pe-3">
+                      <div className="">
+                        <TextField
+                          id="search"
+                          variant="outlined"
+                          label={
+                            <p style={{ fontSize: "13px", fontWeight: "540" }}>
+                              <BiSearch
+                                style={{ height: "20px", width: "20px" }}
+                              />
+                              Cari
+                            </p>
+                          }
+                          size="small"
+                        />
+                      </div>
+                      <div>
+                        <BiSortDown style={{ height: "40px", width: "30px" }} />
+                      </div>
+                    </div>
+                  </div>
+                  <table
+                    class="table table-borderless "
+                    style={{
+                      border: "1px solid #013B75",
+                    }}
+                  >
+                    <thead>
+                      <tr
+                        className="text-center"
+                        style={{ backgroundColor: "#013B75", color: "white" }}
+                      >
+                        <th>Nama Lengkap</th>
+                        <th>Email/Username</th>
+                        <th>Role</th>
+                        <th>Poin</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-center" style={{ color: "#013B75" }}>
+                      {currentPosts.map((item, index) => (
+                        <ItemUser data={item} index={index}></ItemUser>
+                      ))}
+                    </tbody>
+                  </table>
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={posts.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                  />
+                  {/* <div className="">
+                    <Button href="/kelolaPengguna/detaileditpengguna/user">
+                      Detail User Tes
+                    </Button>
+                    User
+                  </div> */}
+                </div>
+              </Typography>
+            </Box>
           </Card>
         </div>
       </div>

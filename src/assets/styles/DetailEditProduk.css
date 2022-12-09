@@ -1,3 +1,9 @@
+.body-overflow {
+  overflow: auto;
+  max-height: 52vh;
+  position: relative;
+}
+
 .list-detail {
   display: flex;
   margin-left: 90px;
