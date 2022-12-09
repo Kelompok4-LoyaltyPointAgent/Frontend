@@ -1,0 +1,17 @@
+.file-button {
+  font-size: 20px;
+  color: #005985;
+  cursor: pointer;
+}
+.file-button:hover {
+  background-color: aqua;
+}
+
+.delete-button {
+  font-size: 20px;
+  color: #991628;
+  cursor: pointer;
+}
+.delete-button:hover {
+  background-color: #f50626;
+}
