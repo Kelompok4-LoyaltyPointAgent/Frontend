@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar{
+    background-color: #F5F6F7;
+    width: 240px;
+    padding: 15px;
+    position: fixed;
+    min-height: 100vh;
+}
