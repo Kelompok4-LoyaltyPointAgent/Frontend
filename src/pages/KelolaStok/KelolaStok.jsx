@@ -5,13 +5,14 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import StokPulsa from "./StokPulsa";
-import Sidebar from "../../components/sidebar/Sidebar";
 import StokPaketData from "./StokPaketData";
 import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
 import AddStockPulsa from "./AddStockPulsa";
+import NewSidebar from "../../components/sidebar/NewSidebar";
+import NavbarTop from "../../components/NavbarTop";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,9 +63,10 @@ export default function KelolaStok() {
     <>
       <div className="d-flex">
         {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
-
-        <Sidebar list={4} />
-        <div className="mt-5 pt-5 ps-3 pe-3 w-100">
+        <NewSidebar/>
+        <div className="w-100">
+          <NavbarTop/>
+        <div className="mt-4 ps-3 pe-3 w-100">
           <Card className="d-flex">
             <div style={{ backgroundColor: "whitesmoke" }}>
               <p className="mb-4 mt-1 ps-3 pt-3">Stok Produk</p>
@@ -87,6 +89,7 @@ export default function KelolaStok() {
               <StokPaketData />
             </TabPanel>
           </Card>
+        </div>
         </div>
       </div>
     </>
