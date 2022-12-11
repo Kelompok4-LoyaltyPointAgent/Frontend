@@ -1,52 +1,66 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    text-decoration: none;
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
 }
-.container{
-    z-index: 1;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    width: 240px;
-    min-height: 100vh;
+.container {
+  z-index: 1;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  width: 240px;
+  min-height: 100vh;
+  transition: min-height 0.5s;
+  font-weight: bolder;
 }
-.logo{
-    margin-left:10px;
-    padding: 20px;
+.logo {
+  margin-left: 10px;
+  padding: 20px;
 }
-.sidebar{
-    width: 240px;
-    background-color: #F5F6F7;
-    transition: all 0.5s;
-    
+.sidebar {
+  width: 240px;
+  background-color: #f5f6f7;
+  transition: all 0.5s;
 }
-.list-menu{
-    font-size: 16px;
-    color:#6D747C;
-    margin-left: 20px;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 13px;
-    gap: 10px;
-    margin-bottom: 20px;
-    text-decoration: none;
+.active-drop {
+  background-color: #ccdae8;
 }
-.list-menu:hover{
-    border-radius: 50px 0px 0px 50px;
-    color:white;
-    background-color:#01478C ;
+.list-menu {
+  font-size: 15px;
+  color: #6d747c;
+  margin-left: 20px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  border-radius: 50px 0px 0px 50px;
+  transition: background-color 0.5s, color 0.5s;
 }
-.active{
-    color: #01478C;
+.list-menu:hover {
+  border-radius: 50px 0px 0px 50px;
+  color: white;
+  background-color: #01478c;
 }
-.icon{
-    font-size: 21px;
+.drop-item {
+  margin-left: 47px;
 }
-.list-item{
-    margin-top: 5px;
+.list-drop {
+  padding: 4px 0 6px 0;
 }
-.sub-menu{
-    background-color: #01478C;
-    display: none;
+
+.active {
+  color: #01478c;
+  border-right: solid 4px #01478c;
+}
+.icon {
+  font-size: 21px;
+}
+.list-item {
+  margin-top: 5px;
+}
+.sub-menu {
+  background-color: #01478c;
+  display: none;
 }
