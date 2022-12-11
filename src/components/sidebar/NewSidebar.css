@@ -10,7 +10,6 @@
   display: flex;
   width: 240px;
   min-height: 100vh;
-  transition: min-height 0.5s;
   font-weight: bolder;
 }
 .logo {
@@ -20,7 +19,7 @@
 .sidebar {
   width: 240px;
   background-color: #f5f6f7;
-  transition: all 0.5s;
+  transition: all 5s;
 }
 .active-drop {
   background-color: #ccdae8;
@@ -42,6 +41,7 @@
   border-radius: 50px 0px 0px 50px;
   color: white;
   background-color: #01478c;
+  cursor: pointer;
 }
 .drop-item {
   margin-left: 47px;
