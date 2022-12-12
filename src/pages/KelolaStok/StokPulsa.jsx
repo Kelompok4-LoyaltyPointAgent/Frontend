@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
@@ -45,9 +45,9 @@ export default function StokPulsa() {
   const [postsPerPage] = useState(2);
 
   // useEffect(() => {
+  //   console.log("test")
   //   const fetchPosts = async () => {
-  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-  //     setPosts(res.data);
+
   //   };
 
   //   fetchPosts();

@@ -9,6 +9,7 @@ import { Chart as
     Legend, } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import { Card } from 'react-bootstrap'
+import { DoughnutDashboard } from './DonatDashboard'
 
 ChartJS.register(
     CategoryScale,
@@ -21,8 +22,7 @@ ChartJS.register(
 
 const BarDashboard = () => {
     var data = {
-        labels: ['01', '02', '03', '04', '05', '06', '07','08','09','10','11','12'],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        labels: ['January', 'February', 'Maret', 'April', 'Mei', 'Juni', 'July','Agustus','September','Oktober','November','Desember'],
         datasets: [{
             label: 'Pembelian',
             data: [12, 19, 15, 5, 8, 6, 10, 17, 21, 25, 20, 19],
@@ -62,32 +62,21 @@ const BarDashboard = () => {
     }
 
     return (
-        <div className='d-flex flex-row gap-5'>
-            <div>
-                <p className='mt-4'>Bulan Ini</p>
-                <div className='mt-1' style={{ width: 900 , color: '#01478C',}}>
+        <div className='d-flex flex-row mt-5 mb-2 justify-content-between'>
+            <Card className='p-3 pe-5'>
+                <span className='mb-3'>Tahun Ini</span>
+                <div style={{ width: 850}}>
                     <Bar
                         data={data}
                         height={300}
-                        Color={'#01478C'}
                         options={options}
                     />
                 </div>
-            </div>
-            <div className='mt-4 d-flex flex-column gap-3'>
-                <Card className='card-shadow-info' style={{width:'17rem', padding:'10px'}}>
-                    <p>Pembelian</p>
-                    <p>1.512</p>
-                </Card>
-                <Card className='card-shadow-info' style={{width:'17rem', padding:'10px'}}>
-                    <p>Redeem</p>
-                    <p>20</p>
-                </Card>
-                <Card className='card-shadow-info' style={{width:'17rem', padding:'10px'}}>
-                    <p>Total Keuntungan</p>
-                    <p>Rp. 150.000</p>
-                </Card>
-            </div>
+                <span className='text-center mt-4'><h4>Produk Terjual</h4></span>
+            </Card>
+            <Card className='d-flex p-3'>
+               <DoughnutDashboard/>
+            </Card>
         </div>
 
     )
