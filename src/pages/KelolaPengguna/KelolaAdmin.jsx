@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
@@ -14,7 +11,7 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 
-export default function KelolaPengguna() {
+export default function KelolaAdmin() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([
     {
@@ -32,6 +29,12 @@ export default function KelolaPengguna() {
     {
       nama: "dik",
       email: "dik@wow",
+      role: "admin",
+      poin: "3000",
+    },
+    {
+      nama: "wew",
+      email: "wew@wow",
       role: "admin",
       poin: "3000",
     },
@@ -67,7 +70,7 @@ export default function KelolaPengguna() {
         <div className="mt-4 ps-3 pe-3 w-100">
           <Card className="">
             <div style={{ backgroundColor: "whitesmoke" }}>
-              <p className="mb-4 mt-1 ps-3 pt-3">Kelola Pengguna</p>
+              <p className="mb-4 mt-1 ps-3 pt-3">Kelola Admin</p>
             </div>
             <Box sx={{ p: 3 }}>
               <Typography>
