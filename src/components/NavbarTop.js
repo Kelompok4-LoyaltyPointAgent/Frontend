@@ -24,8 +24,8 @@ const NavbarTop = () => {
   };
 
   return (
-    <div>
-      <Navbar className="NavbarTop"
+    <div >
+      <Navbar className="NavbarTop d-flex"
         style={{ backgroundColor: "#F5F6F7" }}
       >
         <div className="container-fluid d-flex align-items-end justify-content-end pe-3">
