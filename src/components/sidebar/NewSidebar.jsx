@@ -1,15 +1,15 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { FaUserAlt } from 'react-icons/fa'
-import { MdOutlineDashboard, MdOutlineCast } from 'react-icons/md'
-import { AiOutlineFileText } from 'react-icons/ai'
-import { CgUserList } from 'react-icons/cg'
-import '../sidebar/NewSidebar.css'
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
+import { AiOutlineFileText } from "react-icons/ai";
+import { CgUserList } from "react-icons/cg";
+import "../sidebar/NewSidebar.css";
 import { deleteToken } from "../../stores/auth";
-import { useDispatch } from 'react-redux'
-import { Button } from 'react-bootstrap';
+import { useDispatch } from "react-redux";
 
 const NewSidebar = ({ list }) => {
+  const [isOpen1, setIsOpen1] = useState(false);
+  const [isOpen3, setIsOpen3] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOut = (e) => {
@@ -21,53 +21,147 @@ const NewSidebar = ({ list }) => {
   const sidebarMenu = [
     {
       route: "/",
-      name: "Dahsboard",
-      icon: <MdOutlineDashboard />
+      name: "Dashboard",
+      icon: <MdOutlineDashboard />,
     },
     {
       route: "/kelolapengguna",
       name: "Kelola Pengguna",
       icon: <CgUserList />,
-      active: ""
+      active: "",
+      dropdown: [
+        {
+          route: "/kelolapengguna",
+          name: "Admin",
+        },
+        {
+          route: "/kelolapengguna",
+          name: "Pelanggan",
+        },
+      ],
     },
     {
       route: "/kelolatransaksi",
       name: "Kelola Transaksi",
-      icon: <AiOutlineFileText />
+      icon: <AiOutlineFileText />,
     },
     {
       route: "/kelolastok",
       name: "Kelola Stok",
-      icon: <MdOutlineCast />
+      icon: <MdOutlineCast />,
+      dropdown: [
+        {
+          route: "/kelolastok",
+          name: "Pulsa",
+        },
+        {
+          route: "/kelolastok",
+          name: "Paket Data",
+        },
+      ],
     },
-  ]
+  ];
+
+  const togglePopUp = (index) => {
+    index == 1 ? setIsOpen1(!isOpen1) : setIsOpen3(!isOpen3);
+  };
+
+  const navNormal = (item, index, active) => {
+    if (index == 1 || index == 3) {
+      if (isOpen1 && index == 1) {
+        return (
+          <>
+            <a
+              key={index}
+              className="list-menu d-flex flex-row active-drop"
+              activeclassName="active"
+              onClick={() => togglePopUp(index)}
+            >
+              <div className="icon">{item.icon}</div>
+              <div className="list-item">{item.name}</div>
+            </a>
+            {item.dropdown.map((list) => (
+              <NavLink
+                to={list.route}
+                className="list-menu list-drop d-flex flex-row"
+                activeclassName="active"
+              >
+                <div className="list-item drop-item">{list.name}</div>
+              </NavLink>
+            ))}
+          </>
+        );
+      } else if (isOpen3 && index == 3) {
+        return (
+          <>
+            <a
+              key={index}
+              className="list-menu d-flex flex-row active-drop"
+              activeclassName="active"
+              onClick={() => togglePopUp(index)}
+            >
+              <div className="icon">{item.icon}</div>
+              <div className="list-item">{item.name}</div>
+            </a>
+            {item.dropdown.map((list) => (
+              <NavLink
+                to={list.route}
+                className="list-menu list-drop d-flex flex-row"
+                activeclassName="active"
+              >
+                <div className="list-item drop-item">{list.name}</div>
+              </NavLink>
+            ))}
+          </>
+        );
+      } else {
+        return (
+          <a
+            key={index}
+            className="list-menu d-flex flex-row"
+            activeclassName="active"
+            onClick={() => togglePopUp(index)}
+          >
+            <div className="icon">{item.icon}</div>
+            <div className="list-item">{item.name}</div>
+          </a>
+        );
+      }
+    } else {
+      return (
+        <NavLink
+          to={item.route}
+          key={index}
+          className="list-menu d-flex flex-row"
+          activeclassName="active"
+        >
+          <div className="icon">{item.icon}</div>
+          <div className="list-item">{item.name}</div>
+        </NavLink>
+      );
+    }
+  };
   return (
     <>
-      <div className='container'>
+      <div className="container">
         <div className="sidebar">
           <div className="logo">
-            <img src={require('../../assets/images/Logo/Logo.png')} alt='logo' />
+            <center>
+              <img
+                src={require("../../assets/images/Logo/Logo.png")}
+                alt="logo"
+              />
+            </center>
           </div>
           <div className="">
-            {
-              sidebarMenu.map((item, index, active) => (
-
-                <NavLink to={item.route} key={index}
-                  className='list-menu d-flex flex-row' 
-                  activeclassName='active'
-                >
-                  <div className='icon'>{item.icon}</div>
-                  <div className='list-item'>{item.name}</div>
-                </NavLink>
-
-              ))
-            }
+            {sidebarMenu.map((item, index, active) =>
+              navNormal(item, index, active)
+            )}
           </div>
         </div>
       </div>
     </>
+  );
+};
 
-  )
-}
-
-export default NewSidebar
+export default NewSidebar;
