@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
-import { AiOutlineFileText } from "react-icons/ai";
+import { AiOutlineFileText, AiOutlineQuestionCircle } from "react-icons/ai";
 import { CgUserList } from "react-icons/cg";
 import "../sidebar/NewSidebar.css";
 import { deleteToken } from "../../stores/auth";
@@ -57,6 +57,11 @@ const NewSidebar = ({ list }) => {
           name: "Paket Data",
         },
       ],
+    },
+    {
+      route: "/faq",
+      name: "Kelola FAQ",
+      icon: <AiOutlineQuestionCircle />,
     },
   ];
 

@@ -10,6 +10,7 @@ import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
+import CardTopPaket from "./CardTopPaket";
 
 export default function StokPaketData() {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,14 +69,14 @@ export default function StokPaketData() {
         <div className="w-100">
           <NavbarTop/>
         <div className="mt-4 ps-3 pe-3 w-100">
-          <Card className="">
-            <div style={{ backgroundColor: "whitesmoke" }}>
-              <p className="mb-4 mt-1 ps-3 pt-3">Stok Paket</p>
+            <div>
+              <CardTopPaket/>
             </div>
-            <Box sx={{ p: 3 }}>
+            <Box>
               <Typography>
                 <div className="w-100">
                   {isOpen && <AddStockPaket handleClose={togglePopUp} />}
+                  <p className="mt-1 pt-3">Stok Paket</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -148,11 +149,8 @@ export default function StokPaketData() {
                 </div>
               </Typography>
             </Box>
-          </Card>
         </div>
-        </div>
-
-        
+        </div>  
       </div>
     </>
   );

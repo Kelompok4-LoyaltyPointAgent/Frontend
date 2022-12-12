@@ -12,6 +12,7 @@ import KelolaAdmin from "../pages/KelolaPengguna/KelolaAdmin";
 import StokPaketData from "../pages/KelolaStok/StokPaketData";
 import StokPulsa from "../pages/KelolaStok/StokPulsa";
 import KelolaPelanggan from "../pages/KelolaPengguna/KelolaPelanggan";
+import FaqPage from "../pages/FaqPage";
 
 function Router() {
   const token = useSelector((state) => state.token.tokens);
@@ -34,6 +35,7 @@ function Router() {
             <Route path="/kelolastok/paketdata" element={<StokPaketData/>}/>
             <Route path="/kelolastok/detaileditproduk/pulsa" element={<DetailEditProdukPulsa/>}/>
             <Route path="/kelolastok/detaileditproduk/paket" element={<DetailEditProdukPaket/>}/>          
+            <Route path="/faq" element={<FaqPage/>}/>          
           </Route>
         </Routes>
       </BrowserRouter>
