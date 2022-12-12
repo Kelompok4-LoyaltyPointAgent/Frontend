@@ -5,13 +5,13 @@ import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
+import AddUser from "./AddUser";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import ItemPaket from "./ItemPaket";
-import AddStockPaket from "./AddStockPaket";
+import ItemPelanggan from "./ItemPelanggan";
 
-export default function StokPaketData() {
+export default function KelolaPelanggan() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([
     {
@@ -29,12 +29,6 @@ export default function StokPaketData() {
     {
       nama: "dik",
       email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-    {
-      nama: "wew",
-      email: "wew@wow",
       role: "admin",
       poin: "3000",
     },
@@ -70,12 +64,12 @@ export default function StokPaketData() {
         <div className="mt-4 ps-3 pe-3 w-100">
           <Card className="">
             <div style={{ backgroundColor: "whitesmoke" }}>
-              <p className="mb-4 mt-1 ps-3 pt-3">Stok Paket</p>
+              <p className="mb-4 mt-1 ps-3 pt-3">Kelola Pengguna</p>
             </div>
             <Box sx={{ p: 3 }}>
               <Typography>
                 <div className="w-100">
-                  {isOpen && <AddStockPaket handleClose={togglePopUp} />}
+                  {isOpen && <AddUser handleClose={togglePopUp} />}
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -86,7 +80,7 @@ export default function StokPaketData() {
                           marginRight: "10px",
                         }}
                       />
-                      Tambah Paket Data
+                      Tambah Pengguna
                     </Button>
                     <div className="d-flex flex-row gap-2 pe-3">
                       <div className="">
@@ -129,7 +123,7 @@ export default function StokPaketData() {
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
                       {currentPosts.map((item, index) => (
-                        <ItemPaket data={item} index={index}></ItemPaket>
+                        <ItemPelanggan data={item} index={index}></ItemPelanggan>
                       ))}
                     </tbody>
                   </table>

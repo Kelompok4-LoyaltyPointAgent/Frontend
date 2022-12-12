@@ -25,17 +25,16 @@ const NewSidebar = ({ list }) => {
       icon: <MdOutlineDashboard />,
     },
     {
-      route: "/kelolapengguna",
+      
       name: "Kelola Pengguna",
       icon: <CgUserList />,
-      active: "",
       dropdown: [
         {
-          route: "/kelolapengguna",
+          route: "/kelolapengguna/admin",
           name: "Admin",
         },
         {
-          route: "/kelolapengguna",
+          route: "/kelolapengguna/pelanggan",
           name: "Pelanggan",
         },
       ],
@@ -46,16 +45,15 @@ const NewSidebar = ({ list }) => {
       icon: <AiOutlineFileText />,
     },
     {
-      route: "/kelolastok",
       name: "Kelola Stok",
       icon: <MdOutlineCast />,
       dropdown: [
         {
-          route: "/kelolastok",
+          route: "/kelolastok/pulsa",
           name: "Pulsa",
         },
         {
-          route: "/kelolastok",
+          route: "/kelolastok/paketdata",
           name: "Paket Data",
         },
       ],
@@ -66,7 +64,7 @@ const NewSidebar = ({ list }) => {
     index == 1 ? setIsOpen1(!isOpen1) : setIsOpen3(!isOpen3);
   };
 
-  const navNormal = (item, index, active) => {
+  const navNormal = (item, index) => {
     if (index == 1 || index == 3) {
       if (isOpen1 && index == 1) {
         return (
