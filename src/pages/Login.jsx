@@ -13,6 +13,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  console.log(CONST.BASE_URL_API);
+
   const axiosInstance = axios.create({
     baseURL: CONST.BASE_URL_API,
     headers: {
@@ -41,6 +43,7 @@ export default function Login() {
         }
       })
       .catch((error) => {
+        console.log(error);
         if (error.response.data.message == "failed") {
           Swal.fire({
             title: "Failed Login",

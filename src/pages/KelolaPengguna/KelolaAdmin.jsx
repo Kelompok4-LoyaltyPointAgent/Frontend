@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
+import AddUser from "./AddUser";
+import ItemUser from "./ItemUser";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import AddStockPulsa from "./AddStockPulsa";
-import ItemPulsa from "./ItemPulsa";
-import CardTopPulsa from "./CardTopPulsa";
 
-
-export default function StokPulsa() {
+export default function KelolaAdmin() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([
     {
@@ -45,9 +43,9 @@ export default function StokPulsa() {
   const [postsPerPage] = useState(2);
 
   // useEffect(() => {
-  //   console.log("test")
   //   const fetchPosts = async () => {
-
+  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  //     setPosts(res.data);
   //   };
 
   //   fetchPosts();
@@ -70,14 +68,14 @@ export default function StokPulsa() {
         <div className="w-100">
           <NavbarTop/>
         <div className="mt-4 ps-3 pe-3 w-100">
-            <div>
-              <CardTopPulsa/>
+          <Card className="">
+            <div style={{ backgroundColor: "whitesmoke" }}>
+              <p className="mb-4 mt-1 ps-3 pt-3">Kelola Admin</p>
             </div>
-            <Box>
+            <Box sx={{ p: 3 }}>
               <Typography>
                 <div className="w-100">
-                  {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
-                  <p className="mt-1 pt-3">Stok Pulsa</p>
+                  {isOpen && <AddUser handleClose={togglePopUp} />}
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -88,7 +86,7 @@ export default function StokPulsa() {
                           marginRight: "10px",
                         }}
                       />
-                      Tambah Pulsa
+                      Tambah Pengguna
                     </Button>
                     <div className="d-flex flex-row gap-2 pe-3">
                       <div className="">
@@ -131,7 +129,7 @@ export default function StokPulsa() {
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
                       {currentPosts.map((item, index) => (
-                        <ItemPulsa data={item} index={index}></ItemPulsa>
+                        <ItemUser data={item} index={index}></ItemUser>
                       ))}
                     </tbody>
                   </table>
@@ -150,6 +148,7 @@ export default function StokPulsa() {
                 </div>
               </Typography>
             </Box>
+          </Card>
         </div>
         </div>
 

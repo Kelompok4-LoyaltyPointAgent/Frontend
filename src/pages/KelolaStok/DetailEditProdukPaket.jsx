@@ -21,7 +21,7 @@ const DetailEditProdukPaket = () => {
     <>
       <div className="d-flex">
         <Sidebar list={4} />
-        <div className="mt-5 pt-5 ps-3 pe-3 w-100">
+        <div className="mt-5 pt-5 ps-3 pe-3 w-100 main">
           {isOpen && <EditProdukPaket handleClose={togglePopUp} />}
           <Card border="dark">
             <Card.Img
@@ -99,7 +99,7 @@ const DetailEditProdukPaket = () => {
                 </Col>
               </Row>
             </Card.ImgOverlay>
-            <Card.Body>
+            <Card.Body className="body-overflow">
               <Card.Text>
                 <div className="mt-2 d-flex justify-content-between list-detail">
                   <p className="detail-produk-text">Masa Aktif</p>
