@@ -9,6 +9,7 @@ function authRequestInterceptor(config) {
   if (token) {
     config.headers.authorization = `bearer ${token}`;
   }
+
   config.headers.Accept = "application/json";
   return config;
 }

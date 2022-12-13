@@ -16,7 +16,6 @@ import storage from "../utils/storage";
 
 function Router() {
   const token = storage.getToken();
-  console.log("testwf" + token);
 
   return (
     <div className="Route">

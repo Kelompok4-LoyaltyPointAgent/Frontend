@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { postPackages } from "../../api/postPackages";
 import "../../assets/styles/PopUp.css";
 
-const AddStockPaket = (props) => {
+const AddStockPulsa = (props) => {
   const [data, setData] = useState({
     nama: "",
     provider: "",
@@ -10,11 +11,16 @@ const AddStockPaket = (props) => {
     hadiahDalamPoin: "",
     stock: "",
     rekomendasi: "",
+    fotoProduk: "",
     periodeAktif: "",
-    internet: "",
-    nelpon: "",
+    totalInternet: "",
+    mainInternet: "",
+    nightInternet: "",
+    socialMedia: "",
+    call: "",
     sms: "",
     deskripsi: "",
+    termsOfService: ""
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -32,7 +38,44 @@ const AddStockPaket = (props) => {
       ...data,
       [name]: check,
     });
-    console.log(data.rekomendasi);
+  };
+  const handleFile = (e) => {
+    const name = e.target.name;
+    const value = e.target.files[0];
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+  const addNow = async (e) => {
+    e.preventDefault();
+    console.log(data);
+    try {
+      let formData = new FormData();
+      formData.append("name", data.nama);
+      formData.append("provider", data.provider);
+      formData.append("price", data.harga);
+      formData.append("price_points", data.hargaDalamPoin);
+      formData.append("reward_points", data.hadiahDalamPoin);
+      formData.append("stock", data.stock);
+      formData.append("recommended", data.rekomendasi);
+      formData.append("product_picture", data.fotoProduk, data.fotoProduk.name);
+      formData.append("active_period", data.periodeAktif);
+      formData.append("total_internet", data.totalInternet);
+      formData.append("main_internet", data.mainInternet);
+      formData.append("night_internet", data.nightInternet);
+      formData.append("social_media", data.socialMedia);
+      formData.append("call", data.call);
+      formData.append("sms", data.sms);
+      formData.append("description", data.deskripsi);
+      formData.append("terms_of_service", data.termsOfService);
+      const res = await postPackages(formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
 
   return (
@@ -44,7 +87,7 @@ const AddStockPaket = (props) => {
         <h2 className="mb-4 mt-2">
           <center>Tambah Stok</center>
         </h2>
-        <form onSubmit="">
+        <form onSubmit={addNow}>
           <div className="form-group row mb-2">
             <label
               for="inputNama"
@@ -80,17 +123,23 @@ const AddStockPaket = (props) => {
                 value={data.provider}
                 required
               >
-                <option defaultValue hidden disabled>
-                  Choose...
+                <option required value="Telkomsel">
+                  Telkomsel
                 </option>
-                <option required value="1">
-                  One
+                <option required value="Xl">
+                  Xl
                 </option>
-                <option required value="2">
-                  Two
+                <option required value="Indosat">
+                  Indosat
                 </option>
-                <option required value="3">
-                  Three
+                <option required value="Axis">
+                  Axis
+                </option>
+                <option required value="Smartfren">
+                  Smartfren
+                </option>
+                <option required value="Tri">
+                  Tri
                 </option>
               </select>
             </div>
@@ -193,6 +242,23 @@ const AddStockPaket = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
+              for="inputFotoProduk"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Foto Produk
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="file"
+                className="form-control"
+                id="inputFotoProduk"
+                name="fotoProduk"
+                onChange={handleFile}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
               for="inputPeriodeAktif"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
@@ -211,37 +277,91 @@ const AddStockPaket = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputInternet"
+              for="inputTotalInternet"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Internet
+              Total Internet
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputInternet"
-                name="internet"
+                id="inputTotalInternet"
+                name="totalInternet"
                 onChange={handleInput}
-                value={data.internet}
+                value={data.totalInternet}
               />
             </div>
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputNelpon"
+              for="inputMainInternet"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Nelpon
+              Main Internet
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputNelpon"
-                name="nelpon"
+                id="inputMainInternet"
+                name="mainInternet"
                 onChange={handleInput}
-                value={data.nelpon}
+                value={data.mainInternet}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputNightInternet"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Internet Malam
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputNightInternet"
+                name="nightInternet"
+                onChange={handleInput}
+                value={data.nightInternet}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputSocialMedia"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Social Media
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputSocialMedia"
+                name="socialMedia"
+                onChange={handleInput}
+                value={data.socialMedia}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputCall"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Call
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputCall"
+                name="call"
+                onChange={handleInput}
+                value={data.call}
               />
             </div>
           </div>
@@ -281,6 +401,24 @@ const AddStockPaket = (props) => {
               ></textarea>
             </div>
           </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputTermsOfService"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Terms of Service
+            </label>
+            <div className="col-sm-7">
+              <textarea
+                className="form-control"
+                id="inputTermsOfService"
+                style={{ height: "70px" }}
+                name="termsOfService"
+                onChange={handleInput}
+                value={data.termsOfService}
+              ></textarea>
+            </div>
+          </div>
 
           <div className="button mt-4">
             <center>
@@ -300,4 +438,4 @@ const AddStockPaket = (props) => {
     </div>
   );
 };
-export default AddStockPaket;
+export default AddStockPulsa;

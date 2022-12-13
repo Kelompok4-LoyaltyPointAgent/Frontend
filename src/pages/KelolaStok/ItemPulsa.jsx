@@ -4,8 +4,8 @@ const ItemPulsa = ({ data, index }) => {
   return (
     <tr
       style={
-        index % 2 == 0
-          ? { backgroundColor: "#ececee" }
+        index % 2 === 0
+          ? { backgroundColor: "white" }
           : { backgroundColor: "#FEF0CD" }
       }
     >
