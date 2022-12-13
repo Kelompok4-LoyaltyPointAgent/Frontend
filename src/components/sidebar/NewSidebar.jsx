@@ -49,7 +49,7 @@ const NewSidebar = ({ list }) => {
       ],
     },
     {
-      route: "/faq",
+      route: "/kelolafaq",
       name: "Kelola FAQ",
       icon: <AiOutlineQuestionCircle />,
     },

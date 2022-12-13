@@ -11,8 +11,8 @@ import KelolaAdmin from "../pages/KelolaPengguna/KelolaAdmin";
 import StokPaketData from "../pages/KelolaStok/StokPaketData";
 import StokPulsa from "../pages/KelolaStok/StokPulsa";
 import KelolaPelanggan from "../pages/KelolaPengguna/KelolaPelanggan";
-import FaqPage from "../pages/FaqPage";
 import storage from "../utils/storage";
+import KelolaFAQ from "../pages/KelolaFAQ/FaqPage";
 
 function Router() {
   const token = storage.getToken();
@@ -48,7 +48,7 @@ function Router() {
               path="/kelolastok/detaileditproduk/paket"
               element={<DetailEditProdukPaket />}
             />
-            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/kelolafaq" element={<KelolaFAQ />} />
           </Route>
         </Routes>
       </BrowserRouter>
