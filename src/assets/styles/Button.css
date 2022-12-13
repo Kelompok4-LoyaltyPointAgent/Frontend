@@ -4,7 +4,7 @@
   cursor: pointer;
 }
 .file-button:hover {
-  background-color: aqua;
+  color: aqua;
 }
 
 .delete-button {
@@ -13,5 +13,5 @@
   cursor: pointer;
 }
 .delete-button:hover {
-  background-color: #f50626;
+  color: aqua;
 }

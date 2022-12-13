@@ -17,7 +17,7 @@ export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(7);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -52,7 +52,7 @@ export default function StokPulsa() {
               <Typography>
                 <div className="w-100">
                   {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
-                  <p className="mt-1 pt-3">Stok Pulsa</p>
+                  <p className="mt-1 pt-3" style={{fontSize:'24px'}}>Stok Pulsa</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -88,14 +88,14 @@ export default function StokPulsa() {
                   </div>
                   <table
                     class="table table-borderless "
-                    style={{
-                      border: "1px solid #013B75",
-                    }}
+                    
                   >
-                    <thead>
+                    <thead style={{
+                      border: "1px solid",
+                    }}>
                       <tr
                         className="text-center"
-                        style={{ backgroundColor: "#013B75", color: "white" }}
+                        style={{ backgroundColor: "#D8DADC", color: "#013B75", }}
                       >
                         <th className="text-start">Provider</th>
                         <th>Nama Produk</th>
@@ -111,12 +111,14 @@ export default function StokPulsa() {
                       ))}
                     </tbody>
                   </table>
-                  <Pagination
+                  <div className="d-flex justify-content-center">
+                  <Pagination 
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
+                  </div>
                   {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
                       Detail User Tes
