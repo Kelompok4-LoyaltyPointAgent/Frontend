@@ -1,6 +1,6 @@
 import "../../assets/styles/Button.css";
 
-const ItemPelanggan = ({ data, index }) => {
+const ItemFAQ = ({ data, index }) => {
   return (
     <tr
       style={
@@ -9,9 +9,9 @@ const ItemPelanggan = ({ data, index }) => {
           : { backgroundColor: "#FEF0CD" }
       }
     >
-      <td className="col-3 text-center">{data.name}</td>
-      <td className="col-3">{data.email}</td>
-      <td className="col-2">{data.points}</td>
+      <td className="col-3 text-start">{data.question}</td>
+      <td className="col-3">{data.answer}</td>
+      <td className="col-2">{data.category}</td>
       <td className="col-1">
         <i className="bi bi-file-earmark-text file-button"></i>
         <i className="bi bi-trash3 ms-3 delete-button"></i>
@@ -20,4 +20,4 @@ const ItemPelanggan = ({ data, index }) => {
   );
 };
 
-export default ItemPelanggan;
+export default ItemFAQ;

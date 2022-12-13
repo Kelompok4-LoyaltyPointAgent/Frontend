@@ -11,47 +11,22 @@ import NavbarTop from "../../components/NavbarTop";
 import AddStockPulsa from "./AddStockPulsa";
 import ItemPulsa from "./ItemPulsa";
 import CardTopPulsa from "./CardTopPulsa";
-
+import { getCredit } from "../../api/getCredits";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
-  const [posts, setPosts] = useState([
-    {
-      nama: "diaken",
-      email: "d@wow",
-      role: "admin",
-      poin: "1000",
-    },
-    {
-      nama: "dery",
-      email: "der@wow",
-      role: "admin",
-      poin: "2000",
-    },
-    {
-      nama: "dik",
-      email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-    {
-      nama: "wew",
-      email: "wew@wow",
-      role: "admin",
-      poin: "3000",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
+  const [postsPerPage] = useState(7);
 
-  // useEffect(() => {
-  //   console.log("test")
-  //   const fetchPosts = async () => {
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getCredit();
+      setPosts(res.data.data);
+    };
 
-  //   };
-
-  //   fetchPosts();
-  // }, []);
+    fetchPosts();
+  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -66,18 +41,18 @@ export default function StokPulsa() {
   return (
     <>
       <div className="d-flex">
-        <NewSidebar/>
+        <NewSidebar />
         <div className="w-100">
-          <NavbarTop/>
-        <div className="mt-4 ps-3 pe-3 w-100">
+          <NavbarTop />
+          <div className="mt-4 ps-3 pe-3 w-100">
             <div>
-              <CardTopPulsa/>
+              <CardTopPulsa />
             </div>
             <Box>
               <Typography>
                 <div className="w-100">
                   {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
-                  <p className="mt-1 pt-3">Stok Pulsa</p>
+                  <p className="mt-1 pt-3" style={{fontSize:'24px'}}>Stok Pulsa</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -113,19 +88,20 @@ export default function StokPulsa() {
                   </div>
                   <table
                     class="table table-borderless "
-                    style={{
-                      border: "1px solid #013B75",
-                    }}
+                    
                   >
-                    <thead>
+                    <thead style={{
+                      border: "1px solid",
+                    }}>
                       <tr
                         className="text-center"
-                        style={{ backgroundColor: "#013B75", color: "white" }}
+                        style={{ backgroundColor: "#D8DADC", color: "#013B75", }}
                       >
-                        <th>Nama Lengkap</th>
-                        <th>Email/Username</th>
-                        <th>Role</th>
-                        <th>Poin</th>
+                        <th className="text-start">Provider</th>
+                        <th>Nama Produk</th>
+                        <th>Stok</th>
+                        <th>Hadiah Poin</th>
+                        <th>Harga (Rp)</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -135,12 +111,14 @@ export default function StokPulsa() {
                       ))}
                     </tbody>
                   </table>
-                  <Pagination
+                  <div className="d-flex justify-content-center">
+                  <Pagination 
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
+                  </div>
                   {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
                       Detail User Tes
@@ -150,10 +128,8 @@ export default function StokPulsa() {
                 </div>
               </Typography>
             </Box>
+          </div>
         </div>
-        </div>
-
-        
       </div>
     </>
   );

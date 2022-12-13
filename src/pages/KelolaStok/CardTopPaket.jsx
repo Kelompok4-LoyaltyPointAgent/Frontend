@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap'
 
 const CardTopPaket = () => {
     return (
-        <div className='d-flex flex-row flex-wrap' style={{ gap: '86px' }}>
+        <div className='d-flex flex-row flex-wrap justify-content-between'>
             <Card className='d-flex' 
             style={{ borderRadius: '10px', borderLeftColor: '#2B669F', borderLeftWidth:'4px',width: '15rem', padding: '10px' }}>
                 <span className='mt-2 mb-2 ms-2'><h5>Stok Produk</h5></span>

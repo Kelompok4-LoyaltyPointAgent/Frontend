@@ -1,57 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addTokenAdmin } from "../stores/auth";
-import { useNavigate, Link } from "react-router-dom";
-import { CONST } from "../utils/Constants";
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/login.css";
+import { login } from "../api/login";
+import storage from "../utils/storage";
 
 export default function Login() {
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  console.log(CONST.BASE_URL_API);
-
-  const axiosInstance = axios.create({
-    baseURL: CONST.BASE_URL_API,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await axiosInstance
-      .post("/login", {
-        email,
-        password,
-      })
-      .then((result) => {
-        console.log(result);
-        if (result.data.message == "success") {
-          dispatch(addTokenAdmin(result.data.data));
-          Swal.fire({
-            title: "Login Succes!",
-            text: "Welcome!",
-            icon: "success",
-          }).then(function () {
-            navigate("/");
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.data.message == "failed") {
-          Swal.fire({
-            title: "Failed Login",
-            text: "Wrong Username or passowrd",
-            icon: "warning",
-          });
-        }
-      });
+
+    try {
+      const res = await login({ email, password });
+      if (res.data.message == "success") {
+        storage.setToken(res.data.data.token);
+        Swal.fire({
+          title: "Login Succes!",
+          text: "Welcome!",
+          icon: "success",
+        }).then(function () {
+          window.location.reload();
+        });
+      }
+    } catch (error) {
+      if (error.response.data.message == "failed") {
+        Swal.fire({
+          title: "Failed Login",
+          text: "Wrong Username or passowrd",
+          icon: "warning",
+        });
+      }
+    }
   };
 
   return (
