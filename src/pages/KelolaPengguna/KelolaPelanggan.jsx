@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
@@ -10,41 +10,23 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemPelanggan from "./ItemPelanggan";
+import { getUsers } from "../../api/getPengguna";
 
 export default function KelolaPelanggan() {
   const [isOpen, setIsOpen] = useState(false);
-  const [posts, setPosts] = useState([
-    {
-      nama: "diaken",
-      email: "d@wow",
-      role: "admin",
-      poin: "1000",
-    },
-    {
-      nama: "dery",
-      email: "der@wow",
-      role: "admin",
-      poin: "2000",
-    },
-    {
-      nama: "dik",
-      email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
+  const [postsPerPage] = useState(9);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-  //     setPosts(res.data);
-  //   };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getUsers();
+      setPosts(res.data.data);
+    };
 
-  //   fetchPosts();
-  // }, []);
-
+    fetchPosts(posts);
+  }, []);
+  console.log(posts)
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -116,7 +98,6 @@ export default function KelolaPelanggan() {
                       >
                         <th>Nama Lengkap</th>
                         <th>Email/Username</th>
-                        <th>Role</th>
                         <th>Poin</th>
                         <th>Aksi</th>
                       </tr>
@@ -127,12 +108,15 @@ export default function KelolaPelanggan() {
                       ))}
                     </tbody>
                   </table>
+                  <div className="d-flex justify-content-center">
                   <Pagination
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
+                  </div>
+                 
                   {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
                       Detail User Tes
