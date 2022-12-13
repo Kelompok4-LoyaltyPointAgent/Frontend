@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
@@ -11,47 +11,22 @@ import NavbarTop from "../../components/NavbarTop";
 import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
 import CardTopPaket from "./CardTopPaket";
+import { getPackages } from "../../api/getPackages";
 
 export default function StokPaketData() {
   const [isOpen, setIsOpen] = useState(false);
-  const [posts, setPosts] = useState([
-    {
-      nama: "diaken",
-      email: "d@wow",
-      role: "admin",
-      poin: "1000",
-    },
-    {
-      nama: "dery",
-      email: "der@wow",
-      role: "admin",
-      poin: "2000",
-    },
-    {
-      nama: "dik",
-      email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-    {
-      nama: "wew",
-      email: "wew@wow",
-      role: "admin",
-      poin: "3000",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
+  const [postsPerPage] = useState(5);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-  //     setPosts(res.data);
-  //   };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getPackages();
+      setPosts(res.data.data);
+    };
 
-  //   fetchPosts();
-  // }, []);
-
+    fetchPosts();
+  }, []);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -121,10 +96,11 @@ export default function StokPaketData() {
                         className="text-center"
                         style={{ backgroundColor: "#013B75", color: "white" }}
                       >
-                        <th>Nama Lengkap</th>
-                        <th>Email/Username</th>
-                        <th>Role</th>
-                        <th>Poin</th>
+                        <th className="text-start">Provider</th>
+                        <th>Nama Produk</th>
+                        <th>Stok</th>
+                        <th>Hadiah Poin</th>
+                        <th>Harga (Rp)</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
