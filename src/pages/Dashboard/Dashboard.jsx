@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import '../../assets/styles/Dashboard.css'
 import CardDashboard from "./CardDashboard";
 import BarDashboard from "./BarDashboard";
-import { Card } from "react-bootstrap";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemTransaksi from "./ItemTransaksi";
@@ -103,7 +102,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

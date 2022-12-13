@@ -1,22 +1,13 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
 import { AiOutlineFileText, AiOutlineQuestionCircle } from "react-icons/ai";
 import { CgUserList } from "react-icons/cg";
 import "../sidebar/NewSidebar.css";
-import { deleteToken } from "../../stores/auth";
-import { useDispatch } from "react-redux";
 
 const NewSidebar = ({ list }) => {
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const logOut = (e) => {
-    e.preventDefault();
-    dispatch(deleteToken());
-    navigate("/login");
-  };
 
   const sidebarMenu = [
     {
@@ -25,7 +16,6 @@ const NewSidebar = ({ list }) => {
       icon: <MdOutlineDashboard />,
     },
     {
-      
       name: "Kelola Pengguna",
       icon: <CgUserList />,
       dropdown: [

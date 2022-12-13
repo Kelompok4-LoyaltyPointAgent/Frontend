@@ -1,0 +1,28 @@
+import React from 'react'
+import "../../assets/styles/Button.css";
+
+const ItemRiwayatTransaksi = ({ data, index }) => {
+    return (
+      <tr
+        style={
+          index % 2 == 0
+            ? { backgroundColor: "#F5F6F7" }
+            : { backgroundColor: "#FEF0CD" }
+        }
+      >
+        <td className="col-1 text-start">{data.provider}</td>
+        <td className="col-1">{data.name}</td>
+        <td className="col-1">{data.stock}</td>
+        <td className="col-1">{data.price_points}</td>
+        <td className="col-1">{data.price}</td>
+        <td className="col-1">{data.price}</td>
+        <td className="col-1">{data.price}</td>
+        <td className="col-1">
+          <i className="bi bi-file-earmark-text file-button"></i>
+          <i className="bi bi-trash3 ms-3 delete-button"></i>
+        </td>
+      </tr>
+    );
+  };
+
+export default ItemRiwayatTransaksi
