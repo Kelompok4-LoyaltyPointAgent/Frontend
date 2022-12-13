@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { postCredits } from "../../api/postCredits";
 import "../../assets/styles/PopUp.css";
 
 const AddStockPulsa = (props) => {
@@ -10,8 +11,11 @@ const AddStockPulsa = (props) => {
     hadiahDalamPoin: "",
     stock: "",
     rekomendasi: "",
+    fotoProduk: "",
     periodeAktif: "",
-    nilai: "",
+    jumlah: "",
+    call: "",
+    sms: "",
     deskripsi: "",
   });
   const handleInput = (e) => {
@@ -30,7 +34,40 @@ const AddStockPulsa = (props) => {
       ...data,
       [name]: check,
     });
-    console.log(data.rekomendasi);
+  };
+  const handleFile = (e) => {
+    const name = e.target.name;
+    const value = e.target.files[0];
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+  const addNow = async (e) => {
+    e.preventDefault();
+    console.log(data);
+    try {
+      let formData = new FormData();
+      formData.append("name", data.nama);
+      formData.append("provider", data.provider);
+      formData.append("price", data.harga);
+      formData.append("price_points", data.hargaDalamPoin);
+      formData.append("reward_points", data.hadiahDalamPoin);
+      formData.append("stock", data.stock);
+      formData.append("recommended", data.rekomendasi);
+      formData.append("product_picture", data.fotoProduk, data.fotoProduk.name);
+      formData.append("active_period", data.periodeAktif);
+      formData.append("amount", data.jumlah);
+      formData.append("call", data.call);
+      formData.append("sms", data.sms);
+      formData.append("description", data.deskripsi);
+      const res = await postCredits(formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
 
   return (
@@ -42,7 +79,7 @@ const AddStockPulsa = (props) => {
         <h2 className="mb-4 mt-2">
           <center>Tambah Stok</center>
         </h2>
-        <form onSubmit="">
+        <form onSubmit={addNow}>
           <div className="form-group row mb-2">
             <label
               for="inputNama"
@@ -78,17 +115,14 @@ const AddStockPulsa = (props) => {
                 value={data.provider}
                 required
               >
-                <option defaultValue hidden disabled>
-                  Choose...
+                <option required value="telkomsel">
+                  Telkomsel
                 </option>
-                <option required value="1">
-                  One
+                <option required value="xl">
+                  Xl
                 </option>
-                <option required value="2">
-                  Two
-                </option>
-                <option required value="3">
-                  Three
+                <option required value="indosat">
+                  Indosat
                 </option>
               </select>
             </div>
@@ -191,6 +225,23 @@ const AddStockPulsa = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
+              for="inputFotoProduk"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Foto Produk
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="file"
+                className="form-control"
+                id="inputFotoProduk"
+                name="fotoProduk"
+                onChange={handleFile}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
               for="inputPeriodeAktif"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
@@ -209,19 +260,55 @@ const AddStockPulsa = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputNilai"
+              for="inputJumlah"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Nilai
+              Jumlah
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputNilai"
-                name="nilai"
+                id="inputJumlah"
+                name="jumlah"
                 onChange={handleInput}
-                value={data.nilai}
+                value={data.jumlah}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputCall"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Call
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputCall"
+                name="call"
+                onChange={handleInput}
+                value={data.call}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputSms"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              SMS
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputSms"
+                name="sms"
+                onChange={handleInput}
+                value={data.sms}
               />
             </div>
           </div>
