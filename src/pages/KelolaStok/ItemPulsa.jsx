@@ -47,7 +47,7 @@ const ItemPulsa = ({ data, index }) => {
       <td className="col-1">
         <i
           className="bi bi-file-earmark-text file-button"
-          onClick={() => info(data.credit.id)}
+          onClick={() => info(data.id)}
         ></i>
         <i
           className="bi bi-trash3 ms-3 delete-button"

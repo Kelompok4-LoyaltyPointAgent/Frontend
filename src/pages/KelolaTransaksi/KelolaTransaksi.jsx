@@ -29,7 +29,6 @@ const KelolaTransaksi = () => {
 
     fetchPosts(posts);
   }, []);
-  console.log(posts);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
