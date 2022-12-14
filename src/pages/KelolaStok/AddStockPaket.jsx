@@ -5,7 +5,7 @@ import "../../assets/styles/PopUp.css";
 const AddStockPulsa = (props) => {
   const [data, setData] = useState({
     nama: "",
-    provider: "",
+    provider: "Telkomsel",
     harga: "",
     hargaDalamPoin: "",
     hadiahDalamPoin: "",
@@ -20,7 +20,6 @@ const AddStockPulsa = (props) => {
     call: "",
     sms: "",
     deskripsi: "",
-    termsOfService: ""
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -69,7 +68,7 @@ const AddStockPulsa = (props) => {
       formData.append("call", data.call);
       formData.append("sms", data.sms);
       formData.append("description", data.deskripsi);
-      formData.append("terms_of_service", data.termsOfService);
+      formData.append("package_description", data.deskripsi);
       const res = await postPackages(formData);
       console.log(res);
     } catch (error) {
@@ -398,24 +397,6 @@ const AddStockPulsa = (props) => {
                 name="deskripsi"
                 onChange={handleInput}
                 value={data.deskripsi}
-              ></textarea>
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputTermsOfService"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              Terms of Service
-            </label>
-            <div className="col-sm-7">
-              <textarea
-                className="form-control"
-                id="inputTermsOfService"
-                style={{ height: "70px" }}
-                name="termsOfService"
-                onChange={handleInput}
-                value={data.termsOfService}
               ></textarea>
             </div>
           </div>

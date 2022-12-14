@@ -28,7 +28,7 @@ function Router() {
           <Route element={<PrivateRoute token={token}></PrivateRoute>}>
             <Route path="/" element={<Dashboard></Dashboard>} />
             <Route
-              path="/kelolaPengguna/detaileditpengguna/user"
+              path="/kelolaPengguna/pelanggan/detailpengguna/:id"
               exact
               element={<DetailEditPengguna />}
             />
@@ -41,11 +41,11 @@ function Router() {
             <Route path="/kelolastok/pulsa" element={<StokPulsa />} />
             <Route path="/kelolastok/paketdata" element={<StokPaketData />} />
             <Route
-              path="/kelolastok/detaileditproduk/pulsa"
+              path="/kelolastok/detaileditproduk/pulsa/:path"
               element={<DetailEditProdukPulsa />}
             />
             <Route
-              path="/kelolastok/detaileditproduk/paket"
+              path="/kelolastok/detaileditproduk/paket/:path"
               element={<DetailEditProdukPaket />}
             />
             <Route path="/kelolafaq" element={<KelolaFAQ />} />

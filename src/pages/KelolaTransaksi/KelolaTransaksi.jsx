@@ -11,6 +11,7 @@ import Pagination from "../../components/Pagination";
 import CardTopTransaksi from "./CardTopTransaksi";
 import ItemRiwayatTransaksi from "./ItemRiwayatTransaksi";
 import AddTransaksi from "./AddTransaksi";
+import "../../assets/styles/Overflow.css";
 import { getTransactions } from "../../api/getTransaksi";
 
 const KelolaTransaksi = () => {
@@ -28,7 +29,7 @@ const KelolaTransaksi = () => {
 
     fetchPosts(posts);
   }, []);
-  console.log(posts)
+  console.log(posts);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -45,8 +46,13 @@ const KelolaTransaksi = () => {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        <div className="mt-4 ps-3 pe-3 w-100">
-          <p className="mb-4 mt-1 pt-3" style={{ fontSize: '22px', color: '#' }}>Riwayat Transaksi</p>
+        <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
+          <p
+            className="mb-4 mt-1 pt-3"
+            style={{ fontSize: "22px", color: "#" }}
+          >
+            Riwayat Transaksi
+          </p>
           <div>
             <CardTopTransaksi />
           </div>
@@ -83,19 +89,17 @@ const KelolaTransaksi = () => {
                         size="small"
                       />
                     </div>
-
                   </div>
                 </div>
-                <table
-                  class="table table-borderless "
-
-                >
-                  <thead style={{
-                    border: "1px solid"
-                  }}>
+                <table class="table table-borderless ">
+                  <thead
+                    style={{
+                      border: "1px solid",
+                    }}
+                  >
                     <tr
                       className="text-center"
-                      style={{ backgroundColor: "#D8DADC", color: "#013B75", }}
+                      style={{ backgroundColor: "#D8DADC", color: "#013B75" }}
                     >
                       <th className="text-center">tanggal</th>
                       <th>Email</th>
@@ -108,7 +112,10 @@ const KelolaTransaksi = () => {
                   </thead>
                   <tbody className="text-center" style={{ color: "#013B75" }}>
                     {currentPosts.map((item, index) => (
-                      <ItemRiwayatTransaksi data={item} index={index}></ItemRiwayatTransaksi>
+                      <ItemRiwayatTransaksi
+                        data={item}
+                        index={index}
+                      ></ItemRiwayatTransaksi>
                     ))}
                   </tbody>
                 </table>
@@ -121,7 +128,6 @@ const KelolaTransaksi = () => {
                   />
                 </div>
 
-
                 {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
                       Detail User Tes
@@ -133,7 +139,6 @@ const KelolaTransaksi = () => {
           </Box>
         </div>
       </div>
-
     </div>
   );
 };
