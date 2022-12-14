@@ -13,3 +13,9 @@
   max-height: 85vh;
   position: relative;
 }
+
+.detailPengguna-oveflow {
+  overflow: auto;
+  max-height: 65vh;
+  position: relative;
+}
