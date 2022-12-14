@@ -5,7 +5,7 @@ import "../../assets/styles/PopUp.css";
 const AddStockPulsa = (props) => {
   const [data, setData] = useState({
     nama: "",
-    provider: "",
+    provider: "Telkomsel",
     harga: "",
     hargaDalamPoin: "",
     hadiahDalamPoin: "",

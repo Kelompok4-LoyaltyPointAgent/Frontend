@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/Button.css";
 
 const ItemPulsa = ({ data, index }) => {
+  const navigate = useNavigate();
+  const info = (id) => {
+    navigate("/kelolastok/detaileditproduk/pulsa/" + id);
+  };
+
   return (
     <tr
       style={
@@ -15,7 +21,10 @@ const ItemPulsa = ({ data, index }) => {
       <td className="col-1">{data.price_points}</td>
       <td className="col-1">{data.price}</td>
       <td className="col-1">
-        <i className="bi bi-file-earmark-text file-button"></i>
+        <i
+          className="bi bi-file-earmark-text file-button"
+          onClick={() => info(data.credit.id)}
+        ></i>
         <i className="bi bi-trash3 ms-3 delete-button"></i>
       </td>
     </tr>
