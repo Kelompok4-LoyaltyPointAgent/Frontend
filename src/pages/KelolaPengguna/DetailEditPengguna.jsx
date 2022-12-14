@@ -13,7 +13,6 @@ import NavbarTop from "../../components/NavbarTop";
 const DetailEditPengguna = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  console.log(id);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,7 +28,6 @@ const DetailEditPengguna = () => {
   const togglePopUp = () => {
     setIsOpen(!isOpen);
   };
-  console.log(data);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -92,10 +90,6 @@ const DetailEditPengguna = () => {
                   <div className="mt-2 d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Email</p>
                     <p className="detail-produk-text">{data.email}</p>
-                  </div>
-                  <div className="mt-2 d-flex justify-content-between list-detail">
-                    <p className="detail-produk-text">No. Telepon</p>
-                    <p className="detail-produk-text">0812345678</p>
                   </div>
                   <div className="mt-2 d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Poin</p>
