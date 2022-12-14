@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "../../assets/styles/PopUp.css";
+import { updateUser } from "../../api/updateUser";
 
 const EditPengguna = (props) => {
   const [data, setData] = useState({
     namaLengkap: props.data.name,
     email: props.data.email,
-    noTelepon: "kosong",
     password: "******",
     poin: props.data.points,
   });
@@ -17,14 +17,19 @@ const EditPengguna = (props) => {
       [name]: value,
     });
   };
-  const handleCheck = (e) => {
-    const name = e.target.name;
-    const check = e.target.checked;
 
-    setData({
-      ...data,
-      [name]: check,
-    });
+  const updateData = async (e) => {
+    e.preventDefault();
+    const datas = {
+      name: data.namaLengkap,
+      email: data.email,
+    };
+    try {
+      const res = await updateUser(props.data.id, datas);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,7 +41,7 @@ const EditPengguna = (props) => {
         <h2 className="mb-4 mt-2">
           <center>Edit Pengguna</center>
         </h2>
-        <form onSubmit="">
+        <form onSubmit={updateData}>
           <div className="form-group row mb-2">
             <label
               for="inputNamaLengkap"
@@ -71,25 +76,6 @@ const EditPengguna = (props) => {
                 name="email"
                 onChange={handleInput}
                 value={data.email}
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputNoTelepon"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              No. Telepon
-            </label>
-            <div className="col-sm-7">
-              <input
-                type="text"
-                className="form-control"
-                id="inputNoTelepon"
-                name="noTelepon"
-                onChange={handleInput}
-                value={data.noTelepon}
                 required
               />
             </div>
