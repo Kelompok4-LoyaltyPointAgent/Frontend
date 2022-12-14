@@ -20,6 +20,7 @@ const AddStockPulsa = (props) => {
     call: "",
     sms: "",
     deskripsi: "",
+    deskripsiPaket: "",
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -68,9 +69,8 @@ const AddStockPulsa = (props) => {
       formData.append("call", data.call);
       formData.append("sms", data.sms);
       formData.append("description", data.deskripsi);
-      formData.append("package_description", data.deskripsi);
+      formData.append("package_description", data.deskripsiPaket);
       const res = await postPackages(formData);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -397,6 +397,24 @@ const AddStockPulsa = (props) => {
                 name="deskripsi"
                 onChange={handleInput}
                 value={data.deskripsi}
+              ></textarea>
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputDeskripsiPaket"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Deskripsi Paket
+            </label>
+            <div className="col-sm-7">
+              <textarea
+                className="form-control"
+                id="inputDeskripsiPaket"
+                style={{ height: "70px" }}
+                name="deskripsiPaket"
+                onChange={handleInput}
+                value={data.deskripsiPaket}
               ></textarea>
             </div>
           </div>

@@ -32,7 +32,12 @@ const KelolaTransaksi = () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  let currentPosts = "";
+  if (!posts[0]) {
+    currentPosts = [posts];
+  } else {
+    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -100,7 +105,7 @@ const KelolaTransaksi = () => {
                       className="text-center"
                       style={{ backgroundColor: "#D8DADC", color: "#013B75" }}
                     >
-                      <th className="text-center">tanggal</th>
+                      <th className="text-center">Tanggal</th>
                       <th>Email</th>
                       <th>Tipe</th>
                       <th>Metode</th>
@@ -110,7 +115,7 @@ const KelolaTransaksi = () => {
                     </tr>
                   </thead>
                   <tbody className="text-center" style={{ color: "#013B75" }}>
-                    {currentPosts.map((item, index) => (
+                    {currentPosts?.map((item, index) => (
                       <ItemRiwayatTransaksi
                         data={item}
                         index={index}

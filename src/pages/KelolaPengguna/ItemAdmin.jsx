@@ -1,6 +1,6 @@
 import "../../assets/styles/Button.css";
 
-const ItemUser = ({ data, index }) => {
+const ItemAdmin = ({ data, index }) => {
   return (
     <tr
       style={
@@ -9,7 +9,7 @@ const ItemUser = ({ data, index }) => {
           : { backgroundColor: "#FEF0CD" }
       }
     >
-      <td className="col-3 text-start">{data.email}</td>
+      <td className="col-3 text-start">{data.name}</td>
       <td className="col-3">{data.email}</td>
       <td className="col-2">{data.points}</td>
       <td className="col-1">
@@ -20,4 +20,4 @@ const ItemUser = ({ data, index }) => {
   );
 };
 
-export default ItemUser;
+export default ItemAdmin;

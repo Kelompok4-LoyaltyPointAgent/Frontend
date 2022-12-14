@@ -1,18 +1,22 @@
 import { useState } from "react";
+import { updatePulsa } from "../../api/updatePulsa";
 import "../../assets/styles/PopUp.css";
 
 const EditProdukPulsa = (props) => {
   const [data, setData] = useState({
-    nama: "",
-    provider: "",
-    harga: "",
-    hargaDalamPoin: "",
-    hadiahDalamPoin: "",
-    stock: "",
-    rekomendasi: "",
-    periodeAktif: "",
-    nilai: "",
-    deskripsi: "",
+    nama: props.data.name,
+    provider: props.data.provider,
+    harga: props.data.price,
+    hargaDalamPoin: props.data.price_points,
+    hadiahDalamPoin: props.data.reward_points,
+    stock: props.data.stock,
+    rekomendasi: props.data.recommended,
+    fotoProduk: "",
+    periodeAktif: props.data.credit.active_period,
+    jumlah: props.data.credit.amount,
+    call: props.data.credit.call,
+    sms: props.data.credit.sms,
+    deskripsi: props.data.description,
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -30,7 +34,45 @@ const EditProdukPulsa = (props) => {
       ...data,
       [name]: check,
     });
-    console.log(data.rekomendasi);
+  };
+  const handleFile = (e) => {
+    const name = e.target.name;
+    const value = e.target.files[0];
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+  const addNow = async (e) => {
+    e.preventDefault();
+    try {
+      let formData = new FormData();
+      formData.append("name", data.nama);
+      formData.append("provider", data.provider);
+      formData.append("price", data.harga);
+      formData.append("price_points", data.hargaDalamPoin);
+      formData.append("reward_points", data.hadiahDalamPoin);
+      formData.append("stock", data.stock);
+      formData.append("recommended", data.rekomendasi);
+      if (data.fotoProduk) {
+        formData.append(
+          "product_picture",
+          data.fotoProduk,
+          data.fotoProduk.name
+        );
+      }
+      formData.append("active_period", data.periodeAktif);
+      formData.append("amount", data.jumlah);
+      formData.append("call", data.call);
+      formData.append("sms", data.sms);
+      formData.append("description", data.deskripsi);
+      const res = await updatePulsa(props.data.id, formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
 
   return (
@@ -40,9 +82,9 @@ const EditProdukPulsa = (props) => {
           x
         </span>
         <h2 className="mb-4 mt-2">
-          <center>Edit Produk</center>
+          <center>Tambah Stok</center>
         </h2>
-        <form onSubmit="">
+        <form onSubmit={addNow}>
           <div className="form-group row mb-2">
             <label
               for="inputNama"
@@ -78,17 +120,23 @@ const EditProdukPulsa = (props) => {
                 value={data.provider}
                 required
               >
-                <option defaultValue hidden disabled>
-                  Choose...
+                <option required value="Telkomsel">
+                  Telkomsel
                 </option>
-                <option required value="1">
-                  One
+                <option required value="Xl">
+                  Xl
                 </option>
-                <option required value="2">
-                  Two
+                <option required value="Indosat">
+                  Indosat
                 </option>
-                <option required value="3">
-                  Three
+                <option required value="Axis">
+                  Axis
+                </option>
+                <option required value="Smartfren">
+                  Smartfren
+                </option>
+                <option required value="Tri">
+                  Tri
                 </option>
               </select>
             </div>
@@ -191,6 +239,23 @@ const EditProdukPulsa = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
+              for="inputFotoProduk"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Foto Produk
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="file"
+                className="form-control"
+                id="inputFotoProduk"
+                name="fotoProduk"
+                onChange={handleFile}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
               for="inputPeriodeAktif"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
@@ -209,19 +274,55 @@ const EditProdukPulsa = (props) => {
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputNilai"
+              for="inputJumlah"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Nilai
+              Jumlah
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputNilai"
-                name="nilai"
+                id="inputJumlah"
+                name="jumlah"
                 onChange={handleInput}
-                value={data.nilai}
+                value={data.jumlah}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputCall"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              Call
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputCall"
+                name="call"
+                onChange={handleInput}
+                value={data.call}
+              />
+            </div>
+          </div>
+          <div className="form-group row mb-2">
+            <label
+              for="inputSms"
+              className="offset-sm-1 col-sm-3 col-form-label"
+            >
+              SMS
+            </label>
+            <div className="col-sm-7">
+              <input
+                type="text"
+                className="form-control"
+                id="inputSms"
+                name="sms"
+                onChange={handleInput}
+                value={data.sms}
               />
             </div>
           </div>
@@ -246,8 +347,11 @@ const EditProdukPulsa = (props) => {
 
           <div className="button mt-4">
             <center>
-              <button type="submit" className="btn mx-3" 
-              style={{backgroundColor:'#006BA0', color:'white'}}>
+              <button
+                type="submit"
+                className="btn mx-3"
+                style={{ backgroundColor: "#006BA0", color: "white" }}
+              >
                 Update
               </button>
               <button

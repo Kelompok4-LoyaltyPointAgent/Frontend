@@ -3,6 +3,7 @@ import "../../assets/styles/Button.css";
 import { FiPhone } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { deleteTransaksi } from "../../api/deleteTransaksi";
+import "../../assets/styles/warnaTransaksi.css";
 
 const ItemRiwayatTransaksi = ({ data, index }) => {
   const deleteItem = (id) => {
@@ -28,6 +29,15 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       }
     });
   };
+  const warna = () => {
+    if (data.status == "Success") {
+      return "sukses";
+    } else if (data.status == "Pending") {
+      return "pending";
+    } else if (data.status == "Gagal") {
+      return "gagal";
+    }
+  };
   return (
     <tr
       style={
@@ -38,17 +48,25 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
     >
       <td className="col-2 text-center">{data.created_date}</td>
       <td className="col-1">
-        {data.transaction_detail.email}
+        {data.transaction_detail?.email}
         <br />
-        <FiPhone
-          style={{ fontSize: "16px", marginRight: "5px", marginBottom: "4px" }}
-        />
-        {data.transaction_detail.number}
+        <div style={{ color: "#8C8C8C" }}>
+          <FiPhone
+            style={{
+              fontSize: "16px",
+              marginRight: "5px",
+              marginBottom: "4px",
+            }}
+          />
+          {data.transaction_detail?.number}
+        </div>
       </td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
       <td className="col-1">{data.amount}</td>
-      <td className="col-1">{data.status}</td>
+      <td className="col-1">
+        <p className={warna()}>{data.status}</p>
+      </td>
       <td className="col-1">
         <i
           className="bi bi-trash3 ms-3 delete-button"

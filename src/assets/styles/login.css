@@ -1,7 +1,8 @@
 * {
   margin: 0px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-style: bold;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
 }
 
 .login {
@@ -28,12 +29,14 @@
   margin-top: 8px;
   font-weight: bolder;
 }
-
+.login a {
+  color: #fbb505;
+}
 .forms .space {
   margin: 0;
   padding: 30px 30px 30px 30px;
   position: absolute;
-  background-color: #ccdae8;
+  background-color: #013b75;
   border-radius: 12px;
   top: 55%;
   left: 50%;

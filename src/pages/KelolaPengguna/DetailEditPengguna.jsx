@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../../assets/styles/DetailEditProduk.css";
 import "../../assets/styles/Overflow.css";
-
 import EditPengguna from "./EditPengguna";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import { getDetailUser } from "../../api/getDetailPengguna";
@@ -15,7 +14,6 @@ const DetailEditPengguna = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getDetailUser(id);

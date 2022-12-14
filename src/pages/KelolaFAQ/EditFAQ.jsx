@@ -1,13 +1,12 @@
 import { useState } from "react";
+import { updateFAQ } from "../../api/updateFAQ";
 import "../../assets/styles/PopUp.css";
-import { updateUser } from "../../api/updateUser";
 
-const EditPengguna = (props) => {
+const EditFAQ = (props) => {
   const [data, setData] = useState({
-    namaLengkap: props.data.name,
-    email: props.data.email,
-    password: "******",
-    poin: props.data.points,
+    category: props.data.category,
+    question: props.data.question,
+    answer: props.data.answer,
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -18,14 +17,10 @@ const EditPengguna = (props) => {
     });
   };
 
-  const updateData = async (e) => {
+  const addNow = async (e) => {
     e.preventDefault();
-    const datas = {
-      name: data.namaLengkap,
-      email: data.email,
-    };
     try {
-      const res = await updateUser(props.data.id, datas);
+      const res = await updateFAQ(props.data.id, data);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -40,83 +35,63 @@ const EditPengguna = (props) => {
           x
         </span>
         <h2 className="mb-4 mt-2">
-          <center>Edit Pengguna</center>
+          <center>Edit Faq</center>
         </h2>
-        <form onSubmit={updateData}>
+        <form onSubmit={addNow}>
           <div className="form-group row mb-2">
             <label
-              for="inputNamaLengkap"
+              for="inputQuestion"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Nama Lengkap
+              Pertanyaan
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputNamaLengkap"
-                name="namaLengkap"
+                id="inputQuestion"
+                name="question"
                 onChange={handleInput}
-                value={data.namaLengkap}
+                value={data.question}
                 required
               />
             </div>
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputEmail"
+              for="inputAnswer"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Email
+              Jawaban
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputEmail"
-                name="email"
+                id="inputAnswer"
+                name="answer"
                 onChange={handleInput}
-                value={data.email}
+                value={data.answer}
                 required
               />
             </div>
           </div>
           <div className="form-group row mb-2">
             <label
-              for="inputPoin"
+              for="inputCategory"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Point
+              Kategori
             </label>
             <div className="col-sm-7">
               <input
                 type="text"
                 className="form-control"
-                id="inputPoin"
-                name="poin"
+                id="inputCategory"
+                name="category"
                 onChange={handleInput}
-                value={data.poin}
+                value={data.category}
                 required
-              />
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputPassword"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              Password
-            </label>
-            <div className="col-sm-7">
-              <input
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                name="password"
-                onChange={handleInput}
-                value={data.password}
-                disabled
-                style={{ color: "gray" }}
               />
             </div>
           </div>
@@ -143,4 +118,4 @@ const EditPengguna = (props) => {
     </div>
   );
 };
-export default EditPengguna;
+export default EditFAQ;
