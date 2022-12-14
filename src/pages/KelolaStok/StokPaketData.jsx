@@ -11,6 +11,7 @@ import NavbarTop from "../../components/NavbarTop";
 import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
 import CardTopPaket from "./CardTopPaket";
+import "../../assets/styles/Overflow.css";
 import { getPackages } from "../../api/getPackages";
 
 export default function StokPaketData() {
@@ -40,18 +41,20 @@ export default function StokPaketData() {
   return (
     <>
       <div className="d-flex">
-        <NewSidebar/>
+        <NewSidebar />
         <div className="w-100">
-          <NavbarTop/>
-        <div className="mt-4 ps-3 pe-3 w-100">
+          <NavbarTop />
+          <div className="mt-4 ps-3 pe-3 w-100 main-overflow ">
             <div>
-              <CardTopPaket/>
+              <CardTopPaket />
             </div>
             <Box>
               <Typography>
                 <div className="w-100">
                   {isOpen && <AddStockPaket handleClose={togglePopUp} />}
-                  <p className="mt-1 pt-3" style={{fontSize:'24px'}}>Stok Paket</p>
+                  <p className="mt-1 pt-3" style={{ fontSize: "24px" }}>
+                    Stok Paket
+                  </p>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <Button variant="success" onClick={togglePopUp}>
                       <AiOutlinePlusSquare
@@ -85,16 +88,15 @@ export default function StokPaketData() {
                       </div>
                     </div>
                   </div>
-                  <table
-                    class="table table-borderless "
-                    
-                  >
-                    <thead style={{
-                      border: "1px solid",
-                    }}>
+                  <table class="table table-borderless ">
+                    <thead
+                      style={{
+                        border: "1px solid",
+                      }}
+                    >
                       <tr
                         className="text-center"
-                        style={{ backgroundColor: "#D8DADC", color: "#013B75", }}
+                        style={{ backgroundColor: "#D8DADC", color: "#013B75" }}
                       >
                         <th className="text-start">Provider</th>
                         <th>Nama Produk</th>
@@ -111,12 +113,12 @@ export default function StokPaketData() {
                     </tbody>
                   </table>
                   <div className="d-flex justify-content-center">
-                  <Pagination
-                    postsPerPage={postsPerPage}
-                    totalPosts={posts.length}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  />
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={posts.length}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                    />
                   </div>
                   {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
@@ -127,8 +129,8 @@ export default function StokPaketData() {
                 </div>
               </Typography>
             </Box>
+          </div>
         </div>
-        </div>  
       </div>
     </>
   );

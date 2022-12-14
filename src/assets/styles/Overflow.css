@@ -1,0 +1,10 @@
+.main-overflow {
+  overflow: auto;
+  max-height: 86vh;
+  position: relative;
+}
+.box-overflow {
+  overflow: auto;
+  max-height: 85vh;
+  position: relative;
+}
