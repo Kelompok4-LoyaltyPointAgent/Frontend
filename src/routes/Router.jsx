@@ -41,11 +41,11 @@ function Router() {
             <Route path="/kelolastok/pulsa" element={<StokPulsa />} />
             <Route path="/kelolastok/paketdata" element={<StokPaketData />} />
             <Route
-              path="/kelolastok/detaileditproduk/pulsa/:path"
+              path="/kelolastok/detaileditproduk/pulsa/:id"
               element={<DetailEditProdukPulsa />}
             />
             <Route
-              path="/kelolastok/detaileditproduk/paket/:path"
+              path="/kelolastok/detaileditproduk/paket/:id"
               element={<DetailEditProdukPaket />}
             />
             <Route path="/kelolafaq" element={<KelolaFAQ />} />

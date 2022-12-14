@@ -9,16 +9,18 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemFAQ from "./itemFAQ";
-import AddData from "./addData";
+import AddData from "./AddData";
 import "../../assets/styles/Overflow.css";
 import { getFaqs } from "../../api/getFaqs";
 import { motion } from "framer-motion";
+import EditFAQ from "./EditFAQ";
 
 export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const [editData, setEditData] = useState({});
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -31,12 +33,24 @@ export default function KelolaFAQ() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  let currentPosts = "";
+  if (!posts[0]) {
+    currentPosts = [posts];
+  } else {
+    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const togglePopUp = () => {
     setIsOpen(!isOpen);
+  };
+
+  const togglePopUpEdit = () => {
+    setIsOpen(!isOpen);
+  };
+  const itemData = (data) => {
+    setEditData(data);
   };
 
   return (
@@ -56,6 +70,9 @@ export default function KelolaFAQ() {
                 <Typography>
                   <div className="w-100">
                     {isOpen && <AddData handleClose={togglePopUp} />}
+                    {isOpen && (
+                      <EditFAQ data={editData} handleClose={togglePopUpEdit} />
+                    )}
                     <div className="d-flex flex-row justify-content-between mb-3">
                       <motion.button
                         whileHover={{ scale: 1.03, originX: 0 }}
@@ -128,7 +145,12 @@ export default function KelolaFAQ() {
                         style={{ color: "#013B75" }}
                       >
                         {currentPosts.map((item, index) => (
-                          <ItemFAQ data={item} index={index}></ItemFAQ>
+                          <ItemFAQ
+                            data={item}
+                            index={index}
+                            toggle={togglePopUpEdit}
+                            sentData={itemData}
+                          ></ItemFAQ>
                         ))}
                       </tbody>
                     </table>

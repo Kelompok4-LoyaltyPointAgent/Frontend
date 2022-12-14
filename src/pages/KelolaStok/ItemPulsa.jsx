@@ -1,13 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { deletePulsa } from "../../api/deletePulsa";
 import "../../assets/styles/Button.css";
+import { numberFormater } from "../../components/numberFormater";
 
 const ItemPulsa = ({ data, index }) => {
-  const navigate = useNavigate();
-  const info = (id) => {
-    navigate("/kelolastok/detaileditproduk/pulsa/" + id);
-  };
   const deleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,13 +39,14 @@ const ItemPulsa = ({ data, index }) => {
       <td className="col-1 text-start">{data.provider}</td>
       <td className="col-1">{data.name}</td>
       <td className="col-1">{data.stock}</td>
-      <td className="col-1">{data.price_points}</td>
-      <td className="col-1">{data.price}</td>
+      <td className="col-1">{numberFormater(data.price_points)}</td>
+      <td className="col-1">{numberFormater(data.price)}</td>
       <td className="col-1">
-        <i
+        <NavLink
+          to={`/kelolastok/detaileditproduk/pulsa/${data.id}`}
+          key={data.id}
           className="bi bi-file-earmark-text file-button"
-          onClick={() => info(data.id)}
-        ></i>
+        ></NavLink>
         <i
           className="bi bi-trash3 ms-3 delete-button"
           onClick={() => deleteItem(data.id)}

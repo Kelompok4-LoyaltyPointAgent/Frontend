@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../../assets/styles/DetailEditProduk.css";
 import "../../assets/styles/Overflow.css";
-
 import EditPengguna from "./EditPengguna";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import { getDetailUser } from "../../api/getDetailPengguna";
@@ -13,10 +12,8 @@ import NavbarTop from "../../components/NavbarTop";
 const DetailEditPengguna = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  console.log(id);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getDetailUser(id);
@@ -29,7 +26,6 @@ const DetailEditPengguna = () => {
   const togglePopUp = () => {
     setIsOpen(!isOpen);
   };
-  console.log(data);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -92,10 +88,6 @@ const DetailEditPengguna = () => {
                   <div className="mt-2 d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Email</p>
                     <p className="detail-produk-text">{data.email}</p>
-                  </div>
-                  <div className="mt-2 d-flex justify-content-between list-detail">
-                    <p className="detail-produk-text">No. Telepon</p>
-                    <p className="detail-produk-text">0812345678</p>
                   </div>
                   <div className="mt-2 d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Poin</p>

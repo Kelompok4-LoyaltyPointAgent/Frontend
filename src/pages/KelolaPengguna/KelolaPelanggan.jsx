@@ -27,11 +27,15 @@ export default function KelolaPelanggan() {
 
     fetchPosts(posts);
   }, []);
-  console.log(posts);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
+  let currentPosts = "";
+  if (!posts[0]) {
+    currentPosts = [posts];
+  } else {
+    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  }
+  console.log(currentPosts);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const togglePopUp = () => {
@@ -127,13 +131,6 @@ export default function KelolaPelanggan() {
                         currentPage={currentPage}
                       />
                     </div>
-
-                    {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
                   </div>
                 </Typography>
               </Box>

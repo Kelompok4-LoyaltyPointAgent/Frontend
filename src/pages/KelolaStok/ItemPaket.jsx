@@ -1,6 +1,8 @@
+import { NavLink } from "react-router-dom";
 import "../../assets/styles/Button.css";
 import Swal from "sweetalert2";
 import { deletePaket } from "../../api/deletePaket";
+import { numberFormater } from "../../components/numberFormater";
 
 const ItemPaket = ({ data, index }) => {
   const deleteItem = (id) => {
@@ -38,10 +40,14 @@ const ItemPaket = ({ data, index }) => {
       <td className="col-1 text-start">{data.provider}</td>
       <td className="col-1">{data.name}</td>
       <td className="col-1">{data.stock}</td>
-      <td className="col-1">{data.price_points}</td>
-      <td className="col-1">{data.price}</td>
+      <td className="col-1">{numberFormater(data.price_points)}</td>
+      <td className="col-1">{numberFormater(data.price)}</td>
       <td className="col-1">
-        <i className="bi bi-file-earmark-text file-button"></i>
+        <NavLink
+          to={`/kelolastok/detaileditproduk/paket/${data.id}`}
+          key={data.id}
+          className="bi bi-file-earmark-text file-button"
+        ></NavLink>
         <i
           className="bi bi-trash3 ms-3 delete-button"
           onClick={() => deleteItem(data.id)}

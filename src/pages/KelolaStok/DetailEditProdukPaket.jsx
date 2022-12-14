@@ -1,14 +1,28 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import Sidebar from "../../components/sidebar/Sidebar";
 import "../../assets/styles/DetailEditProduk.css";
+import "../../assets/styles/Overflow.css";
 import EditProdukPaket from "./EditProdukPaket";
+import NewSidebar from "../../components/sidebar/NewSidebar";
+import { getPackageId } from "../../api/getPackageId";
+import NavbarTop from "../../components/NavbarTop";
+import { numberFormater } from "../../components/numberFormater";
 
 const DetailEditProdukPaket = () => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getPackageId(id);
+      setData(res.data.data);
+    };
+
+    fetchPosts(data);
+  }, [id]);
 
   const togglePopUp = () => {
     setIsOpen(!isOpen);
@@ -20,111 +34,155 @@ const DetailEditProdukPaket = () => {
   return (
     <>
       <div className="d-flex">
-        <Sidebar list={4} />
-        <div className="mt-5 pt-5 ps-3 pe-3 w-100 main">
-          {isOpen && <EditProdukPaket handleClose={togglePopUp} />}
-          <Card border="dark">
-            <Card.Img
-              style={{ padding: "10px", height: "250px" }}
-              src={require("../../assets/images/ProdukPulsa/Vector 2.png")}
-            />
-            <Card.ImgOverlay>
-              <Row>
-                <Col sm={2} lg={2} className="d-flex justify-content-end">
-                  <i>
-                    <img
-                      style={{ height: "120px" }}
-                      alt="iconproduk"
-                      src={require("../../assets/images/ProdukPaket/Frame 33773.png")}
-                    />
-                  </i>
-                </Col>
-                <Col
-                  sm={8}
-                  lg={8}
-                  className="d-flex flex-column justify-content-center align-items-center"
-                >
-                  <p className="mt-4" style={{ color: "white" }}>
-                    <h4>Detail Paket Data</h4>
-                  </p>
-                  <p className="text-harga">
-                    <h2>DUAAARRR!!! SAKTI 50GB</h2>
-                  </p>
-                  <p className="text-provider">Provider</p>
-                </Col>
-                <Col sm={2} lg={2} className="d-flex justify-content-end pe-4">
-                  <div>
+        <NewSidebar />
+        <div className="w-100">
+          <NavbarTop />
+          <div className="pt-3 ps-3 pe-3 w-100 main">
+            {isOpen && (
+              <EditProdukPaket handleClose={togglePopUp} data={data} />
+            )}
+            <Card border="dark" className="">
+              <Card.Img
+                style={{ padding: "10px", height: "250px" }}
+                src={require("../../assets/images/ProdukPulsa/Vector 2.png")}
+              />
+              <Card.ImgOverlay>
+                <Row>
+                  <Col sm={2} lg={2} className="d-flex justify-content-end">
+                    <i>
+                      <img
+                        style={{ height: "120px" }}
+                        alt="iconproduk"
+                        src={require("../../assets/images/ProdukPulsa/Frame 33773.png")}
+                      />
+                    </i>
+                  </Col>
+                  <Col
+                    sm={8}
+                    lg={8}
+                    className="d-flex flex-column justify-content-center align-items-center"
+                  >
+                    <p className="mt-1 text-judul">
+                      <h4>Detail Paket Data</h4>
+                    </p>
+                    <p className="text-harga">
+                      <h4>{data.name}</h4>
+                    </p>
+                    <p className="text-harga">
+                      <h3>{data.package?.total_internet} GB</h3>
+                    </p>
                     <img
                       style={{
-                        marginTop: "13px",
-                        height: "110px",
-                        width: "125px",
-                        zIndex: "2",
-                        top: "0px",
-                        position: "relative",
+                        marginTop: "-13px",
+                        height: "62px",
+                        borderRadius: "50%",
+                        backgroundColor: "#fff",
                       }}
-                      alt="iconpoin"
-                      src={require("../../assets/images/ProdukPulsa/Rectangle 15.png")}
+                      alt="productPicture"
+                      src={data.product_picture?.url}
                     />
-                    <div
-                      className="text-center"
-                      style={{
-                        padding: "3px",
-                        zIndex: "9",
-                        position: "absolute",
-                        top: "30px",
-                        color: "#013B75",
-                      }}
-                    >
-                      <p
+                  </Col>
+                  <Col
+                    sm={2}
+                    lg={2}
+                    className="d-flex justify-content-end pe-4"
+                  >
+                    <div>
+                      <img
                         style={{
-                          margin: "0px",
-                          marginTop: "2px",
-                          marginLeft: "30px",
+                          marginTop: "13px",
+                          height: "110px",
+                          width: "125px",
+                          zIndex: "2",
+                          top: "0px",
+                          position: "relative",
+                        }}
+                        alt="iconpoin"
+                        src={require("../../assets/images/ProdukPulsa/Rectangle 15.png")}
+                      />
+                      <div
+                        className="text-center"
+                        style={{
+                          padding: "3px",
+                          zIndex: "9",
+                          position: "absolute",
+                          top: "30px",
+                          color: "#013B75",
                         }}
                       >
-                        <h5>Reward</h5>
-                      </p>
-                      <p
-                        style={{
-                          margin: "0px",
-                          marginTop: "2px",
-                          marginLeft: "30px",
-                        }}
-                      >
-                        <h4>777</h4>
-                      </p>
+                        <p
+                          style={{
+                            margin: "0px",
+                            marginTop: "2px",
+                            marginLeft: "30px",
+                          }}
+                        >
+                          <h5>Reward</h5>
+                        </p>
+                        <p
+                          style={{
+                            margin: "0px",
+                            marginTop: "2px",
+                            marginLeft: "30px",
+                          }}
+                        >
+                          <h4>777</h4>
+                        </p>
+                      </div>
                     </div>
+                  </Col>
+                </Row>
+              </Card.ImgOverlay>
+              <Card.Body>
+                <Card.Text className="text-overflow">
+                  <div className="mt-2 d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">MASA AKTIF</p>
+                    <p className="detail-produk-text">
+                      {data.package?.active_period} HARI
+                    </p>
                   </div>
-                </Col>
-              </Row>
-            </Card.ImgOverlay>
-            <Card.Body className="body-overflow">
-              <Card.Text>
-                <div className="mt-2 d-flex justify-content-between list-detail">
-                  <p className="detail-produk-text">Masa Aktif</p>
-                  <p className="detail-produk-text">60 Hari</p>
-                </div>
-                <div className="d-flex justify-content-between list-detail">
-                  <p className="detail-produk-text">Stok</p>
-                  <p className="detail-produk-text">500</p>
-                </div>
-                <div className="d-flex justify-content-between list-detail">
-                  <p className="detail-produk-text">Harga</p>
-                  <p className="detail-produk-text">Rp 12.000</p>
-                </div>
-                <div className="d-flex justify-content-between list-detail">
-                  <p className="detail-produk-text">Harga (Poin)</p>
-                  <p className="detail-produk-text">1.200</p>
-                </div>
-                <div style={{ marginLeft: "100px" }}>
-                  <p>Deskripsi</p>
-                  <p>
-                    Dapatkan pulsa 10.000 dengan harga Rp 12.000 Harga sudah
-                    termasuk PPN 10%
-                  </p>
-                </div>
-                <br />
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">STOK</p>
+                    <p className="detail-produk-text">{data.stock}</p>
+                  </div>
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">HARGA</p>
+                    <p className="detail-produk-text">
+                      Rp {numberFormater(data.price)}
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">HARGA (POIN)</p>
+                    <p className="detail-produk-text">
+                      {numberFormater(data.price_points)}
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">INTERNET</p>
+                    <p className="detail-produk-text">
+                      {data.package?.main_internet}GB +{" "}
+                      {data.package?.night_internet}GB +{" "}
+                      {data.package?.social_media}GB
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">NELPON</p>
+                    <p className="detail-produk-text">
+                      {data.package?.call} MENIT
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between list-detail">
+                    <p className="detail-produk-text">SMS</p>
+                    <p className="detail-produk-text">
+                      {data.package?.sms} SMS
+                    </p>
+                  </div>
+                  <div style={{ marginLeft: "100px" }}>
+                    <p>Deskripsi</p>
+                    <p>{data.description}</p>
+                  </div>
+                  <br />
+                </Card.Text>
                 <div
                   style={{ position: "relative" }}
                   className="mb-2 d-flex justify-content-center gap-5"
@@ -148,9 +206,9 @@ const DetailEditProdukPaket = () => {
                     Kembali
                   </Button>
                 </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
     </>

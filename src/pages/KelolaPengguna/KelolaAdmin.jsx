@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
@@ -6,55 +6,35 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
 import AddUser from "./AddUser";
-import ItemUser from "./ItemUser";
+import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import "../../assets/styles/Overflow.css";
+import { getAdmin } from "../../api/getAdmin";
 
 export default function KelolaAdmin() {
   const [isOpen, setIsOpen] = useState(false);
-  const [posts, setPosts] = useState([
-    {
-      nama: "diaken",
-      email: "d@wow",
-      role: "admin",
-      poin: "1000",
-    },
-    {
-      nama: "dery",
-      email: "der@wow",
-      role: "admin",
-      poin: "2000",
-    },
-    {
-      nama: "dik",
-      email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-    {
-      nama: "wew",
-      email: "wew@wow",
-      role: "admin",
-      poin: "3000",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(2);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-  //     setPosts(res.data);
-  //   };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getAdmin();
+      setPosts(res.data.data);
+    };
 
-  //   fetchPosts();
-  // }, []);
-
+    fetchPosts(posts);
+  }, []);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  let currentPosts = "";
+  if (!posts[0]) {
+    currentPosts = [posts];
+  } else {
+    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -127,7 +107,6 @@ export default function KelolaAdmin() {
                         >
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
-                          <th>Role</th>
                           <th>Poin</th>
                           <th>Aksi</th>
                         </tr>
@@ -137,7 +116,7 @@ export default function KelolaAdmin() {
                         style={{ color: "#013B75" }}
                       >
                         {currentPosts.map((item, index) => (
-                          <ItemUser data={item} index={index}></ItemUser>
+                          <ItemAdmin data={item} index={index}></ItemAdmin>
                         ))}
                       </tbody>
                     </table>
@@ -147,12 +126,6 @@ export default function KelolaAdmin() {
                       paginate={paginate}
                       currentPage={currentPage}
                     />
-                    {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
                   </div>
                 </Typography>
               </Box>

@@ -18,6 +18,10 @@
 .detail-produk-text {
   margin: 6px;
 }
+.text-judul {
+  font-style: normal;
+  color: #f5f6f7;
+}
 .text-harga {
   display: flex;
   align-items: center;

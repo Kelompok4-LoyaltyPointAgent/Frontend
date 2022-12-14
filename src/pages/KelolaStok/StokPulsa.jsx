@@ -14,7 +14,6 @@ import CardTopPulsa from "./CardTopPulsa";
 import "../../assets/styles/Overflow.css";
 import { getCredit } from "../../api/getCredits";
 import { motion } from "framer-motion";
-import { borderRadius } from "@mui/system";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +36,12 @@ export default function StokPulsa() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  let currentPosts = "";
+  if (!posts[0]) {
+    currentPosts = [posts];
+  } else {
+    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -121,7 +125,7 @@ export default function StokPulsa() {
                       </tr>
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
-                      {currentPosts.map((item, index) => (
+                      {currentPosts?.map((item, index) => (
                         <ItemPulsa data={item} index={index}></ItemPulsa>
                       ))}
                     </tbody>
