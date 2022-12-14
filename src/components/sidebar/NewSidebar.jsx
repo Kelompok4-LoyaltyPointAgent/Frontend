@@ -4,6 +4,7 @@ import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
 import { AiOutlineFileText, AiOutlineQuestionCircle } from "react-icons/ai";
 import { CgUserList } from "react-icons/cg";
 import "../sidebar/NewSidebar.css";
+import { motion } from "framer-motion";
 
 const NewSidebar = ({ list }) => {
   const [isOpen1, setIsOpen1] = useState(false);
@@ -70,8 +71,13 @@ const NewSidebar = ({ list }) => {
               activeclassName="active"
               onClick={() => togglePopUp(index)}
             >
+              <motion.div className="d-flex flex-row gap-2"
+              whileHover={{ scale: 1.1, originX: 0, }}
+              whileTap={{ scale: 0.9 }}>
               <div className="icon">{item.icon}</div>
               <div className="list-item">{item.name}</div>
+              </motion.div>
+              
             </a>
             {item.dropdown.map((list) => (
               <NavLink
@@ -79,7 +85,11 @@ const NewSidebar = ({ list }) => {
                 className="list-menu list-drop d-flex flex-row"
                 activeclassName="active"
               >
-                <div className="list-item drop-item">{list.name}</div>
+                <motion.div 
+                whileHover={{ scale: 1.1, originX: 0, }}
+                whileTap={{ scale: 0.9 }}
+                className="list-item drop-item">{list.name}
+                </motion.div>
               </NavLink>
             ))}
           </>
@@ -93,8 +103,12 @@ const NewSidebar = ({ list }) => {
               activeclassName="active"
               onClick={() => togglePopUp(index)}
             >
+              <motion.div className="d-flex flex-row gap-2"
+              whileHover={{ scale: 1.1, originX: 0, }}
+              whileTap={{ scale: 0.9 }}>
               <div className="icon">{item.icon}</div>
               <div className="list-item">{item.name}</div>
+              </motion.div>
             </a>
             {item.dropdown.map((list) => (
               <NavLink
@@ -102,7 +116,11 @@ const NewSidebar = ({ list }) => {
                 className="list-menu list-drop d-flex flex-row"
                 activeclassName="active"
               >
-                <div className="list-item drop-item">{list.name}</div>
+                <motion.div 
+                whileHover={{ scale: 1.1, originX: 0, }}
+                whileTap={{ scale: 0.9 }}
+                className="list-item drop-item">{list.name}
+                </motion.div>
               </NavLink>
             ))}
           </>
@@ -115,8 +133,12 @@ const NewSidebar = ({ list }) => {
             activeclassName="active"
             onClick={() => togglePopUp(index)}
           >
-            <div className="icon">{item.icon}</div>
-            <div className="list-item">{item.name}</div>
+             <motion.div className="d-flex flex-row gap-2"
+           whileHover={{ scale: 1.1, originX: 0, }}
+           whileTap={{ scale: 0.9 }}>
+          <div className="icon">{item.icon}</div>
+          <div className="list-item">{item.name}</div>
+          </motion.div>
           </a>
         );
       }
@@ -128,8 +150,13 @@ const NewSidebar = ({ list }) => {
           className="list-menu d-flex flex-row"
           activeclassName="active"
         >
+          <motion.div className="d-flex flex-row gap-2"
+           whileHover={{ scale: 1.1, originX: 0, }}
+           whileTap={{ scale: 0.9 }}>
           <div className="icon">{item.icon}</div>
           <div className="list-item">{item.name}</div>
+          </motion.div>
+          
         </NavLink>
       );
     }

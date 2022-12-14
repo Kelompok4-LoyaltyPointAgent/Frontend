@@ -12,6 +12,8 @@ import AddStockPulsa from "./AddStockPulsa";
 import ItemPulsa from "./ItemPulsa";
 import CardTopPulsa from "./CardTopPulsa";
 import { getCredit } from "../../api/getCredits";
+import { motion } from "framer-motion";
+import { borderRadius } from "@mui/system";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +56,11 @@ export default function StokPulsa() {
                   {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
                   <p className="mt-1 pt-3" style={{fontSize:'24px'}}>Stok Pulsa</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
-                    <Button variant="success" onClick={togglePopUp}>
+                    <motion.button 
+                     whileHover={{ scale: 1.03, originX: 0 }}
+                     whileTap={{ scale: 0.9 }}
+                    style={{color:'white',backgroundColor:'#197722', paddingRight:'10px',paddingLeft:'10px',
+                    borderRadius:'5px', borderWidth:'1px', borderColor:'#197722'}} onClick={togglePopUp}>
                       <AiOutlinePlusSquare
                         style={{
                           width: "20px",
@@ -64,7 +70,7 @@ export default function StokPulsa() {
                         }}
                       />
                       Tambah Pulsa
-                    </Button>
+                    </motion.button>
                     <div className="d-flex flex-row gap-2 pe-3">
                       <div className="">
                         <TextField
