@@ -28,7 +28,7 @@ function Router() {
           <Route element={<PrivateRoute token={token}></PrivateRoute>}>
             <Route path="/" element={<Dashboard></Dashboard>} />
             <Route
-              path="/kelolaPengguna/detaileditpengguna/user"
+              path="/kelolaPengguna/pelanggan/detailpengguna/:id"
               exact
               element={<DetailEditPengguna />}
             />
