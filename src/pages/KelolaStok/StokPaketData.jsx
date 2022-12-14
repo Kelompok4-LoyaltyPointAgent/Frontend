@@ -113,7 +113,7 @@ export default function StokPaketData() {
                         style={{ backgroundColor: "#D8DADC", color: "#013B75" }}
                       >
                         <th className="text-start">Provider</th>
-                        <th>Nama Produk</th>
+                        <th>Nama Paket</th>
                         <th>Stok</th>
                         <th>Hadiah Poin</th>
                         <th>Harga (Rp)</th>
