@@ -12,6 +12,7 @@ import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
 import CardTopPaket from "./CardTopPaket";
 import { getPackages } from "../../api/getPackages";
+import { motion } from "framer-motion";
 
 export default function StokPaketData() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,11 @@ export default function StokPaketData() {
                   {isOpen && <AddStockPaket handleClose={togglePopUp} />}
                   <p className="mt-1 pt-3" style={{fontSize:'24px'}}>Stok Paket</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
-                    <Button variant="success" onClick={togglePopUp}>
+                  <motion.button 
+                     whileHover={{ scale: 1.03 }}
+                     whileTap={{ scale: 0.9 }}
+                    style={{color:'white',backgroundColor:'#197722', paddingRight:'10px',paddingLeft:'10px',
+                    borderRadius:'5px', borderWidth:'1px', borderColor:'#197722'}} onClick={togglePopUp}>
                       <AiOutlinePlusSquare
                         style={{
                           width: "20px",
@@ -63,7 +68,7 @@ export default function StokPaketData() {
                         }}
                       />
                       Tambah Paket Data
-                    </Button>
+                    </motion.button>
                     <div className="d-flex flex-row gap-2 pe-3">
                       <div className="">
                         <TextField

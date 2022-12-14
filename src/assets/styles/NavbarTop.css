@@ -1,4 +1,26 @@
 .NavbarTop{
-    z-index: 0;
+    z-index: 1;
     box-shadow:#6D747C 0px 0px 5px;
+}
+.dd-item-admin:hover{
+    background-color: #01478C;
+    color:white;
+}
+.icon-logout{
+    color:#991628; 
+    width:20px; 
+    height:25px; 
+    margin-right:5px; 
+    margin-bottom:3px;
+}
+.icon-setting{
+    color:#6D747C; 
+    width:20px; 
+    height:25px; 
+    margin-top: 3px;
+    margin-right:5px; 
+    margin-bottom:3px;
+}
+.icon-logout:hover{
+    color: white;
 }
