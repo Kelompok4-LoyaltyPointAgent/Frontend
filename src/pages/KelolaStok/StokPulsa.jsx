@@ -13,6 +13,8 @@ import ItemPulsa from "./ItemPulsa";
 import CardTopPulsa from "./CardTopPulsa";
 import "../../assets/styles/Overflow.css";
 import { getCredit } from "../../api/getCredits";
+import { motion } from "framer-motion";
+import { borderRadius } from "@mui/system";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +24,12 @@ export default function StokPulsa() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await getCredit();
-      setPosts(res.data.data);
+      try {
+        const res = await getCredit();
+        setPosts(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchPosts();
@@ -45,7 +51,7 @@ export default function StokPulsa() {
         <NewSidebar />
         <div className="w-100">
           <NavbarTop />
-          <div className="mt-4 ps-3 pe-3 w-100 main-overflow">
+          <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
             <div>
               <CardTopPulsa />
             </div>
@@ -55,7 +61,20 @@ export default function StokPulsa() {
                   {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
                   <p className="mt-1 pt-3">Stok Pulsa</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
-                    <Button variant="success" onClick={togglePopUp}>
+                    <motion.button
+                      whileHover={{ scale: 1.03, originX: 0 }}
+                      whileTap={{ scale: 0.9 }}
+                      style={{
+                        color: "white",
+                        backgroundColor: "#197722",
+                        paddingRight: "10px",
+                        paddingLeft: "10px",
+                        borderRadius: "5px",
+                        borderWidth: "1px",
+                        borderColor: "#197722",
+                      }}
+                      onClick={togglePopUp}
+                    >
                       <AiOutlinePlusSquare
                         style={{
                           width: "20px",
@@ -65,7 +84,7 @@ export default function StokPulsa() {
                         }}
                       />
                       Tambah Pulsa
-                    </Button>
+                    </motion.button>
                     <div className="d-flex flex-row gap-2 pe-3">
                       <div className="">
                         <TextField

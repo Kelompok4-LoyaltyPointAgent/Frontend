@@ -46,7 +46,7 @@ const KelolaTransaksi = () => {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        <div className="mt-4 ps-3 pe-3 w-100 main-overflow">
+        <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
           <p
             className="mb-4 mt-1 pt-3"
             style={{ fontSize: "22px", color: "#" }}

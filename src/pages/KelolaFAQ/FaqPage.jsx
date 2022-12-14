@@ -12,12 +12,13 @@ import ItemFAQ from "./itemFAQ";
 import AddData from "./addData";
 import "../../assets/styles/Overflow.css";
 import { getFaqs } from "../../api/getFaqs";
+import { motion } from "framer-motion";
 
 export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -56,7 +57,20 @@ export default function KelolaFAQ() {
                   <div className="w-100">
                     {isOpen && <AddData handleClose={togglePopUp} />}
                     <div className="d-flex flex-row justify-content-between mb-3">
-                      <Button variant="success" onClick={togglePopUp}>
+                      <motion.button
+                        whileHover={{ scale: 1.03, originX: 0 }}
+                        whileTap={{ scale: 0.9 }}
+                        style={{
+                          color: "white",
+                          backgroundColor: "#197722",
+                          paddingRight: "10px",
+                          paddingLeft: "10px",
+                          borderRadius: "5px",
+                          borderWidth: "1px",
+                          borderColor: "#197722",
+                        }}
+                        onClick={togglePopUp}
+                      >
                         <AiOutlinePlusSquare
                           style={{
                             width: "20px",
@@ -65,8 +79,8 @@ export default function KelolaFAQ() {
                             marginRight: "10px",
                           }}
                         />
-                        Tambah Pengguna
-                      </Button>
+                        Tambah Item
+                      </motion.button>
                       <div className="d-flex flex-row gap-2 pe-3">
                         <div className="">
                           <TextField

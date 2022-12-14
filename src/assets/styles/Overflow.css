@@ -1,6 +1,11 @@
+.dashboard-overflow {
+  overflow: auto;
+  max-height: 91vh;
+  position: relative;
+}
 .main-overflow {
   overflow: auto;
-  max-height: 86vh;
+  max-height: 91vh;
   position: relative;
 }
 .box-overflow {
