@@ -19,7 +19,7 @@ export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
   const [editData, setEditData] = useState({});
 
   useEffect(() => {

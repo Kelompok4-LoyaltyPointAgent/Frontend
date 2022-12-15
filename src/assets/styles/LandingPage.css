@@ -1,0 +1,33 @@
+.beranda{
+    background: url(../images/LandingPage/beranda.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+
+.tentang-kami{
+    background: url(../images/LandingPage/tentang\ kami.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+.layanan{
+    background: url(../images/LandingPage/Layanan.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 150vh;
+}
+.kontak-kami{
+    background: url(../images/LandingPage/kontak\ kami.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 140vh;
+}
+.background{
+    height: 100vh;
+    width: 100%;
+}
+.background-l{
+    height: 150vh;
+    width: 100%;
+}
+.background-k{
+    height: 140vh;
+    width: 100%;
+}
