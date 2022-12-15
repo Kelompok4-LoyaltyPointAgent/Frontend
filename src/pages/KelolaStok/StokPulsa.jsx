@@ -14,10 +14,12 @@ import CardTopPulsa from "./CardTopPulsa";
 import "../../assets/styles/Overflow.css";
 import { getCredit } from "../../api/getCredits";
 import { motion } from "framer-motion";
+import Search from "../../components/Search";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [loading, setLoading] = useState(true);
@@ -27,6 +29,7 @@ export default function StokPulsa() {
       try {
         const res = await getCredit();
         setPosts(res.data.data);
+        setData(res.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -38,14 +41,17 @@ export default function StokPulsa() {
   const setReload = () => {
     setLoading(true);
   };
+  const setSearchResult = (datas) => {
+    setData(datas);
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
-  if (!posts[0]) {
-    currentPosts = [posts];
+  if (!data[0]) {
+    currentPosts = [data];
   } else {
-    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -99,26 +105,12 @@ export default function StokPulsa() {
                       />
                       Tambah Pulsa
                     </motion.button>
-                    <div className="d-flex flex-row gap-2 pe-3">
-                      <div className="">
-                        <TextField
-                          id="search"
-                          variant="outlined"
-                          label={
-                            <p style={{ fontSize: "13px", fontWeight: "540" }}>
-                              <BiSearch
-                                style={{ height: "20px", width: "20px" }}
-                              />
-                              Cari
-                            </p>
-                          }
-                          size="small"
-                        />
-                      </div>
-                      <div>
-                        <BiSortDown style={{ height: "40px", width: "30px" }} />
-                      </div>
-                    </div>
+                    <Search
+                      posts={posts}
+                      setSearchResults={setSearchResult}
+                      pages="stock"
+                      placeHolder="Cari Nama"
+                    />
                   </div>
                   <table class="table table-borderless ">
                     <thead>
@@ -127,7 +119,7 @@ export default function StokPulsa() {
                         style={{ backgroundColor: "#013B75", color: "white" }}
                       >
                         <th className="text-start">Provider</th>
-                        <th>Nominal</th>
+                        <th>Nama Produk</th>
                         <th>Stok</th>
                         <th>Hadiah Poin</th>
                         <th>Harga (Rp)</th>
@@ -147,17 +139,11 @@ export default function StokPulsa() {
                   <div className="d-flex justify-content-center">
                     <Pagination
                       postsPerPage={postsPerPage}
-                      totalPosts={posts.length}
+                      totalPosts={data.length}
                       paginate={paginate}
                       currentPage={currentPage}
                     />
                   </div>
-                  {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
                 </div>
               </Typography>
             </Box>

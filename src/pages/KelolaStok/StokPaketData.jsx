@@ -14,10 +14,12 @@ import CardTopPaket from "./CardTopPaket";
 import "../../assets/styles/Overflow.css";
 import { getPackages } from "../../api/getPackages";
 import { motion } from "framer-motion";
+import Search from "../../components/Search";
 
 export default function StokPaketData() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
   const [loading, setLoading] = useState(true);
@@ -26,6 +28,7 @@ export default function StokPaketData() {
     const fetchPosts = async () => {
       const res = await getPackages();
       setPosts(res.data.data);
+      setData(res.data.data);
     };
     if (loading) fetchPosts();
     setLoading(false);
@@ -34,14 +37,17 @@ export default function StokPaketData() {
   const setReload = () => {
     setLoading(true);
   };
+  const setSearchResult = (datas) => {
+    setData(datas);
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
-  if (!posts[0]) {
-    currentPosts = [posts];
+  if (!data[0]) {
+    currentPosts = [data];
   } else {
-    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -97,26 +103,12 @@ export default function StokPaketData() {
                       />
                       Tambah Paket Data
                     </motion.button>
-                    <div className="d-flex flex-row gap-2 pe-3">
-                      <div className="">
-                        <TextField
-                          id="search"
-                          variant="outlined"
-                          label={
-                            <p style={{ fontSize: "13px", fontWeight: "540" }}>
-                              <BiSearch
-                                style={{ height: "20px", width: "20px" }}
-                              />
-                              Cari
-                            </p>
-                          }
-                          size="small"
-                        />
-                      </div>
-                      <div>
-                        <BiSortDown style={{ height: "40px", width: "30px" }} />
-                      </div>
-                    </div>
+                    <Search
+                      posts={posts}
+                      setSearchResults={setSearchResult}
+                      pages="stock"
+                      placeHolder="Cari Nama"
+                    />
                   </div>
                   <table class="table table-borderless ">
                     <thead
@@ -149,17 +141,11 @@ export default function StokPaketData() {
                   <div className="d-flex justify-content-center">
                     <Pagination
                       postsPerPage={postsPerPage}
-                      totalPosts={posts.length}
+                      totalPosts={data.length}
                       paginate={paginate}
                       currentPage={currentPage}
                     />
                   </div>
-                  {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
                 </div>
               </Typography>
             </Box>

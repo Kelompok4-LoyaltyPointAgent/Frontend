@@ -48,6 +48,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       }
     >
       <td className="col-2 text-center">{data.created_date}</td>
+
       <td className="col-1">
         {data.transaction_detail?.email}
         <br />
@@ -62,6 +63,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
           {data.transaction_detail?.number}
         </div>
       </td>
+      <td className="col-2 text-center">{data.user?.name}</td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
       <td className="col-1">{numberFormater(data.amount)}</td>
