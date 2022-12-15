@@ -65,9 +65,20 @@
   display: none;
 }
 
-.hidden {
-  visibility: hidden;
+.hides {
+  display: flex;
 }
-.visible {
-  visibility: visible;
+.vision {
+  display: flex;
+}
+.tampil {
+  height: 110px;
+  overflow: hidden;
+  transition: all 0.8s;
+}
+.hilang {
+  transition: all 0.8s;
+  height: 0px;
+  white-space: nowrap;
+  overflow: hidden;
 }

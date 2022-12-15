@@ -56,7 +56,7 @@ export default function KelolaPelanggan() {
   return (
     <>
       <div className="d-flex">
-        <NewSidebar />
+        <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
           <div className="mt-4 ps-3 pe-3 w-100">

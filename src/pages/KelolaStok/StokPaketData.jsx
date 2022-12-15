@@ -59,7 +59,7 @@ export default function StokPaketData() {
   return (
     <>
       <div className="d-flex">
-        <NewSidebar />
+        <NewSidebar list={3} />
         <div className="w-100">
           <NavbarTop />
           <div className="pt-4 ps-3 pe-3 w-100 main-overflow ">
