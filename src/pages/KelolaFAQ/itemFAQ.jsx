@@ -4,7 +4,6 @@ import { deleteFaq } from "../../api/deleteFaq";
 import "../../assets/styles/Button.css";
 
 const ItemFAQ = ({ data, index, toggle, sentData }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const deleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",

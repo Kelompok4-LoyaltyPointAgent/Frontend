@@ -17,6 +17,7 @@ import EditFAQ from "./EditFAQ";
 
 export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -47,7 +48,10 @@ export default function KelolaFAQ() {
   };
 
   const togglePopUpEdit = () => {
-    setIsOpen(!isOpen);
+    console.log("testpopupedit");
+
+    setIsOpen1(!isOpen1);
+    console.log(isOpen1);
   };
   const itemData = (data) => {
     setEditData(data);
@@ -70,7 +74,7 @@ export default function KelolaFAQ() {
                 <Typography>
                   <div className="w-100">
                     {isOpen && <AddData handleClose={togglePopUp} />}
-                    {isOpen && (
+                    {isOpen1 && (
                       <EditFAQ data={editData} handleClose={togglePopUpEdit} />
                     )}
                     <div className="d-flex flex-row justify-content-between mb-3">

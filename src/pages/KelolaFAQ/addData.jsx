@@ -12,28 +12,26 @@ const AddData = (props) => {
     category: "",
   });
   const handleInput = (e) => {
-    const newData = {...data}
-    newData[e.target.id] = e.target.value
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData)
+    console.log(newData);
   };
   const addNow = async (e) => {
     e.preventDefault();
-    try{
-        const res = await postFaqs(
-            {
-            question : data.pertanyaan,
-            answer : data.jawaban,
-            category : data.category
-        })
-        if (res.data.message === "success") {
-            console.log(res)
-            window.location.reload();
-          }
-    }catch (error){
-        console.log(error)
+    try {
+      const res = await postFaqs({
+        question: data.pertanyaan,
+        answer: data.jawaban,
+        category: data.category,
+      });
+      if (res.data.message === "success") {
+        console.log(res);
+        // window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
   };
 
   return (
@@ -59,7 +57,7 @@ const AddData = (props) => {
                 className="form-control"
                 id="pertanyaan"
                 name="pertanyaan"
-                onChange={(e)=> handleInput(e)}
+                onChange={(e) => handleInput(e)}
                 value={data.pertanyaan}
                 required
               />
