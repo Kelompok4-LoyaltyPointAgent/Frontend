@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "../../assets/styles/PopUp.css";
+import { postUser } from "../../api/postUser";
+import { toast } from "react-toastify";
 
 const AddUser = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState({
-    namaLengkap: "",
+    name: "",
     email: "",
-    noTelepon: "",
     password: "",
     konfirmasiPassword: "",
   });
@@ -17,16 +19,29 @@ const AddUser = (props) => {
       [name]: value,
     });
   };
-  const handleCheck = (e) => {
-    const name = e.target.name;
-    const check = e.target.checked;
 
-    setData({
-      ...data,
-      [name]: check,
-    });
+  const addNow = async (e) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (data.password != data.konfirmasiPassword) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+      try {
+        const res = await postUser({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        });
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+      props.setReload();
+      props.handleClose();
+    }
   };
- 
+
   return (
     <div className="popup-box">
       <div className="box">
@@ -36,7 +51,7 @@ const AddUser = (props) => {
         <h2 className="mb-4 mt-2">
           <center>Tambah Pengguna</center>
         </h2>
-        <form onSubmit="">
+        <form onSubmit={addNow}>
           <div className="form-group row mb-2">
             <label
               for="inputNamaLengkap"
@@ -49,7 +64,7 @@ const AddUser = (props) => {
                 type="text"
                 className="form-control"
                 id="inputNamaLengkap"
-                name="namaLengkap"
+                name="name"
                 onChange={handleInput}
                 value={data.namaLengkap}
                 required
@@ -65,31 +80,12 @@ const AddUser = (props) => {
             </label>
             <div className="col-sm-7">
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="inputEmail"
                 name="email"
                 onChange={handleInput}
                 value={data.email}
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputNoTelepon"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              No. Telepon
-            </label>
-            <div className="col-sm-7">
-              <input
-                type="number"
-                className="form-control"
-                id="inputNoTelepon"
-                name="noTelepon"
-                onChange={handleInput}
-                value={data.noTelepon}
                 required
               />
             </div>
@@ -132,6 +128,11 @@ const AddUser = (props) => {
               />
             </div>
           </div>
+          {isOpen && (
+            <p className="text-danger">
+              <center>Password Belum Sama</center>
+            </p>
+          )}
 
           <div className="button mt-4">
             <center>

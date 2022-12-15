@@ -12,7 +12,7 @@ const NewSidebar = ({ list }) => {
 
   const sidebarMenu = [
     {
-      route: "/",
+      route: "/dashboard",
       name: "Dashboard",
       icon: <MdOutlineDashboard />,
     },
@@ -71,13 +71,14 @@ const NewSidebar = ({ list }) => {
               activeclassName="active"
               onClick={() => togglePopUp(index)}
             >
-              <motion.div className="d-flex flex-row gap-2"
-              whileHover={{ scale: 1.1, originX: 0, }}
-              whileTap={{ scale: 0.9 }}>
-              <div className="icon">{item.icon}</div>
-              <div className="list-item">{item.name}</div>
+              <motion.div
+                className="d-flex flex-row gap-2"
+                whileHover={{ scale: 1.1, originX: 0 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <div className="icon">{item.icon}</div>
+                <div className="list-item">{item.name}</div>
               </motion.div>
-              
             </a>
             {item.dropdown.map((list) => (
               <NavLink
@@ -85,10 +86,12 @@ const NewSidebar = ({ list }) => {
                 className="list-menu list-drop d-flex flex-row"
                 activeclassName="active"
               >
-                <motion.div 
-                whileHover={{ scale: 1.1, originX: 0, }}
-                whileTap={{ scale: 0.9 }}
-                className="list-item drop-item">{list.name}
+                <motion.div
+                  whileHover={{ scale: 1.1, originX: 0 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-item drop-item"
+                >
+                  {list.name}
                 </motion.div>
               </NavLink>
             ))}
@@ -103,11 +106,13 @@ const NewSidebar = ({ list }) => {
               activeclassName="active"
               onClick={() => togglePopUp(index)}
             >
-              <motion.div className="d-flex flex-row gap-2"
-              whileHover={{ scale: 1.1, originX: 0, }}
-              whileTap={{ scale: 0.9 }}>
-              <div className="icon">{item.icon}</div>
-              <div className="list-item">{item.name}</div>
+              <motion.div
+                className="d-flex flex-row gap-2"
+                whileHover={{ scale: 1.1, originX: 0 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <div className="icon">{item.icon}</div>
+                <div className="list-item">{item.name}</div>
               </motion.div>
             </a>
             {item.dropdown.map((list) => (
@@ -116,10 +121,12 @@ const NewSidebar = ({ list }) => {
                 className="list-menu list-drop d-flex flex-row"
                 activeclassName="active"
               >
-                <motion.div 
-                whileHover={{ scale: 1.1, originX: 0, }}
-                whileTap={{ scale: 0.9 }}
-                className="list-item drop-item">{list.name}
+                <motion.div
+                  whileHover={{ scale: 1.1, originX: 0 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-item drop-item"
+                >
+                  {list.name}
                 </motion.div>
               </NavLink>
             ))}
@@ -133,12 +140,14 @@ const NewSidebar = ({ list }) => {
             activeclassName="active"
             onClick={() => togglePopUp(index)}
           >
-             <motion.div className="d-flex flex-row gap-2"
-           whileHover={{ scale: 1.1, originX: 0, }}
-           whileTap={{ scale: 0.9 }}>
-          <div className="icon">{item.icon}</div>
-          <div className="list-item">{item.name}</div>
-          </motion.div>
+            <motion.div
+              className="d-flex flex-row gap-2"
+              whileHover={{ scale: 1.1, originX: 0 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className="icon">{item.icon}</div>
+              <div className="list-item">{item.name}</div>
+            </motion.div>
           </a>
         );
       }
@@ -150,13 +159,14 @@ const NewSidebar = ({ list }) => {
           className="list-menu d-flex flex-row"
           activeclassName="active"
         >
-          <motion.div className="d-flex flex-row gap-2"
-           whileHover={{ scale: 1.1, originX: 0, }}
-           whileTap={{ scale: 0.9 }}>
-          <div className="icon">{item.icon}</div>
-          <div className="list-item">{item.name}</div>
+          <motion.div
+            className="d-flex flex-row gap-2"
+            whileHover={{ scale: 1.1, originX: 0 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <div className="icon">{item.icon}</div>
+            <div className="list-item">{item.name}</div>
           </motion.div>
-          
         </NavLink>
       );
     }

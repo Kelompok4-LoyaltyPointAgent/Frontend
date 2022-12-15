@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { deletePaket } from "../../api/deletePaket";
 import { numberFormater } from "../../components/numberFormater";
 
-const ItemPaket = ({ data, index }) => {
+const ItemPaket = ({ setReload, data, index }) => {
   const deleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -23,7 +23,7 @@ const ItemPaket = ({ data, index }) => {
           text: "Your file has been deleted!",
           icon: "success",
         }).then(function () {
-          window.location.reload();
+          setReload();
         });
       }
     });

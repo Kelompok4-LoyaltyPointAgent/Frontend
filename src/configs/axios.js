@@ -25,8 +25,12 @@ axios.interceptors.response.use(
   },
   (error) => {
     const prevRequest = error?.config;
-    if (error?.response?.status === 401 && !prevRequest?.sent) {
+    if (
+      error?.response?.status === 400 &&
+      error?.respnse?.data?.message == "missing or malformed jwt"
+    ) {
       storage.clearToken();
+      window.location.reload();
       // prevRequest.sent = true
       // const newAccessToken = await refresh()
       // prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`

@@ -4,6 +4,7 @@ import { FiPhone } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { deleteTransaksi } from "../../api/deleteTransaksi";
 import "../../assets/styles/warnaTransaksi.css";
+import { numberFormater } from "../../components/numberFormater";
 
 const ItemRiwayatTransaksi = ({ data, index }) => {
   const deleteItem = (id) => {
@@ -47,6 +48,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       }
     >
       <td className="col-2 text-center">{data.created_date}</td>
+
       <td className="col-1">
         {data.transaction_detail?.email}
         <br />
@@ -61,9 +63,10 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
           {data.transaction_detail?.number}
         </div>
       </td>
+      <td className="col-2 text-center">{data.user?.name}</td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
-      <td className="col-1">{data.amount}</td>
+      <td className="col-1">{numberFormater(data.amount)}</td>
       <td className="col-1">
         <p className={warna()}>{data.status}</p>
       </td>

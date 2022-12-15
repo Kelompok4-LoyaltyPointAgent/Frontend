@@ -20,8 +20,9 @@ export default function KelolaFAQ() {
   const [isOpen1, setIsOpen1] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8);
+  const [postsPerPage] = useState(5);
   const [editData, setEditData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,8 +30,13 @@ export default function KelolaFAQ() {
       setPosts(res.data.data);
     };
 
-    fetchPosts();
-  }, []);
+    if (loading) fetchPosts();
+    setLoading(false);
+  }, [loading]);
+
+  const setReload = () => {
+    setLoading(true);
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -48,8 +54,6 @@ export default function KelolaFAQ() {
   };
 
   const togglePopUpEdit = () => {
-    console.log("testpopupedit");
-
     setIsOpen1(!isOpen1);
     console.log(isOpen1);
   };
@@ -73,9 +77,18 @@ export default function KelolaFAQ() {
               <Box sx={{ p: 3 }}>
                 <Typography>
                   <div className="w-100">
-                    {isOpen && <AddData handleClose={togglePopUp} />}
+                    {isOpen && (
+                      <AddData
+                        setReload={setReload}
+                        handleClose={togglePopUp}
+                      />
+                    )}
                     {isOpen1 && (
-                      <EditFAQ data={editData} handleClose={togglePopUpEdit} />
+                      <EditFAQ
+                        data={editData}
+                        setReload={setReload}
+                        handleClose={togglePopUpEdit}
+                      />
                     )}
                     <div className="d-flex flex-row justify-content-between mb-3">
                       <motion.button
@@ -150,6 +163,7 @@ export default function KelolaFAQ() {
                       >
                         {currentPosts.map((item, index) => (
                           <ItemFAQ
+                            setReload={setReload}
                             data={item}
                             index={index}
                             toggle={togglePopUpEdit}
@@ -166,13 +180,6 @@ export default function KelolaFAQ() {
                         currentPage={currentPage}
                       />
                     </div>
-
-                    {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
                   </div>
                 </Typography>
               </Box>

@@ -25,8 +25,8 @@ const EditFAQ = (props) => {
     } catch (error) {
       console.log(error);
     }
-    console.log("testaddnow");
-    window.location.reload();
+    props.setReload();
+    props.handleClose();
   };
 
   return (

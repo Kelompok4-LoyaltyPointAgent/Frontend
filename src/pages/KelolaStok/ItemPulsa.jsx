@@ -4,7 +4,7 @@ import { deletePulsa } from "../../api/deletePulsa";
 import "../../assets/styles/Button.css";
 import { numberFormater } from "../../components/numberFormater";
 
-const ItemPulsa = ({ data, index }) => {
+const ItemPulsa = ({ setReload, data, index }) => {
   const deleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -23,7 +23,7 @@ const ItemPulsa = ({ data, index }) => {
           text: "Your file has been deleted!",
           icon: "success",
         }).then(function () {
-          window.location.reload();
+          setReload();
         });
       }
     });

@@ -26,8 +26,8 @@ const AddData = (props) => {
         category: data.category,
       });
       if (res.data.message === "success") {
-        console.log(res);
-        // window.location.reload();
+        props.setReload();
+        props.handleClose();
       }
     } catch (error) {
       console.log(error);
