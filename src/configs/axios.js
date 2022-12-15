@@ -26,8 +26,10 @@ axios.interceptors.response.use(
   (error) => {
     const prevRequest = error?.config;
     if (
-      error?.response?.status === 400 &&
-      error?.respnse?.data?.message == "missing or malformed jwt"
+      (error?.response?.status === 400 &&
+        error?.response?.data?.message == "missing or malformed jwt") ||
+      (error?.response?.status === 401 &&
+        error?.response?.data?.message == "invalid or expired jwt")
     ) {
       storage.clearToken();
       window.location.reload();
