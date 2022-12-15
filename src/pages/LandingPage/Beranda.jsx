@@ -35,7 +35,7 @@ const Beranda = () => {
                     </div>
                 </Col>
                 <Col className='ms-4' sm={2} lg={2}>
-                    <Nav.Link href="#pricing" className='navbar-item-coba'>Coba Gratis</Nav.Link>
+                    <Nav.Link href="/coba" className='navbar-item-coba'>Coba Gratis</Nav.Link>
                 </Col>
             </Navbar>
             <div  className='background'>

@@ -14,6 +14,7 @@ import KelolaPelanggan from "../pages/KelolaPengguna/KelolaPelanggan";
 import storage from "../utils/storage";
 import KelolaFAQ from "../pages/KelolaFAQ/FaqPage";
 import Beranda from "../pages/LandingPage/Beranda";
+import CobaGratis from "../pages/LandingPage/CobaGratis";
 
 function Router() {
   const token = storage.getToken();
@@ -23,6 +24,7 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path="/landingpage" element={<Beranda/>}/>
+          <Route path="/coba" element={<CobaGratis/>}/>
           <Route element={<ProtectedRoute token={token}></ProtectedRoute>}>
             <Route path="/login" element={<Login></Login>} />
           </Route>
