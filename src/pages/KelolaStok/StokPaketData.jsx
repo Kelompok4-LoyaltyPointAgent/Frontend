@@ -20,15 +20,21 @@ export default function StokPaketData() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getPackages();
       setPosts(res.data.data);
     };
+    if (loading) fetchPosts();
+    setLoading(false);
+  }, [loading]);
 
-    fetchPosts();
-  }, []);
+  const setReload = () => {
+    setLoading(true);
+  };
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
@@ -57,7 +63,12 @@ export default function StokPaketData() {
             <Box>
               <Typography>
                 <div className="w-100">
-                  {isOpen && <AddStockPaket handleClose={togglePopUp} />}
+                  {isOpen && (
+                    <AddStockPaket
+                      setReload={setReload}
+                      handleClose={togglePopUp}
+                    />
+                  )}
                   <p className="mt-1 pt-3" style={{ fontSize: "24px" }}>
                     Stok Paket
                   </p>
@@ -127,7 +138,11 @@ export default function StokPaketData() {
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
                       {currentPosts.map((item, index) => (
-                        <ItemPaket data={item} index={index}></ItemPaket>
+                        <ItemPaket
+                          setReload={setReload}
+                          data={item}
+                          index={index}
+                        ></ItemPaket>
                       ))}
                     </tbody>
                   </table>

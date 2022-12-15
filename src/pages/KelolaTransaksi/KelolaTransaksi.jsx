@@ -18,7 +18,6 @@ const KelolaTransaksi = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
-
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const KelolaTransaksi = () => {
       const res = await getTransactions();
       setPosts(res.data.data);
     };
-
     fetchPosts(posts);
   }, []);
 

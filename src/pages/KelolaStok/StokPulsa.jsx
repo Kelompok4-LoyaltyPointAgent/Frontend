@@ -20,6 +20,7 @@ export default function StokPulsa() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -30,9 +31,13 @@ export default function StokPulsa() {
         console.log(error);
       }
     };
+    if (loading) fetchPosts();
+    setLoading(false);
+  }, [loading]);
 
-    fetchPosts();
-  }, []);
+  const setReload = () => {
+    setLoading(true);
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -62,7 +67,12 @@ export default function StokPulsa() {
             <Box>
               <Typography>
                 <div className="w-100">
-                  {isOpen && <AddStockPulsa handleClose={togglePopUp} />}
+                  {isOpen && (
+                    <AddStockPulsa
+                      setReload={setReload}
+                      handleClose={togglePopUp}
+                    />
+                  )}
                   <p className="mt-1 pt-3">Stok Pulsa</p>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <motion.button
@@ -126,7 +136,11 @@ export default function StokPulsa() {
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
                       {currentPosts?.map((item, index) => (
-                        <ItemPulsa data={item} index={index}></ItemPulsa>
+                        <ItemPulsa
+                          setReload={setReload}
+                          data={item}
+                          index={index}
+                        ></ItemPulsa>
                       ))}
                     </tbody>
                   </table>

@@ -74,7 +74,8 @@ const AddStockPulsa = (props) => {
     } catch (error) {
       console.log(error);
     }
-    window.location.reload();
+    props.setReload();
+    props.handleClose();
   };
 
   return (
@@ -253,6 +254,7 @@ const AddStockPulsa = (props) => {
                 id="inputFotoProduk"
                 name="fotoProduk"
                 onChange={handleFile}
+                required
               />
             </div>
           </div>
@@ -271,6 +273,7 @@ const AddStockPulsa = (props) => {
                 name="periodeAktif"
                 onChange={handleInput}
                 value={data.periodeAktif}
+                required
               />
             </div>
           </div>
@@ -289,6 +292,7 @@ const AddStockPulsa = (props) => {
                 name="totalInternet"
                 onChange={handleInput}
                 value={data.totalInternet}
+                required
               />
             </div>
           </div>
@@ -307,6 +311,7 @@ const AddStockPulsa = (props) => {
                 name="mainInternet"
                 onChange={handleInput}
                 value={data.mainInternet}
+                required
               />
             </div>
           </div>
@@ -325,6 +330,7 @@ const AddStockPulsa = (props) => {
                 name="nightInternet"
                 onChange={handleInput}
                 value={data.nightInternet}
+                required
               />
             </div>
           </div>
@@ -343,6 +349,7 @@ const AddStockPulsa = (props) => {
                 name="socialMedia"
                 onChange={handleInput}
                 value={data.socialMedia}
+                required
               />
             </div>
           </div>
@@ -361,6 +368,7 @@ const AddStockPulsa = (props) => {
                 name="call"
                 onChange={handleInput}
                 value={data.call}
+                required
               />
             </div>
           </div>
@@ -379,6 +387,7 @@ const AddStockPulsa = (props) => {
                 name="sms"
                 onChange={handleInput}
                 value={data.sms}
+                required
               />
             </div>
           </div>
@@ -397,6 +406,7 @@ const AddStockPulsa = (props) => {
                 name="deskripsi"
                 onChange={handleInput}
                 value={data.deskripsi}
+                required
               ></textarea>
             </div>
           </div>
@@ -415,6 +425,7 @@ const AddStockPulsa = (props) => {
                 name="deskripsiPaket"
                 onChange={handleInput}
                 value={data.deskripsiPaket}
+                required
               ></textarea>
             </div>
           </div>

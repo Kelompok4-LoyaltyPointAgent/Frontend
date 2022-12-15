@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { deleteFaq } from "../../api/deleteFaq";
 import "../../assets/styles/Button.css";
 
-const ItemFAQ = ({ data, index, toggle, sentData }) => {
+const ItemFAQ = ({ setReload, data, index, toggle, sentData }) => {
   const deleteItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -22,7 +22,7 @@ const ItemFAQ = ({ data, index, toggle, sentData }) => {
           text: "Your file has been deleted!",
           icon: "success",
         }).then(function () {
-          window.location.reload();
+          setReload();
         });
       }
     });
