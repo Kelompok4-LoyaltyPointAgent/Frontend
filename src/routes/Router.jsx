@@ -1,23 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../pages/dashboard/Dashboard";
 import Login from "../pages/Login";
-import KelolaTransaksi from "../pages/KelolaTransaksi/KelolaTransaksi";
-import DetailEditProdukPulsa from "../pages/KelolaStok/DetailEditProdukPulsa";
-import DetailEditProdukPaket from "../pages/KelolaStok/DetailEditProdukPaket";
-import DetailEditPengguna from "../pages/KelolaPengguna/DetailEditPengguna";
-import KelolaAdmin from "../pages/KelolaPengguna/KelolaAdmin";
-import StokPaketData from "../pages/KelolaStok/StokPaketData";
-import StokPulsa from "../pages/KelolaStok/StokPulsa";
-import KelolaPelanggan from "../pages/KelolaPengguna/KelolaPelanggan";
-import KelolaFAQ from "../pages/KelolaFAQ/FaqPage";
-import Beranda from "../pages/LandingPage/Beranda";
+import KelolaTransaksi from "../pages/kelolaTransaksi/KelolaTransaksi";
+import DetailEditProdukPulsa from "../pages/kelolaStokPulsa/DetailEditProdukPulsa";
+import DetailEditProdukPaket from "../pages/kelolaStokPaket/DetailEditProdukPaket";
+import DetailEditPengguna from "../pages/kelolaPelanggan/DetailEditPengguna";
+import KelolaAdmin from "../pages/kelolaAdmin/KelolaAdmin";
+import StokPaketData from "../pages/kelolaStokPaket/StokPaketData";
+import StokPulsa from "../pages/kelolaStokPulsa/StokPulsa";
+import KelolaPelanggan from "../pages/kelolaPelanggan/KelolaPelanggan";
+import KelolaFAQ from "../pages/kelolaFAQ/FaqPage";
+import Beranda from "../pages/landingPage/Beranda";
 import PageNotFound from "../pages/PageNotFound";
-import DetailTransaksi from "../pages/KelolaTransaksi/DetailTransaksi";
+import DetailTransaksi from "../pages/kelolaTransaksi/DetailTransaksi";
 import Verifikasi from "../pages/VerifikasiEmail";
 import Reset from "../pages/ResetPassword";
-import FeedbacksPage from "../pages/KelolaFeedbacks/FeedbacksPage";
+import FeedbacksPage from "../pages/kelolaFeedbacks/FeedbacksPage";
 import { AuthProvider } from "../components/AuthProvider";
 
 function Router() {

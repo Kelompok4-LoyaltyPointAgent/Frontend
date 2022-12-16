@@ -7,11 +7,11 @@ const authReducer = (state, action) => {
     case "LOGIN":
       const { creds, token } = action.payload;
 
-      sessionStorage.setItem("token", token);
+      localStorage.setItem("token", token);
 
       return { ...state, creds, token, isLoaded: true, isAuthenticated: true };
     case "LOGOUT":
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("token");
       return { ...initialState, isLoaded: true, isAuthenticated: false };
     default:
       return state;
@@ -28,12 +28,12 @@ export const AuthProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         });
         const { data } = res.data;
-        dispatch({ type: "LOGIN", payload: { token, creds: data.data } });
+        dispatch({ type: "LOGIN", payload: { token, creds: data.name } });
       } catch (error) {
         dispatch({ type: "LOGOUT" });
       }
     };
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (token) refresh(token);
     else dispatch({ type: "LOGOUT" });

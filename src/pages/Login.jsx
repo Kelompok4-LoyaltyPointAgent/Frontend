@@ -26,7 +26,7 @@ export default function Login() {
         dispatch({
           type: "LOGIN",
           payload: {
-            creds: data.data,
+            creds: data.data.name,
             token: res.data.data.token,
           },
         });
@@ -35,8 +35,6 @@ export default function Login() {
           title: "Login Succes!",
           text: "Welcome!",
           icon: "success",
-        }).then(function () {
-          navigate("/dashboard");
         });
       }
     } catch (error) {

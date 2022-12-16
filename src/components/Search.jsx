@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
 
-const Search = ({ posts, setSearchResults, pages, placeHolder }) => {
+const Search = ({ posts, setSearchResults, pages, placeHolder, change }) => {
   const handleSearchChange = (e) => {
     e.preventDefault();
     if (!e.target.value) return setSearchResults(posts);
@@ -22,8 +22,15 @@ const Search = ({ posts, setSearchResults, pages, placeHolder }) => {
           post.name.includes(e.target.value) ||
           post.email.includes(e.target.value)
       );
+    } else if (pages == "faq") {
+      resultArray = posts.filter(
+        (post) =>
+          post.category.includes(e.target.value) ||
+          post.question.includes(e.target.value) ||
+          post.answer.includes(e.target.value)
+      );
     }
-
+    change();
     setSearchResults(resultArray);
   };
   return (

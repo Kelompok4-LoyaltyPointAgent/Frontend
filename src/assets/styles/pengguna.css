@@ -1,0 +1,38 @@
+.main-con {
+  background-color: #ececee;
+}
+.kotak {
+  border-color: #80a3c5;
+  background-color: #ececee;
+}
+.judul {
+  background-color: #d8dadc;
+}
+.judul h4 {
+  color: #013b75;
+  font-weight: 1000;
+}
+.tables {
+  border-radius: 20px;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+  table-layout: fixed;
+}
+.tables tr > th,
+.tables tr > td {
+  padding: 13px 0;
+}
+
+.tables thead th:first-child,
+.tables tbody td:first-child {
+  text-align: start;
+  padding-left: 50px;
+}
+
+.table-pagination {
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  left: 35%;
+}

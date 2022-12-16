@@ -1,11 +1,12 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import "../../assets/styles/cardShadow.css";
 
 const CardTopPulsa = () => {
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
       <Card
-        className="d-flex"
+        className="d-flex card-shadow"
         style={{
           borderRadius: "10px",
           borderLeftColor: "#2B669F",
@@ -22,7 +23,7 @@ const CardTopPulsa = () => {
         </span>
       </Card>
       <Card
-        className="d-flex"
+        className="d-flex card-shadow"
         style={{
           borderRadius: "10px",
           borderLeftColor: "#559CC0",
@@ -39,7 +40,7 @@ const CardTopPulsa = () => {
         </span>
       </Card>
       <Card
-        className="d-flex"
+        className="d-flex card-shadow"
         style={{
           borderRadius: "10px",
           borderLeftColor: "#CC8A93",

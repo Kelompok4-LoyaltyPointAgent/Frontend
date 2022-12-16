@@ -5,12 +5,13 @@ import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { TextField } from "@mui/material";
 import { BiSearch, BiSortDown } from "react-icons/bi";
-import AddUser from "./AddUser";
+import AddUser from "../kelolaPelanggan/AddUser";
 import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import "../../assets/styles/Overflow.css";
+import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
 
 export default function KelolaAdmin() {
@@ -27,6 +28,11 @@ export default function KelolaAdmin() {
 
     fetchPosts(posts);
   }, []);
+
+  const change = () => {
+    setCurrentPage(1);
+  };
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
@@ -44,14 +50,14 @@ export default function KelolaAdmin() {
 
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex main-con">
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
           <div className="mt-4 ps-3 pe-3 w-100">
-            <Card className="box-overflow">
-              <div style={{ backgroundColor: "whitesmoke" }}>
-                <p className="mb-4 mt-1 ps-3 pt-3">Kelola Admin</p>
+            <Card className="box-overflow kotak">
+              <div className="judul">
+                <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Admin</h4>
               </div>
               <Box sx={{ p: 3 }}>
                 <Typography>
@@ -94,12 +100,7 @@ export default function KelolaAdmin() {
                         </div>
                       </div>
                     </div>
-                    <table
-                      class="table table-borderless "
-                      style={{
-                        border: "1px solid #013B75",
-                      }}
-                    >
+                    <table class="tables">
                       <thead>
                         <tr
                           className="text-center"
@@ -120,12 +121,14 @@ export default function KelolaAdmin() {
                         ))}
                       </tbody>
                     </table>
-                    <Pagination
-                      postsPerPage={postsPerPage}
-                      totalPosts={posts.length}
-                      paginate={paginate}
-                      currentPage={currentPage}
-                    />
+                    <div className="table-pagination">
+                      <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={posts.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                      />
+                    </div>
                   </div>
                 </Typography>
               </Box>

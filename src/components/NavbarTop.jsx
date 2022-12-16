@@ -10,7 +10,6 @@ const NavbarTop = () => {
   const navigate = useNavigate();
 
   const { state, dispatch } = useAuth();
-
   const logOut = (e) => {
     dispatch({ type: "LOGOUT" });
     navigate("/login");
@@ -44,7 +43,7 @@ const NavbarTop = () => {
                     whileTap={{ scale: 0.9 }}
                     style={{ height: 10 }}
                   >
-                    Hi, {state.creds?.name}
+                    Hi, {state.creds}
                   </motion.div>
                 </span>
               </Dropdown.Toggle>

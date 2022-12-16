@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "../../assets/styles/Button.css";
 import Swal from "sweetalert2";
 import { deleteUser } from "../../api/deleteUser";
+import { numberFormater } from "../../components/numberFormater";
 
 const ItemPelanggan = ({ data, index, setReload }) => {
   const deleteItem = (id) => {
@@ -35,9 +36,9 @@ const ItemPelanggan = ({ data, index, setReload }) => {
           : { backgroundColor: "#FEF0CD" }
       }
     >
-      <td className="col-3 text-center">{data.name}</td>
-      <td className="col-3">{data.email}</td>
-      <td className="col-2">{data.points}</td>
+      <td className="col-1">{data.name}</td>
+      <td className="col-2">{data.email}</td>
+      <td className="col-1">{numberFormater(data.points)}</td>
       <td className="col-1">
         <NavLink
           to={`/kelolaPengguna/pelanggan/detailpengguna/${data.id}`}

@@ -4,7 +4,7 @@ import { CONST } from "../utils/Constants";
 const baseURL = CONST.BASE_URL_API;
 
 function authRequestInterceptor(config) {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.authorization = `bearer ${token}`;
   }
@@ -29,12 +29,8 @@ axios.interceptors.response.use(
       (error?.response?.status === 401 &&
         error?.response?.data?.message == "invalid or expired jwt")
     ) {
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("token");
       window.location.reload();
-      // prevRequest.sent = true
-      // const newAccessToken = await refresh()
-      // prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-      // return axios(prevRequest)
     }
 
     return Promise.reject(error);

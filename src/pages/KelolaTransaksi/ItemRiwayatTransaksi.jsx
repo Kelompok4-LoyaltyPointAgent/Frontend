@@ -20,12 +20,11 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
     <tr
       style={
         index % 2 === 0
-          ? { backgroundColor: "#F5F6F7" }
+          ? { backgroundColor: "#ECECEE" }
           : { backgroundColor: "#FEF0CD" }
       }
     >
-      <td className="col-2 text-center">{data.created_date}</td>
-
+      <td className="col-1">{data.created_date}</td>
       <td className="col-1">
         {data.transaction_detail?.email}
         <br />
@@ -40,7 +39,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
           {data.transaction_detail?.number}
         </div>
       </td>
-      <td className="col-2 text-center">{data.user?.name}</td>
+      <td className="col-1">{data.user?.name}</td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
       <td className="col-1">{numberFormater(data.amount)}</td>
@@ -48,7 +47,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
         <p className={warna()}>{data.status}</p>
       </td>
       <td className="col-1">
-      <NavLink
+        <NavLink
           to={`/kelolatransaksi/detail/${data.id}`}
           key={data.id}
           className="bi bi-file-earmark-text file-button"

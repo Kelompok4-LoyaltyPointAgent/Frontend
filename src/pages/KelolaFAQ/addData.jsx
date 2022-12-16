@@ -1,9 +1,6 @@
-import { Axios } from "axios";
 import { useState } from "react";
 import { postFaqs } from "../../api/postFaqs";
 import "../../assets/styles/PopUp.css";
-import { axios } from "../../configs/axios";
-import { data } from "../Dashboard/DonatDashboard";
 
 const AddData = (props) => {
   const [data, setData] = useState({
