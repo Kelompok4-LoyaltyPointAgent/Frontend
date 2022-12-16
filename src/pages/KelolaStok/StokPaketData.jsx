@@ -118,7 +118,7 @@ export default function StokPaketData() {
                     >
                       <tr
                         className="text-center"
-                        style={{ backgroundColor: "#D8DADC", color: "#013B75" }}
+                        style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
                       >
                         <th className="text-start">Provider</th>
                         <th>Nama Paket</th>

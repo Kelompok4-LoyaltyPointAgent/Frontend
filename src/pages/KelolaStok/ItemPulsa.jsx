@@ -36,12 +36,12 @@ const ItemPulsa = ({ setReload, data, index }) => {
           : { backgroundColor: "#FEF0CD" }
       }
     >
-      <td className="col-1 text-start">{data.provider}</td>
-      <td className="col-1">{data.name}</td>
-      <td className="col-1">{data.stock}</td>
-      <td className="col-1">{numberFormater(data.price_points)}</td>
-      <td className="col-1">{numberFormater(data.price)}</td>
-      <td className="col-1">
+      <td className="col-1 text-start m-1">{data.provider}</td>
+      <td className="col-1  m-1">{data.name}</td>
+      <td className="col-1 m-1">{data.stock}</td>
+      <td className="col-1 m-1">{numberFormater(data.price_points)}</td>
+      <td className="col-1 m-1">{numberFormater(data.price)}</td>
+      <td className="col-1 m-1">
         <NavLink
           to={`/kelolastok/detaileditproduk/pulsa/${data.id}`}
           key={data.id}

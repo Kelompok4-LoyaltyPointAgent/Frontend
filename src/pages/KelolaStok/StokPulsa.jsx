@@ -21,7 +21,7 @@ export default function StokPulsa() {
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(7);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function StokPulsa() {
                     <thead>
                       <tr
                         className="text-center"
-                        style={{ backgroundColor: "#013B75", color: "white" }}
+                        style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
                       >
                         <th className="text-start">Provider</th>
                         <th>Nama Produk</th>
