@@ -70,18 +70,7 @@ const KelolaTransaksi = () => {
             <Typography>
               <div className="w-100">
                 {isOpen && <AddTransaksi handleClose={togglePopUp} />}
-                <div className="d-flex flex-row justify-content-between mb-3 mt-3">
-                  <Button variant="success" onClick={togglePopUp}>
-                    <AiOutlinePlusSquare
-                      style={{
-                        width: "20px",
-                        height: "25px",
-                        paddingBottom: "3px",
-                        marginRight: "10px",
-                      }}
-                    />
-                    Tambah Transaksi
-                  </Button>
+                <div className="d-flex flex-row justify-content-end mb-3 mt-3">
                   <Search
                     posts={posts}
                     setSearchResults={setSearchResult}
