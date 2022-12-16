@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
 import { AiOutlineFileText, AiOutlineQuestionCircle } from "react-icons/ai";
-import { CgUserList } from "react-icons/cg";
+import { CgUserList, CgSmileMouthOpen } from "react-icons/cg";
 import "../sidebar/NewSidebar.css";
 import { motion } from "framer-motion";
 
@@ -54,6 +54,11 @@ const NewSidebar = ({ list }) => {
       name: "Kelola FAQ",
       icon: <AiOutlineQuestionCircle />,
     },
+    {
+      route: "/feedbackspage",
+      name: "Feedback",
+      icon:<CgSmileMouthOpen/>
+    }
   ];
 
   const togglePopUp = (index) => {
