@@ -1,0 +1,30 @@
+.judulT {
+  background-color: #ececee;
+}
+.judulT h4 {
+  color: black;
+  font-weight: 1000;
+}
+.tablesT {
+  border-radius: 20px;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+  table-layout: fixed;
+}
+.tablesT tr > th,
+.tablesT tr > td {
+  padding: 8px 0;
+}
+.tablesT thead th:first-child,
+.tablesT tbody td:first-child {
+  text-align: start;
+  padding-left: 50px;
+}
+
+.table-pagination {
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  left: 35%;
+}

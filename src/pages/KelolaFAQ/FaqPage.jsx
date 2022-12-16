@@ -14,11 +14,13 @@ import "../../assets/styles/Overflow.css";
 import { getFaqs } from "../../api/getFaqs";
 import { motion } from "framer-motion";
 import EditFAQ from "./EditFAQ";
+import Search from "../../components/Search";
 
 export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [editData, setEditData] = useState({});
@@ -28,23 +30,31 @@ export default function KelolaFAQ() {
     const fetchPosts = async () => {
       const res = await getFaqs();
       setPosts(res.data.data);
+      setData(res.data.data);
     };
 
     if (loading) fetchPosts();
     setLoading(false);
   }, [loading]);
 
+  const change = () => {
+    setCurrentPage(1);
+  };
+
   const setReload = () => {
     setLoading(true);
+  };
+  const setSearchResult = (datas) => {
+    setData(datas);
   };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
-  if (!posts[0]) {
-    currentPosts = [posts];
+  if (!data[0]) {
+    currentPosts = [data];
   } else {
-    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -115,30 +125,13 @@ export default function KelolaFAQ() {
                         />
                         Tambah Item
                       </motion.button>
-                      <div className="d-flex flex-row gap-2 pe-3">
-                        <div className="">
-                          <TextField
-                            id="search"
-                            variant="outlined"
-                            label={
-                              <p
-                                style={{ fontSize: "13px", fontWeight: "540" }}
-                              >
-                                <BiSearch
-                                  style={{ height: "20px", width: "20px" }}
-                                />
-                                Cari
-                              </p>
-                            }
-                            size="small"
-                          />
-                        </div>
-                        <div>
-                          <BiSortDown
-                            style={{ height: "40px", width: "30px" }}
-                          />
-                        </div>
-                      </div>
+                      <Search
+                        posts={posts}
+                        setSearchResults={setSearchResult}
+                        pages="faq"
+                        placeHolder="Cari Nama,Email"
+                        change={change}
+                      />
                     </div>
                     <table
                       class="table table-borderless "
@@ -175,7 +168,7 @@ export default function KelolaFAQ() {
                     <div className="d-flex justify-content-center">
                       <Pagination
                         postsPerPage={postsPerPage}
-                        totalPosts={posts.length}
+                        totalPosts={data.length}
                         paginate={paginate}
                         currentPage={currentPage}
                       />

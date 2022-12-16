@@ -3,15 +3,12 @@ import NavbarTop from "../../components/NavbarTop";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { Button } from "react-bootstrap";
-import { TextField } from "@mui/material";
-import { BiSearch } from "react-icons/bi";
 import Pagination from "../../components/Pagination";
 import CardTopTransaksi from "./CardTopTransaksi";
 import ItemRiwayatTransaksi from "./ItemRiwayatTransaksi";
 import AddTransaksi from "./AddTransaksi";
 import "../../assets/styles/Overflow.css";
+import "../../assets/styles/transaksi.css";
 import { getTransactions } from "../../api/getTransaksi";
 import Search from "../../components/Search";
 
@@ -30,6 +27,10 @@ const KelolaTransaksi = () => {
     };
     fetchPosts();
   }, []);
+
+  const change = () => {
+    setCurrentPage(1);
+  };
 
   const setSearchResult = (datas) => {
     setData(datas);
@@ -55,13 +56,8 @@ const KelolaTransaksi = () => {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
-          <p
-            className="mb-4 mt-1 pt-3"
-            style={{ fontSize: "22px", color: "#" }}
-          >
-            Riwayat Transaksi
-          </p>
+        <div className="ps-3 pe-3 w-100 main-overflow judulT">
+          <h4 className="mb-4 mt-1 pt-3">Riwayat Transaksi</h4>
           <div>
             <CardTopTransaksi />
           </div>
@@ -76,19 +72,16 @@ const KelolaTransaksi = () => {
                     setSearchResults={setSearchResult}
                     pages="transaksi"
                     placeHolder="Cari Nama, Email"
+                    change={change}
                   />
                 </div>
-                <table class="table table-borderless ">
-                  <thead
-                    style={{
-                      border: "1px solid",
-                    }}
-                  >
+                <table class="tablesT ">
+                  <thead>
                     <tr
                       className="text-center"
                       style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
                     >
-                      <th className="text-center">Tanggal</th>
+                      <th>Tanggal</th>
                       <th>Email</th>
                       <th>Nama</th>
                       <th>Tipe</th>
@@ -107,7 +100,7 @@ const KelolaTransaksi = () => {
                     ))}
                   </tbody>
                 </table>
-                <div className="d-flex justify-content-center">
+                <div className="table-pagination">
                   <Pagination
                     postsPerPage={postsPerPage}
                     totalPosts={data.length}

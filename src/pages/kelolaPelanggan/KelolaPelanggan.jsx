@@ -3,14 +3,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from "@mui/material";
-import { BiSearch, BiSortDown } from "react-icons/bi";
 import AddUser from "./AddUser";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemPelanggan from "./ItemPelanggan";
 import "../../assets/styles/Overflow.css";
+import "../../assets/styles/pengguna.css";
 import { getUsers } from "../../api/getPengguna";
 import Search from "../../components/Search";
 
@@ -19,7 +18,7 @@ export default function KelolaPelanggan() {
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8);
+  const [postsPerPage] = useState(6);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,6 +31,9 @@ export default function KelolaPelanggan() {
     setLoading(false);
   }, [loading]);
 
+  const change = () => {
+    setCurrentPage(1);
+  };
   const setReload = () => {
     setLoading(true);
   };
@@ -55,16 +57,16 @@ export default function KelolaPelanggan() {
 
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex main-con">
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
           <div className="mt-4 ps-3 pe-3 w-100">
-            <Card className="box-overflow">
-              <div style={{ backgroundColor: "whitesmoke" }}>
-                <p className="mb-4 mt-1 ps-3 pt-3">Kelola Pengguna</p>
+            <Card className="box-overflow kotak">
+              <div className="judul">
+                <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Pengguna</h4>
               </div>
-              <Box sx={{ p: 3 }}>
+              <Box sx={{ pt: 3, pl: 3, pr: 1 }}>
                 <Typography>
                   <div className="w-100">
                     {isOpen && (
@@ -90,18 +92,17 @@ export default function KelolaPelanggan() {
                         setSearchResults={setSearchResult}
                         pages="user"
                         placeHolder="Cari Nama,Email"
+                        change={change}
                       />
                     </div>
-                    <table
-                      class="table table-borderless "
-                      style={{
-                        border: "1px solid #013B75",
-                      }}
-                    >
+                    <table class="tables">
                       <thead>
                         <tr
                           className="text-center"
-                          style={{ backgroundColor: "#013B75", color: "white" }}
+                          style={{
+                            backgroundColor: "#013B75",
+                            color: "white",
+                          }}
                         >
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
@@ -122,7 +123,8 @@ export default function KelolaPelanggan() {
                         ))}
                       </tbody>
                     </table>
-                    <div className="d-flex justify-content-center">
+
+                    <div className="table-pagination">
                       <Pagination
                         postsPerPage={postsPerPage}
                         totalPosts={data.length}

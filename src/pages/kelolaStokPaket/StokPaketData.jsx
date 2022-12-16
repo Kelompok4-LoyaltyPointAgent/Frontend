@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Button, Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from "@mui/material";
-import { BiSearch, BiSortDown } from "react-icons/bi";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
@@ -12,6 +9,7 @@ import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
 import CardTopPaket from "./CardTopPaket";
 import "../../assets/styles/Overflow.css";
+import "../../assets/styles/stok.css";
 import { getPackages } from "../../api/getPackages";
 import { motion } from "framer-motion";
 import Search from "../../components/Search";
@@ -21,7 +19,7 @@ export default function StokPaketData() {
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(7);
+  const [postsPerPage] = useState(6);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +32,9 @@ export default function StokPaketData() {
     setLoading(false);
   }, [loading]);
 
+  const change = () => {
+    setCurrentPage(1);
+  };
   const setReload = () => {
     setLoading(true);
   };
@@ -68,16 +69,14 @@ export default function StokPaketData() {
             </div>
             <Box>
               <Typography>
-                <div className="w-100">
+                <div className="w-100 judulE">
                   {isOpen && (
                     <AddStockPaket
                       setReload={setReload}
                       handleClose={togglePopUp}
                     />
                   )}
-                  <p className="mt-1 pt-3" style={{ fontSize: "24px" }}>
-                    Stok Paket
-                  </p>
+                  <h4 className="pt-3 pb-2">Stok Paket</h4>
                   <div className="d-flex flex-row justify-content-between mb-3">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
@@ -108,9 +107,10 @@ export default function StokPaketData() {
                       setSearchResults={setSearchResult}
                       pages="stock"
                       placeHolder="Cari Nama"
+                      change={change}
                     />
                   </div>
-                  <table class="table table-borderless ">
+                  <table class="tablesE ">
                     <thead
                       style={{
                         border: "1px solid",
@@ -138,7 +138,7 @@ export default function StokPaketData() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="d-flex justify-content-center">
+                  <div className="table-pagination">
                     <Pagination
                       postsPerPage={postsPerPage}
                       totalPosts={data.length}

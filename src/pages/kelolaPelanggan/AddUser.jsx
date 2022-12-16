@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../../assets/styles/PopUp.css";
 import { postUser } from "../../api/postUser";
-import { toast } from "react-toastify";
 
 const AddUser = (props) => {
   const [isOpen, setIsOpen] = useState(false);
