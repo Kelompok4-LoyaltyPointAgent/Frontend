@@ -1,39 +1,54 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../assets/styles/login.css";
 import { login } from "../api/login";
 import storage from "../utils/storage";
+import { resetPassword } from "../api/resetPassword";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Reset() {
+  const { token } = useParams();
+  const navigate = useNavigate()
+  const [data, setData] = useState({
+    new_password: "",
+    confirm_password: "",
+    access_key: "",
+  })
+  const handleInput = (e) => {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+    console.log(newData);
+  };
+  console.log(token)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-
-  // //     try {
-  // //       const res = await login({ email, password });
-  // //       if (res.data.message == "success") {
-  // //         storage.setToken(res.data.data.token);
-  // //         Swal.fire({
-  // //           title: "Login Succes!",
-  // //           text: "Welcome!",
-  // //           icon: "success",
-  // //         }).then(function () {
-  // //           window.location.reload();
-  // //         });
-  // //       }
-  // //     } catch (error) {
-  // //       if (error.response.data.message == "failed") {
-  // //         Swal.fire({
-  // //           title: "Failed Login",
-  // //           text: "Wrong Username or passowrd",
-  // //           icon: "warning",
-  // //         });
-  // //       }
-  // //     }
-  // //   };
+    try {
+      const res = await resetPassword({
+        new_password : data.new_password,
+        confirm_password : data.confirm_password,
+        access_key : data.access_key
+      });
+      if (res.data.message == "success") {
+        Swal.fire({
+          title: "Password Anda Berhasil DiGanti!",
+          icon: "success",
+        })
+        .then(function () {
+          navigate('/login');
+        });
+      }
+    } catch (error) {
+      if (error.response.data.message == "failed") {
+        Swal.fire({
+          title: "Failed Login",
+          text: "Wrong Username or passowrd",
+          icon: "warning",
+        });
+      }
+    }
+  };
 
   return (
     <div className="d-flex flex-column align-items-center login ">
@@ -45,13 +60,16 @@ export default function Login() {
       <div className="forms">
         <div className="space">
           <form>
-            <label>Password</label>
+            <label>Password Baru</label>
             <div class="input-group mb-3">
               <input
+                id="new_password"
+                name="new_password"
+                value={data.new_password}
                 type="text"
                 class="form-control"
-                placeholder="Ex. cukuptau@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Masukan kata sandi baru"
+                onChange={(e) => handleInput(e)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 required
@@ -60,10 +78,13 @@ export default function Login() {
             <label>Konfirmasi Password</label>
             <div class="input-group mb-3">
               <input
+                id="confirm_password"
+                name="confirm_password"
+                value={data.confirm_password}
                 type="text"
                 class="form-control"
-                placeholder="Ex. cukuptau@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Masukan kata sandi baru"
+                onChange={(e) => handleInput(e)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 required
@@ -72,10 +93,13 @@ export default function Login() {
             <label>Kode Verifikasi</label>
             <div class="input-group mb-3">
               <input
+                id="access_key"
+                name="access_key"
+                value={data.access_key}
                 type="text"
                 class="form-control"
-                placeholder="Ex. cukuptau@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Masukan token"
+                onChange={(e) => handleInput(e)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 required

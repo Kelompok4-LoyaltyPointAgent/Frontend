@@ -1,39 +1,36 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import "../assets/styles/login.css";
-import { login } from "../api/login";
-import storage from "../utils/storage";
+import { emailRequest } from "../api/emailRequest";
 
-export default function Login() {
+
+export default function Verifikasi() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-  // //     try {
-  // //       const res = await login({ email, password });
-  // //       if (res.data.message == "success") {
-  // //         storage.setToken(res.data.data.token);
-  // //         Swal.fire({
-  // //           title: "Login Succes!",
-  // //           text: "Welcome!",
-  // //           icon: "success",
-  // //         }).then(function () {
-  // //           window.location.reload();
-  // //         });
-  // //       }
-  // //     } catch (error) {
-  // //       if (error.response.data.message == "failed") {
-  // //         Swal.fire({
-  // //           title: "Failed Login",
-  // //           text: "Wrong Username or passowrd",
-  // //           icon: "warning",
-  // //         });
-  // //       }
-  // //     }
-  // //   };
+      try {
+        const res = await emailRequest({ email });
+        if (res.data.message == "success") {
+          Swal.fire({
+            title: "Cek Email Kamu!",
+            icon: "success",
+          })
+          // .then(function () {
+          //   window.location.reload();
+          // });
+        }
+      } catch (error) {
+        if (error.response.data.message == "failed") {
+          Swal.fire({
+            title: "Failed Login",
+            text: "Wrong Username or passowrd",
+            icon: "warning",
+          });
+        }
+      }
+    };
 
   return (
     <div className="d-flex flex-column align-items-center login ">
