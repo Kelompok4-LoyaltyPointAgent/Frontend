@@ -10,7 +10,7 @@ const CardTopPulsa = () => {
           borderRadius: "10px",
           borderLeftColor: "#2B669F",
           borderLeftWidth: "4px",
-          width: "15rem",
+          width: "25rem",
           padding: "10px",
         }}
       >
@@ -27,7 +27,7 @@ const CardTopPulsa = () => {
           borderRadius: "10px",
           borderLeftColor: "#559CC0",
           borderLeftWidth: "4px",
-          width: "15rem",
+          width: "25rem",
           padding: "10px",
         }}
       >
@@ -44,7 +44,7 @@ const CardTopPulsa = () => {
           borderRadius: "10px",
           borderLeftColor: "#CC8A93",
           borderLeftWidth: "4px",
-          width: "15rem",
+          width: "25rem",
           padding: "10px",
         }}
       >
@@ -53,23 +53,6 @@ const CardTopPulsa = () => {
         </span>
         <span className="mb-2 ms-2" style={{ color: "#CC8A93" }}>
           <h5>10</h5>
-        </span>
-      </Card>
-      <Card
-        className="d-flex"
-        style={{
-          borderRadius: "10px",
-          borderLeftColor: "#66A46C",
-          borderLeftWidth: "4px",
-          width: "15rem",
-          padding: "10px",
-        }}
-      >
-        <span className="mt-2 mb-2 ms-2">
-          <h5>Poin</h5>
-        </span>
-        <span className="mb-2 ms-2" style={{ color: "#66A46C" }}>
-          <h5>120.000</h5>
         </span>
       </Card>
     </div>
