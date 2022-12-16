@@ -42,7 +42,7 @@ const Beranda = () => {
           </div>
         </Col>
         <Col className="ms-4" sm={2} lg={2}>
-          <Nav.Link href="/login" className="navbar-item-coba">
+          <Nav.Link href="/dashboard" className="navbar-item-coba">
             Login
           </Nav.Link>
         </Col>
