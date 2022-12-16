@@ -47,7 +47,7 @@ export default function Verifikasi() {
               <input
                 type="text"
                 class="form-control"
-                placeholder="Ex. cukuptau@gmail.com"
+                placeholder="Masukan email..."
                 onChange={(e) => setEmail(e.target.value)}
                 aria-label="Username"
                 aria-describedby="basic-addon1"

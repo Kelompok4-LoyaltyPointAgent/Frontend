@@ -12,8 +12,9 @@ export default function Reset() {
   const [data, setData] = useState({
     new_password: "",
     confirm_password: "",
-    access_key: "",
+    access_key: token,
   })
+  console.log(data)
   const handleInput = (e) => {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
@@ -32,7 +33,8 @@ export default function Reset() {
       });
       if (res.data.message == "success") {
         Swal.fire({
-          title: "Password Anda Berhasil DiGanti!",
+          title: "Selamat!",
+          text: "Password kamu berhasil diganti",
           icon: "success",
         })
         .then(function () {
@@ -98,11 +100,10 @@ export default function Reset() {
                 value={data.access_key}
                 type="text"
                 class="form-control"
-                placeholder="Masukan token"
-                onChange={(e) => handleInput(e)}
+                placeholder={data.access_key}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
-                required
+                disabled
               />
             </div>
           </form>
