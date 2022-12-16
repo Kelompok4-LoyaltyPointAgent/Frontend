@@ -2,43 +2,40 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import "../assets/styles/login.css";
-import { login } from "../api/login";
-import storage from "../utils/storage";
 import { resetPassword } from "../api/resetPassword";
 
 export default function Reset() {
   const { token } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState({
     new_password: "",
     confirm_password: "",
     access_key: token,
-  })
-  console.log(data)
+  });
+  console.log(data);
   const handleInput = (e) => {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
     console.log(newData);
   };
-  console.log(token)
+  console.log(token);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const res = await resetPassword({
-        new_password : data.new_password,
-        confirm_password : data.confirm_password,
-        access_key : data.access_key
+        new_password: data.new_password,
+        confirm_password: data.confirm_password,
+        access_key: data.access_key,
       });
       if (res.data.message == "success") {
         Swal.fire({
           title: "Selamat!",
           text: "Password kamu berhasil diganti",
           icon: "success",
-        })
-        .then(function () {
-          navigate('/login');
+        }).then(function () {
+          navigate("/login");
         });
       }
     } catch (error) {

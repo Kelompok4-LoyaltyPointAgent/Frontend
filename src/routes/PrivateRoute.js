@@ -1,10 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks";
 
-const AuthLogin = ({ token, redirectPath = "/login", children }) => {
-  if (!token) {
+const PrivateRoute = ({ redirectPath = "/login", children }) => {
+  const { state } = useAuth();
+  if (!state.isAuthenticated && state.isLoaded) {
     return <Navigate to={redirectPath} replace />;
   }
-  return children ? children : <Outlet />;
+  return <Outlet />;
 };
 
-export default AuthLogin;
+export default PrivateRoute;
