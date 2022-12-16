@@ -18,6 +18,7 @@ import PageNotFound from "../pages/PageNotFound";
 import DetailTransaksi from "../pages/KelolaTransaksi/DetailTransaksi";
 import Verifikasi from "../pages/VerifikasiEmail";
 import Reset from "../pages/ResetPassword";
+import FeedbacksPage from "../pages/KelolaFeedbacks/FeedbacksPage";
 
 function Router() {
   const token = storage.getToken();
@@ -62,6 +63,7 @@ function Router() {
               element={<DetailEditProdukPaket />}
             />
             <Route path="/kelolafaq" element={<KelolaFAQ />} />
+            <Route path="/feedbackspage" element={<FeedbacksPage/>}/>
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
