@@ -50,7 +50,7 @@ const DetailEditPengguna = () => {
                         width: "150px",
                         height: "150px",
                       }}
-                      src={require("../../assets/images/User/Rectangle 20.png")}
+                      src={require("../../assets/images/User/userlogo.png")}
                     />
                   </div>
                   <div
