@@ -94,7 +94,7 @@ export default function Reset() {
             </div>
             <label>Kode Verifikasi</label>
             <div class="input-group mb-3">
-              <input
+              <input style={{color:"grey"}}
                 id="access_key"
                 name="access_key"
                 value={data.access_key}
