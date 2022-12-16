@@ -15,6 +15,7 @@ import storage from "../utils/storage";
 import KelolaFAQ from "../pages/KelolaFAQ/FaqPage";
 import Beranda from "../pages/LandingPage/Beranda";
 import PageNotFound from "../pages/PageNotFound";
+import DetailTransaksi from "../pages/KelolaTransaksi/DetailTransaksi";
 
 function Router() {
   const token = storage.getToken();
@@ -42,6 +43,9 @@ function Router() {
             />
             <Route path="/kelolapengguna/admin" element={<KelolaAdmin />} />
             <Route path="/kelolatransaksi" element={<KelolaTransaksi />} />
+            <Route path="/kelolatransaksi/detail/:id" 
+              exact 
+              element={<DetailTransaksi/>}/>
             <Route path="/kelolastok/pulsa" element={<StokPulsa />} />
             <Route path="/kelolastok/paketdata" element={<StokPaketData />} />
             <Route
