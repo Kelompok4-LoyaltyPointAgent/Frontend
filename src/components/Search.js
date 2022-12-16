@@ -42,9 +42,6 @@ const Search = ({ posts, setSearchResults, pages, placeHolder }) => {
           size="small"
         />
       </div>
-      <div>
-        <BiSortDown style={{ height: "40px", width: "30px" }} />
-      </div>
     </div>
   );
 };
