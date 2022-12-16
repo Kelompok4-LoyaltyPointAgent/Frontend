@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/styles/login.css";
 import { login } from "../api/login";
 import storage from "../utils/storage";
@@ -75,7 +75,7 @@ export default function Login() {
             </div>
           </form>
           <div className="text-end">
-            <a href="">Lupa Kata Sandi</a>
+            <NavLink to={"/verifikasi"}>Lupa Kata Sandi</NavLink>
           </div>
         </div>
         <div className="tombol">

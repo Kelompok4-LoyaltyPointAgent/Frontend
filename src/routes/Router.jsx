@@ -16,6 +16,8 @@ import KelolaFAQ from "../pages/KelolaFAQ/FaqPage";
 import Beranda from "../pages/LandingPage/Beranda";
 import PageNotFound from "../pages/PageNotFound";
 import DetailTransaksi from "../pages/KelolaTransaksi/DetailTransaksi";
+import Verifikasi from "../pages/VerifikasiEmail";
+import Reset from "../pages/ResetPassword";
 
 function Router() {
   const token = storage.getToken();
@@ -25,11 +27,14 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Beranda />} />
+          <Route path="/verifikasi" exact element={<Verifikasi/>}/>
+          <Route path="/reset/:token" exact element={<Reset/>}/>
           <Route element={<ProtectedRoute token={token}></ProtectedRoute>}>
             <Route path="/login" element={<Login></Login>} />
+            
           </Route>
-          {/* /verfikasi */}
-          {/* /reset/:acctoken */}
+          
+          
           <Route element={<PrivateRoute token={token}></PrivateRoute>}>
             <Route path="/dashboard" element={<Dashboard></Dashboard>} />
             <Route
