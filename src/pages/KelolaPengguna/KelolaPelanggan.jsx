@@ -19,7 +19,7 @@ export default function KelolaPelanggan() {
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
