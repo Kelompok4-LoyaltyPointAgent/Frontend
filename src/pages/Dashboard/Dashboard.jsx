@@ -25,7 +25,7 @@ export default function Dashboard() {
   //   if (loading) fetchPosts();
   //   setLoading(false);
   // }, [loading]);
-  // console.log(data)
+  console.log(data)
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
