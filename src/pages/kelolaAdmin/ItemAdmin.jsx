@@ -1,6 +1,12 @@
 import "../../assets/styles/Button.css";
 
-const ItemAdmin = ({ data, index }) => {
+const ItemAdmin = ({ data, index, sentData, toggle }) => {
+
+  const editItem = (data) => {
+    sentData(data);
+    toggle();
+  };
+
   return (
     <tr
       style={
@@ -11,10 +17,10 @@ const ItemAdmin = ({ data, index }) => {
     >
       <td className="col-1">{data.name}</td>
       <td className="col-2">{data.email}</td>
-      <td className="col-1">{data.points}</td>
+      <td className="col-1">*******</td>
       <td className="col-1">
-        <i className="bi bi-file-earmark-text file-button"></i>
-        <i className="bi bi-trash3 ms-3 delete-button"></i>
+        <i onClick={() => editItem(data)}
+          className="bi bi-file-earmark-text file-button"></i>
       </td>
     </tr>
   );

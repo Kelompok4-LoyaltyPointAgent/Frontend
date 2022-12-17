@@ -13,39 +13,55 @@ import NavbarTop from "../../components/NavbarTop";
 import "../../assets/styles/Overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
+import EditAdmin from "./EditAdmin";
+import Search from "../../components/Search";
 
 export default function KelolaAdmin() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
+  const [postsPerPage] = useState(5);
+  const [editData, setEditData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getAdmin();
       setPosts(res.data.data);
+      setData(res.data.data);
     };
+    if (loading) fetchPosts();
+    setLoading(false);
+  }, [loading]);
 
-    fetchPosts(posts);
-  }, []);
-
+  console.log(data)
   const change = () => {
     setCurrentPage(1);
   };
 
+  const setReload = () => {
+    setLoading(true);
+  };
+
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
-  if (!posts[0]) {
-    currentPosts = [posts];
+  if (!data[0]) {
+    currentPosts = [data];
   } else {
-    currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const togglePopUp = () => {
+  const togglePopUpEdit = () => {
     setIsOpen(!isOpen);
+  };
+
+  const itemData = (data) => {
+    setEditData(data);
   };
 
   return (
@@ -62,43 +78,14 @@ export default function KelolaAdmin() {
               <Box sx={{ p: 3 }}>
                 <Typography>
                   <div className="w-100">
-                    {isOpen && <AddUser handleClose={togglePopUp} />}
-                    <div className="d-flex flex-row justify-content-between mb-3">
-                      <Button variant="success" onClick={togglePopUp}>
-                        <AiOutlinePlusSquare
-                          style={{
-                            width: "20px",
-                            height: "25px",
-                            paddingBottom: "3px",
-                            marginRight: "10px",
-                          }}
-                        />
-                        Tambah Pengguna
-                      </Button>
-                      <div className="d-flex flex-row gap-2 pe-3">
-                        <div className="">
-                          <TextField
-                            id="search"
-                            variant="outlined"
-                            label={
-                              <p
-                                style={{ fontSize: "13px", fontWeight: "540" }}
-                              >
-                                <BiSearch
-                                  style={{ height: "20px", width: "20px" }}
-                                />
-                                Cari
-                              </p>
-                            }
-                            size="small"
-                          />
-                        </div>
-                        <div>
-                          <BiSortDown
-                            style={{ height: "40px", width: "30px" }}
-                          />
-                        </div>
-                      </div>
+                    {isOpen && (
+                      <EditAdmin
+                        data={editData}
+                        setReload={setReload}
+                        handleClose={togglePopUpEdit}
+                      />
+                    )}
+                    <div className="d-flex flex-row justify-content-end mb-3">
                     </div>
                     <table class="tables">
                       <thead>
@@ -108,7 +95,7 @@ export default function KelolaAdmin() {
                         >
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
-                          <th>Poin</th>
+                          <th>Password</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -117,10 +104,16 @@ export default function KelolaAdmin() {
                         style={{ color: "#013B75" }}
                       >
                         {currentPosts.map((item, index) => (
-                          <ItemAdmin data={item} index={index}></ItemAdmin>
+                          <ItemAdmin setReload={setReload}
+                            data={item}
+                            index={index}
+                            toggle={togglePopUpEdit}
+                            sentData={itemData}>
+                          </ItemAdmin>
                         ))}
                       </tbody>
                     </table>
+                    <div className="d-flex align-items-center">
                     <div className="table-pagination">
                       <Pagination
                         postsPerPage={postsPerPage}
@@ -129,6 +122,8 @@ export default function KelolaAdmin() {
                         currentPage={currentPage}
                       />
                     </div>
+                    </div>
+                    
                   </div>
                 </Typography>
               </Box>
