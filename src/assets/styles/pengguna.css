@@ -13,9 +13,8 @@
   font-weight: 1000;
 }
 .tables {
-  border-radius: 20px;
+  border-radius: 5px 5px 0px 0px;
   border-collapse: collapse;
-  border-radius: 1em;
   overflow: hidden;
   table-layout: fixed;
 }

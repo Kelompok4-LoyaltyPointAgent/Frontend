@@ -65,7 +65,6 @@ export default function KelolaFAQ() {
 
   const togglePopUpEdit = () => {
     setIsOpen1(!isOpen1);
-    console.log(isOpen1);
   };
   const itemData = (data) => {
     setEditData(data);
