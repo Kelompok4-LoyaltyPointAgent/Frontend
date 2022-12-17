@@ -3,6 +3,7 @@ import "../../assets/styles/Button.css";
 import Swal from "sweetalert2";
 import { deletePaket } from "../../api/deletePaket";
 import { numberFormater } from "../../components/numberFormater";
+import { motion } from "framer-motion";
 
 const ItemPaket = ({ setReload, data, index }) => {
   const deleteItem = (id) => {
@@ -43,15 +44,25 @@ const ItemPaket = ({ setReload, data, index }) => {
       <td className="col-1">{numberFormater(data.price_points)}</td>
       <td className="col-1">{numberFormater(data.price)}</td>
       <td className="col-1">
-        <NavLink
-          to={`/kelolastok/detaileditproduk/paket/${data.id}`}
-          key={data.id}
-          className="bi bi-file-earmark-text file-button"
-        ></NavLink>
-        <i
-          className="bi bi-trash3 ms-3 delete-button"
-          onClick={() => deleteItem(data.id)}
-        ></i>
+        <div className="d-flex flex-row justify-content-center">
+          <motion.div
+            whileHover={{ scale: 1.1, originX: 0 }}
+            whileTap={{ scale: 0.9 }}>
+            <NavLink
+              to={`/kelolastok/detaileditproduk/paket/${data.id}`}
+              key={data.id}
+              className="bi bi-file-earmark-text file-button"
+            ></NavLink>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.1, originX: 0 }}
+            whileTap={{ scale: 0.9 }}>
+            <i
+              className="bi bi-trash3 ms-3 delete-button"
+              onClick={() => deleteItem(data.id)}
+            ></i>
+          </motion.div>
+        </div>
       </td>
     </tr>
   );
