@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../../assets/styles/Dashboard.css";
 import "../../assets/styles/Overflow.css";
@@ -7,46 +7,25 @@ import BarDashboard from "./BarDashboard";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemTransaksi from "./ItemTransaksi";
+import { getStatistikDatas } from "../../api/getStastistikDatas";
 
 export default function Dashboard() {
-  const [posts, setPosts] = useState([
-    {
-      nama: "diaken",
-      email: "d@wow",
-      role: "admin",
-      poin: "1000",
-    },
-    {
-      nama: "dery",
-      email: "der@wow",
-      role: "admin",
-      poin: "2000",
-    },
-    {
-      nama: "dik",
-      email: "dik@wow",
-      role: "admin",
-      poin: "3000",
-    },
-    {
-      nama: "wew",
-      email: "wew@wow",
-      role: "admin",
-      poin: "3000",
-    },
-  ]);
-
+  const [posts, setPosts] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(4);
 
   // useEffect(() => {
   //   const fetchPosts = async () => {
-  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-  //     setPosts(res.data);
+  //     const res = await getStatistikDatas();
+  //     setPosts(res.data.data);
+  //     setData(res.data.data);
   //   };
-
-  //   fetchPosts();
-  // }, []);
+  //   if (loading) fetchPosts();
+  //   setLoading(false);
+  // }, [loading]);
+  // console.log(data)
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
