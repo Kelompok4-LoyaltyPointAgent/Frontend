@@ -25,12 +25,13 @@ const FeedbacksPage = () => {
                 <div className='d-flex flex-row flex-wrap gap-3 justify-content-center mt-3'>
                     {
                         data.map((item) => (
-                                <Card style={{backgroundColor:"#ECECEE",color:"#01478C",width:"19rem", textAlign:"center", padding:"10px"}}>
+                                <Card style={{height:"30vh",backgroundColor:"#ECECEE",color:"#01478C",width:"19rem", textAlign:"center", padding:"10px"}}>
                                     Card Feedback
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {item.review}
-                                        </Card.Text>
+                                    <Card.Body className='d-flex flex-column justify-content-between text-start'>
+                                            <div>Ini review {item.review}</div>
+                                            <div className=''>
+                                                From :{data.user}
+                                            </div>
                                     </Card.Body>
                                 </Card>
                         ))
