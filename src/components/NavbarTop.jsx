@@ -74,7 +74,7 @@ const NavbarTop = () => {
             </Dropdown>
             <img
               style={{ width: "50px", height: "50px" }}
-              src={require("../assets/images/User/Ellipse 5.png")}
+              src={require("../assets/images/User/adminlogo.png")}
               alt="admin"
             />
           </div>

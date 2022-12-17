@@ -12,6 +12,7 @@ import "../../assets/styles/Overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getUsers } from "../../api/getPengguna";
 import Search from "../../components/Search";
+import Loading from "../../components/Loading";
 
 export default function KelolaPelanggan() {
   const [isOpen, setIsOpen] = useState(false);

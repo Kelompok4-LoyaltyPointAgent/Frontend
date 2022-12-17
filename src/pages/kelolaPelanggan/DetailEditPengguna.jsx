@@ -47,10 +47,10 @@ const DetailEditPengguna = () => {
                       style={{
                         paddingTop: "10px",
                         paddingBottom: "10px",
-                        width: "150px",
+                        width: "140px",
                         height: "150px",
                       }}
-                      src={require("../../assets/images/User/Rectangle 20.png")}
+                      src={require("../../assets/images/User/userlogo.png")}
                     />
                   </div>
                   <div
@@ -123,15 +123,6 @@ const DetailEditPengguna = () => {
                       onClick={handleGoBack}
                     >
                       Kembali
-                    </Button>
-                    <Button
-                      style={{
-                        backgroundColor: "#FCC12F",
-                        borderColor: "#FCC12F",
-                        color: "#013B75",
-                      }}
-                    >
-                      Lihat Riwayat Transaksi
                     </Button>
                   </div>
                 </Card.Text>
