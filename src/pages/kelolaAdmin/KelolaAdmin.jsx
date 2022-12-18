@@ -6,7 +6,7 @@ import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
 import EditAdmin from "./EditAdmin";
@@ -24,7 +24,7 @@ export default function KelolaAdmin() {
     const fetchPosts = async () => {
       const res = await getAdmin();
       setPosts(res.data.data);
-      setData(res.data.data)
+      setData(res.data.data);
     };
     if (loading) fetchPosts();
     setLoading(false);
@@ -71,13 +71,14 @@ export default function KelolaAdmin() {
               <Box sx={{ p: 3 }}>
                 <Typography>
                   <div className="w-100">
-                    {isOpen && <EditAdmin
-                      data={editData}
-                      setReload={setReload}
-                      handleClose={togglePopUpEdit} />}
-                    <div className="d-flex flex-row justify-content-between mb-3">
-
-                    </div>
+                    {isOpen && (
+                      <EditAdmin
+                        data={editData}
+                        setReload={setReload}
+                        handleClose={togglePopUpEdit}
+                      />
+                    )}
+                    <div className="d-flex flex-row justify-content-between mb-3"></div>
                     <table class="tables">
                       <thead>
                         <tr
@@ -100,8 +101,8 @@ export default function KelolaAdmin() {
                             data={item}
                             index={index}
                             toggle={togglePopUpEdit}
-                            sentData={itemData}>
-                          </ItemAdmin>
+                            sentData={itemData}
+                          ></ItemAdmin>
                         ))}
                       </tbody>
                     </table>

@@ -1,7 +1,12 @@
 .judulT {
   background-color: #ececee;
 }
+
 .judulT h4 {
+  color: black;
+  font-weight: 1000;
+}
+.judulP h4 {
   color: black;
   font-weight: 1000;
 }
@@ -12,6 +17,10 @@
   overflow: hidden;
   table-layout: fixed;
 }
+.tablesT .dash tr > th {
+  font-weight: 1000;
+}
+
 .tablesT tr > th,
 .tablesT tr > td {
   padding: 8px 0;

@@ -8,7 +8,7 @@ import NavbarTop from "../../components/NavbarTop";
 import AddStockPulsa from "./AddStockPulsa";
 import ItemPulsa from "./ItemPulsa";
 import CardTopPulsa from "./CardTopPulsa";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/stok.css";
 import { getCredit } from "../../api/getCredits";
 import { motion } from "framer-motion";

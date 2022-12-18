@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../../assets/styles/DetailEditProduk.css";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import EditProdukPaket from "./EditProdukPaket";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import { getPackageId } from "../../api/getPackageId";
@@ -126,7 +126,7 @@ const DetailEditProdukPaket = () => {
                             marginLeft: "30px",
                           }}
                         >
-                          <h4>777</h4>
+                          <h4>{numberFormater(data.reward_points)}</h4>
                         </p>
                       </div>
                     </div>

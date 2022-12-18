@@ -1,5 +1,5 @@
 import { axios } from "../configs/axios";
 
-export function getStatistikDatas() {
+export function getAnalytics() {
   return axios.get("/analytics");
 }

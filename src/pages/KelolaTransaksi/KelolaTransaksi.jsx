@@ -6,14 +6,12 @@ import Box from "@mui/material/Box";
 import Pagination from "../../components/Pagination";
 import CardTopTransaksi from "./CardTopTransaksi";
 import ItemRiwayatTransaksi from "./ItemRiwayatTransaksi";
-import AddTransaksi from "./AddTransaksi";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/transaksi.css";
 import { getTransactions } from "../../api/getTransaksi";
 import Search from "../../components/Search";
 
 const KelolaTransaksi = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [posts, setPosts] = useState([]);
@@ -27,7 +25,6 @@ const KelolaTransaksi = () => {
     };
     fetchPosts();
   }, []);
-
   const change = () => {
     setCurrentPage(1);
   };
@@ -47,10 +44,6 @@ const KelolaTransaksi = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const togglePopUp = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div className="d-flex">
       <NewSidebar />
@@ -65,7 +58,6 @@ const KelolaTransaksi = () => {
           <Box>
             <Typography>
               <div className="w-100">
-                {isOpen && <AddTransaksi handleClose={togglePopUp} />}
                 <div className="d-flex flex-row justify-content-end mb-3 mt-3">
                   <Search
                     posts={posts}
@@ -83,9 +75,9 @@ const KelolaTransaksi = () => {
                     >
                       <th>Tanggal</th>
                       <th>Email</th>
-                      <th>Nama</th>
                       <th>Tipe</th>
                       <th>Metode</th>
+                      <th>Produk</th>
                       <th>Nilai(Rp)</th>
                       <th>Status</th>
                       <th>Aksi</th>

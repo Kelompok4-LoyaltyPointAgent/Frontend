@@ -21,10 +21,30 @@ const EditProdukPulsa = (props) => {
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setData({
-      ...data,
-      [name]: value,
-    });
+
+    if (
+      name == "harga" ||
+      name == "hargaDalamPoin" ||
+      name == "hadiahDalamPoin" ||
+      name == "stock" ||
+      name == "periodeAktif" ||
+      name == "jumlah" ||
+      name == "call" ||
+      name == "sms"
+    ) {
+      const regexNumber = /^[0-9]*$/;
+      if (regexNumber.test(value)) {
+        setData({
+          ...data,
+          [name]: value,
+        });
+      }
+    } else {
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
   };
   const handleCheck = (e) => {
     const name = e.target.name;
