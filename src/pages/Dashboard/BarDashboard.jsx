@@ -53,7 +53,8 @@ const BarDashboard = () => {
     "November",
     "Desember",
   ];
-  const value = posts.transactions_by_month?.map((item) => item.Value);
+  const value = posts.transactions_by_month?.map((item) => item.value);
+  console.log(posts);
   var data = {
     labels: months,
     datasets: [
