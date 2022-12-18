@@ -53,13 +53,13 @@ const BarDashboard = () => {
     "November",
     "Desember",
   ];
-
+  const value = posts.transactions_by_month?.map((item) => item.Value);
   var data = {
     labels: months,
     datasets: [
       {
         label: "Pembelian",
-        data: [12, 19, 15, 5, 8, 6, 10, 17, 21, 25, 20, 19],
+        data: value,
         borderWidth: 1,
         backgroundColor: ["#FBB505"],
         borderRadius: 5,

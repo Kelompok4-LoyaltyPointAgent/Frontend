@@ -13,17 +13,18 @@ import { getAnalytics } from "../../api/getAnalytics";
 export default function Dashboard() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [loadData, setLoadData] = useState(true);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getAnalytics();
       setPosts(res.data.data);
+      setLoading(false);
     };
     fetchPosts();
     setTimeout(isReload, 5000);
-  }, [loading]);
+  }, [loadData]);
   const isReload = () => {
-    setLoading(!loading);
+    setLoadData(!loadData);
   };
 
   return (
@@ -31,53 +32,61 @@ export default function Dashboard() {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        <div className="pt-4 pb-5 ps-3 pe-3 w-100 dashboard-overflow">
-          <div>
-            <CardDashboard />
-          </div>
-          <div>
-            <BarDashboard />
-          </div>
-          <div className="mt-3">
-            <div className="d-flex flex-row justify-content-between judulP">
-              <p>
-                <h4>Transaksi Terakhir</h4>
-              </p>
-              <NavLink
-                style={{ textDecoration: "none", color: "#8A9096" }}
-                to={"/kelolatransaksi"}
-              >
-                <p>Selengkapnya</p>
-              </NavLink>
+        {loading ? (
+          <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
             </div>
-
-            <table class="tablesT">
-              <thead className="dash">
-                <tr
-                  className="text-center"
-                  style={{
-                    backgroundColor: "#ECECEE",
-                    color: "#013B75",
-                    fontWeight: "1000",
-                  }}
-                >
-                  <th className="tanggal">Tanggal</th>
-                  <th className="email">Gmail</th>
-                  <th>Tipe</th>
-                  <th>Metode</th>
-                  <th>Produk</th>
-                  <th>Nilai (Rp)</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody className="text-center" style={{ color: "#013B75" }}>
-                {posts.recent_transactions?.map((item, index) => (
-                  <ItemTransaksi data={item} index={index}></ItemTransaksi>
-                ))}
-              </tbody>
-            </table>
           </div>
-        </div>
+        ) : (
+          <div className="pt-4 pb-5 ps-3 pe-3 w-100 dashboard-overflow">
+            <div>
+              <CardDashboard />
+            </div>
+            <div>
+              <BarDashboard />
+            </div>
+            <div className="mt-3">
+              <div className="d-flex flex-row justify-content-between judulP">
+                <p>
+                  <h4>Transaksi Terakhir</h4>
+                </p>
+                <NavLink
+                  style={{ textDecoration: "none", color: "#8A9096" }}
+                  to={"/kelolatransaksi"}
+                >
+                  <p>Selengkapnya</p>
+                </NavLink>
+              </div>
+
+              <table class="tablesT">
+                <thead className="dash">
+                  <tr
+                    className="text-center"
+                    style={{
+                      backgroundColor: "#ECECEE",
+                      color: "#013B75",
+                      fontWeight: "1000",
+                    }}
+                  >
+                    <th className="tanggal">Tanggal</th>
+                    <th className="email">Gmail</th>
+                    <th>Tipe</th>
+                    <th>Metode</th>
+                    <th>Produk</th>
+                    <th>Nilai (Rp)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody className="text-center" style={{ color: "#013B75" }}>
+                  {posts.recent_transactions?.map((item, index) => (
+                    <ItemTransaksi data={item} index={index}></ItemTransaksi>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
