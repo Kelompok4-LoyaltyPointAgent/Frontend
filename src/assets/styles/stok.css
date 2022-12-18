@@ -4,6 +4,7 @@
   font-weight: 1000;
 }
 .tablesE {
+  width: 100%;
   border-radius: 5px 5px 0px 0px;
   border-collapse: collapse;
   /* border-radius: 1em; */
@@ -16,12 +17,24 @@
 .tablesE tr > td {
   padding: 12px 0;
 }
+.tablesE .nama {
+  width: 40%;
+}
+.tablesE .pertanyaan {
+  width: 20%;
+}
+.tablesE .jawaban {
+  width: 50%;
+}
+
 .tablesE thead th:first-child,
 .tablesE tbody td:first-child {
   text-align: start;
   padding-left: 50px;
 }
-
+.tablesE .aksi {
+  width: 10%;
+}
 .table-pagination {
   position: absolute;
   bottom: 0;

@@ -47,7 +47,8 @@ const ItemPaket = ({ setReload, data, index }) => {
         <div className="d-flex flex-row justify-content-center">
           <motion.div
             whileHover={{ scale: 1.1, originX: 0 }}
-            whileTap={{ scale: 0.9 }}>
+            whileTap={{ scale: 0.9 }}
+          >
             <NavLink
               to={`/kelolastok/detaileditproduk/paket/${data.id}`}
               key={data.id}
@@ -56,7 +57,8 @@ const ItemPaket = ({ setReload, data, index }) => {
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.1, originX: 0 }}
-            whileTap={{ scale: 0.9 }}>
+            whileTap={{ scale: 0.9 }}
+          >
             <i
               className="bi bi-trash3 ms-3 delete-button"
               onClick={() => deleteItem(data.id)}

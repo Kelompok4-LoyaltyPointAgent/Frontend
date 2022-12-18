@@ -40,9 +40,9 @@ const ItemFAQ = ({ setReload, data, index, toggle, sentData }) => {
             : { backgroundColor: "#FEF0CD" }
         }
       >
-        <td className="col-3 text-start">{data.question}</td>
-        <td className="col-3">{data.answer}</td>
-        <td className="col-2">{data.category}</td>
+        <td className="col-1 text-start">{data.question}</td>
+        <td className="col-1 text-start ps-5">{data.answer}</td>
+        <td className="col-1">{data.category}</td>
         <td className="col-1">
           <i
             className="bi bi-file-earmark-text file-button"

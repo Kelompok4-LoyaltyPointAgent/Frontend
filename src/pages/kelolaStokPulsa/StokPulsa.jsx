@@ -121,11 +121,11 @@ export default function StokPulsa() {
                         style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
                       >
                         <th className="text-start">Provider</th>
-                        <th>Nama Produk</th>
+                        <th className="nama">Nama Produk</th>
                         <th>Stok</th>
                         <th>Hadiah Poin</th>
                         <th>Harga (Rp)</th>
-                        <th>Aksi</th>
+                        <th className="aksi">Aksi</th>
                       </tr>
                     </thead>
                     <tbody className="text-center" style={{ color: "#013B75" }}>
