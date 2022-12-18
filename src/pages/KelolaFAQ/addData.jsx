@@ -68,9 +68,10 @@ const AddData = (props) => {
               Jawaban
             </label>
             <div className="col-sm-7">
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                style={{ height: "130px" }}
                 id="jawaban"
                 name="jawaban"
                 onChange={handleInput}

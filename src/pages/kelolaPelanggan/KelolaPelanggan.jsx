@@ -8,7 +8,7 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemPelanggan from "./ItemPelanggan";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getUsers } from "../../api/getPengguna";
 import Search from "../../components/Search";

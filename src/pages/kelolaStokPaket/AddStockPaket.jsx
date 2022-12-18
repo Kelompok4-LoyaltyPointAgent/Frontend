@@ -25,11 +25,34 @@ const AddStockPulsa = (props) => {
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setData({
-      ...data,
-      [name]: value,
-    });
+    if (
+      name == "harga" ||
+      name == "hargaDalamPoin" ||
+      name == "hadiahDalamPoin" ||
+      name == "stock" ||
+      name == "periodeAktif" ||
+      name == "totalInternet" ||
+      name == "mainInternet" ||
+      name == "nightInternet" ||
+      name == "socialMedia" ||
+      name == "call" ||
+      name == "sms"
+    ) {
+      const regexNumber = /^[0-9]*$/;
+      if (regexNumber.test(value)) {
+        setData({
+          ...data,
+          [name]: value,
+        });
+      }
+    } else {
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
   };
+
   const handleCheck = (e) => {
     const name = e.target.name;
     const check = e.target.checked;
@@ -39,6 +62,7 @@ const AddStockPulsa = (props) => {
       [name]: check,
     });
   };
+
   const handleFile = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];

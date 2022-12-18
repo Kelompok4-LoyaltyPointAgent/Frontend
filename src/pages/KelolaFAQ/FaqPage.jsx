@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from "@mui/material";
-import { BiSearch, BiSortDown } from "react-icons/bi";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemFAQ from "./itemFAQ";
 import AddData from "./AddData";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
+import "../../assets/styles/stok.css";
 import { getFaqs } from "../../api/getFaqs";
 import { motion } from "framer-motion";
 import EditFAQ from "./EditFAQ";
@@ -78,10 +77,10 @@ export default function KelolaFAQ() {
           <NavbarTop />
           <div className="mt-4 ps-3 pe-3 w-100">
             <Card className="box-overflow">
-              <div style={{ backgroundColor: "whitesmoke" }}>
-                <p className="mb-4 mt-1 ps-3 pt-3">
+              <div className="judul">
+                <h4 className="mb-4 mt-1 ps-3 pt-3">
                   Kelola Frequently Asked Question
-                </p>
+                </h4>
               </div>
               <Box sx={{ p: 3 }}>
                 <Typography>
@@ -132,12 +131,7 @@ export default function KelolaFAQ() {
                         change={change}
                       />
                     </div>
-                    <table
-                      class="table table-borderless "
-                      style={{
-                        border: "1px solid #013B75",
-                      }}
-                    >
+                    <table class="tables mb-4">
                       <thead>
                         <tr
                           className="text-center"
