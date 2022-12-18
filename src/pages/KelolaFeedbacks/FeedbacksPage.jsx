@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import { getFeedbacks } from "../../api/getFeedbacks";
 import NavbarTop from "../../components/NavbarTop";
 import NewSidebar from "../../components/sidebar/NewSidebar";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import "../../assets/styles/feedback.css";
 
 const FeedbacksPage = () => {

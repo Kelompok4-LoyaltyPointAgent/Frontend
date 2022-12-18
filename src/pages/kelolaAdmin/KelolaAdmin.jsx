@@ -6,7 +6,7 @@ import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
 import EditAdmin from "./EditAdmin";

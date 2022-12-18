@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../../assets/styles/DetailEditProduk.css";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import EditProdukPulsa from "./EditProdukPulsa";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import { getCreditId } from "../../api/getCreditId";

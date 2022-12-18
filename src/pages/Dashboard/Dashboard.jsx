@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../../assets/styles/Dashboard.css";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import "../../assets/styles/transaksi.css";
 import CardDashboard from "./CardDashboard";
 import BarDashboard from "./BarDashboard";

@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Pagination from "../../components/Pagination";
 import CardTopTransaksi from "./CardTopTransaksi";
 import ItemRiwayatTransaksi from "./ItemRiwayatTransaksi";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import "../../assets/styles/transaksi.css";
 import { getTransactions } from "../../api/getTransaksi";
 import Search from "../../components/Search";

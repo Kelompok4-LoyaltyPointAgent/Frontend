@@ -8,7 +8,7 @@ import NavbarTop from "../../components/NavbarTop";
 import ItemPaket from "./ItemPaket";
 import AddStockPaket from "./AddStockPaket";
 import CardTopPaket from "./CardTopPaket";
-import "../../assets/styles/overflow.css";
+import "../../assets/styles/Overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getPackages } from "../../api/getPackages";
 import { motion } from "framer-motion";
