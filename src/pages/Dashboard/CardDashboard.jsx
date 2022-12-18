@@ -189,13 +189,13 @@ const CardDashboard = () => {
           </h4>
         </div>
         <div className="d-flex flex-row justify-content-between">
-          <span>
+          <span className="mt-2 mb-0">
             <h3
               className="mb-0 mt-0"
               style={{
                 fontWeight: "600",
                 marginLeft: "15px",
-                fontSize: "38px",
+                fontSize: "28px",
               }}
             >
               {numberFormater(posts.income)}
