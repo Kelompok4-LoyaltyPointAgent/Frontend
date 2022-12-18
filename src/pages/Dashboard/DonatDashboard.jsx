@@ -5,22 +5,6 @@ import { getAnalytics } from "../../api/getAnalytics";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ["Purchase", "Redeem", "Cashout"],
-  datasets: [
-    {
-      label: "Persentase",
-      data: [37, 24, 49],
-      backgroundColor: [
-        "rgb(42, 176, 112)",
-        "rgb(209, 95, 2)",
-        "rgb(0, 107, 160)",
-      ],
-      borderColor: ["rgb(42, 176, 112)", "rgb(209, 95, 2)", "rgb(0, 107, 160)"],
-    },
-  ],
-};
-
 export function DoughnutDashboard() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);

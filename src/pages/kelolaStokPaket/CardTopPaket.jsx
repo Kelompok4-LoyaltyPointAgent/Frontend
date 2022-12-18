@@ -1,7 +1,25 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import "../../assets/styles/cardShadow.css";
+import { getAnalyticsProduk } from "../../api/getAnalyticsProduk";
+import { numberFormater } from "../../components/numberFormater";
+
 const CardTopPaket = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await getAnalyticsProduk();
+      setPosts(res.data.data);
+    };
+    fetchPosts();
+    setTimeout(isReload, 5000);
+  }, [loading]);
+
+  const isReload = () => {
+    setLoading(!loading);
+  };
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
       <Card
@@ -18,7 +36,7 @@ const CardTopPaket = () => {
           <h5>Stok Produk</h5>
         </span>
         <span className="mb-2 ms-2" style={{ color: "#2B669F" }}>
-          <h5>1.517</h5>
+          <h5>{posts.totalProduct}</h5>
         </span>
       </Card>
       <Card
@@ -35,7 +53,7 @@ const CardTopPaket = () => {
           <h5>Saldo Cash Out</h5>
         </span>
         <span className="mb-2 ms-2" style={{ color: "#559CC0" }}>
-          <h5>Rp. 1.760.063</h5>
+          <h5>Rp. {numberFormater(posts.cashoutBalance)}</h5>
         </span>
       </Card>
       <Card
@@ -52,7 +70,7 @@ const CardTopPaket = () => {
           <h5>Provider</h5>
         </span>
         <span className="mb-2 ms-2" style={{ color: "#CC8A93" }}>
-          <h5>10</h5>
+          <h5>{posts.totalProvider}</h5>
         </span>
       </Card>
     </div>
