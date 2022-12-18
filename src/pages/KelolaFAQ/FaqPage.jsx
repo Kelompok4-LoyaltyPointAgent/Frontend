@@ -7,7 +7,7 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemFAQ from "./itemFAQ";
-import AddData from "./AddData";
+import AddData from "./addData";
 import "../../assets/styles/overflow.css";
 import "../../assets/styles/stok.css";
 import { getFaqs } from "../../api/getFaqs";
