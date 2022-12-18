@@ -27,7 +27,7 @@ export function DoughnutDashboard() {
     labels: takeData?.map((item) => item.Type),
     datasets: [
       {
-        label: "Persentase",
+        label: "Jumlah",
         data: takeData?.map((item) => item.Value),
         backgroundColor: [
           "rgb(42, 176, 112)",
