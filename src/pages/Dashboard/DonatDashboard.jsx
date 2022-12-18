@@ -24,11 +24,11 @@ export function DoughnutDashboard() {
   const takeData = posts.transactions_by_type?.map((item) => item);
 
   const data = {
-    labels: takeData?.map((item) => item.Type),
+    labels: takeData?.map((item) => item.type),
     datasets: [
       {
-        label: "Persentase",
-        data: takeData?.map((item) => item.Value),
+        label: "Jumlah",
+        data: takeData?.map((item) => item.value),
         backgroundColor: [
           "rgb(42, 176, 112)",
           "rgb(209, 95, 2)",
