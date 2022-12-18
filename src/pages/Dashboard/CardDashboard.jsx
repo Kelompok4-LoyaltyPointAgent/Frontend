@@ -6,6 +6,7 @@ import { SlScreenSmartphone } from "react-icons/sl";
 import { IoMdTrendingUp } from "react-icons/io";
 import { getAnalytics } from "../../api/getAnalytics";
 import { numberFormater } from "../../components/numberFormater";
+import AnimatedNumber from "react-animated-number";
 
 const CardDashboard = () => {
   const [posts, setPosts] = useState([]);
@@ -63,7 +64,7 @@ const CardDashboard = () => {
                 fontSize: "38px",
               }}
             >
-              {numberFormater(posts.visitors_count)}
+              {numberFormater(posts.visitors_count) || 0}
             </h3>
           </p>
           <p className="ms-2 mt-3 mb-0" style={{ color: "#3F8E47" }}>

@@ -30,10 +30,10 @@ export default function KelolaFAQ() {
       const res = await getFaqs();
       setPosts(res.data.data);
       setData(res.data.data);
+      setLoading(false);
     };
 
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
 
   const change = () => {
@@ -75,102 +75,113 @@ export default function KelolaFAQ() {
         <NewSidebar />
         <div className="w-100">
           <NavbarTop />
-          <div className="mt-4 ps-3 pe-3 w-100">
-            <Card className="box-overflow">
-              <div className="judul">
-                <h4 className="mb-4 mt-1 ps-3 pt-3">
-                  Kelola Frequently Asked Question
-                </h4>
+          {loading ? (
+            <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-              <Box sx={{ p: 3 }}>
-                <Typography>
-                  <div className="w-100">
-                    {isOpen && (
-                      <AddData
-                        setReload={setReload}
-                        handleClose={togglePopUp}
-                      />
-                    )}
-                    {isOpen1 && (
-                      <EditFAQ
-                        data={editData}
-                        setReload={setReload}
-                        handleClose={togglePopUpEdit}
-                      />
-                    )}
-                    <div className="d-flex flex-row justify-content-between mb-3">
-                      <motion.button
-                        whileHover={{ scale: 1.03, originX: 0 }}
-                        whileTap={{ scale: 0.9 }}
-                        style={{
-                          color: "white",
-                          backgroundColor: "#197722",
-                          paddingRight: "10px",
-                          paddingLeft: "10px",
-                          borderRadius: "5px",
-                          borderWidth: "1px",
-                          borderColor: "#197722",
-                        }}
-                        onClick={togglePopUp}
-                      >
-                        <AiOutlinePlusSquare
-                          style={{
-                            width: "20px",
-                            height: "25px",
-                            paddingBottom: "3px",
-                            marginRight: "10px",
-                          }}
+            </div>
+          ) : (
+            <div className="mt-4 ps-3 pe-3 w-100">
+              <Card className="box-overflow">
+                <div className="judul">
+                  <h4 className="mb-4 mt-1 ps-3 pt-3">
+                    Kelola Frequently Asked Question
+                  </h4>
+                </div>
+                <Box sx={{ p: 3 }}>
+                  <Typography>
+                    <div className="w-100">
+                      {isOpen && (
+                        <AddData
+                          setReload={setReload}
+                          handleClose={togglePopUp}
                         />
-                        Tambah Item
-                      </motion.button>
-                      <Search
-                        posts={posts}
-                        setSearchResults={setSearchResult}
-                        pages="faq"
-                        placeHolder="Cari Nama,Email"
-                        change={change}
-                      />
-                    </div>
-                    <table class="tablesE mb-4">
-                      <thead>
-                        <tr
-                          className="text-center"
-                          style={{ backgroundColor: "#013B75", color: "white" }}
+                      )}
+                      {isOpen1 && (
+                        <EditFAQ
+                          data={editData}
+                          setReload={setReload}
+                          handleClose={togglePopUpEdit}
+                        />
+                      )}
+                      <div className="d-flex flex-row justify-content-between mb-3">
+                        <motion.button
+                          whileHover={{ scale: 1.03, originX: 0 }}
+                          whileTap={{ scale: 0.9 }}
+                          style={{
+                            color: "white",
+                            backgroundColor: "#197722",
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                            borderRadius: "5px",
+                            borderWidth: "1px",
+                            borderColor: "#197722",
+                          }}
+                          onClick={togglePopUp}
                         >
-                          <th className="pertanyaan">Pertanyaan</th>
-                          <th className="jawaban">Jawaban</th>
-                          <th>Kategori</th>
-                          <th className="aksi">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        className="text-center"
-                        style={{ color: "#013B75" }}
-                      >
-                        {currentPosts.map((item, index) => (
-                          <ItemFAQ
-                            setReload={setReload}
-                            data={item}
-                            index={index}
-                            toggle={togglePopUpEdit}
-                            sentData={itemData}
-                          ></ItemFAQ>
-                        ))}
-                      </tbody>
-                    </table>
-                    <div className="d-flex justify-content-center">
-                      <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={data.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      />
+                          <AiOutlinePlusSquare
+                            style={{
+                              width: "20px",
+                              height: "25px",
+                              paddingBottom: "3px",
+                              marginRight: "10px",
+                            }}
+                          />
+                          Tambah Item
+                        </motion.button>
+                        <Search
+                          posts={posts}
+                          setSearchResults={setSearchResult}
+                          pages="faq"
+                          placeHolder="Cari Nama,Email"
+                          change={change}
+                        />
+                      </div>
+                      <table class="tablesE mb-4">
+                        <thead>
+                          <tr
+                            className="text-center"
+                            style={{
+                              backgroundColor: "#013B75",
+                              color: "white",
+                            }}
+                          >
+                            <th className="pertanyaan">Pertanyaan</th>
+                            <th className="jawaban">Jawaban</th>
+                            <th>Kategori</th>
+                            <th className="aksi">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          className="text-center"
+                          style={{ color: "#013B75" }}
+                        >
+                          {currentPosts.map((item, index) => (
+                            <ItemFAQ
+                              setReload={setReload}
+                              data={item}
+                              index={index}
+                              toggle={togglePopUpEdit}
+                              sentData={itemData}
+                            ></ItemFAQ>
+                          ))}
+                        </tbody>
+                      </table>
+                      <div className="d-flex justify-content-center">
+                        <Pagination
+                          postsPerPage={postsPerPage}
+                          totalPosts={data.length}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Typography>
-              </Box>
-            </Card>
-          </div>
+                  </Typography>
+                </Box>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     </>

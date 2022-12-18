@@ -25,14 +25,10 @@ export default function KelolaAdmin() {
       const res = await getAdmin();
       setPosts(res.data.data);
       setData(res.data.data);
+      setLoading(false);
     };
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
-
-  const change = () => {
-    setCurrentPage(1);
-  };
 
   const setReload = () => {
     setLoading(true);
@@ -63,62 +59,73 @@ export default function KelolaAdmin() {
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
-          <div className="mt-4 ps-3 pe-3 w-100">
-            <Card className="box-overflow kotak">
-              <div className="judul">
-                <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Admin</h4>
+          {loading ? (
+            <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-              <Box sx={{ p: 3 }}>
-                <Typography>
-                  <div className="w-100">
-                    {isOpen && (
-                      <EditAdmin
-                        data={editData}
-                        setReload={setReload}
-                        handleClose={togglePopUpEdit}
-                      />
-                    )}
-                    <div className="d-flex flex-row justify-content-between mb-3"></div>
-                    <table class="tables">
-                      <thead>
-                        <tr
+            </div>
+          ) : (
+            <div className="mt-4 ps-3 pe-3 w-100">
+              <Card className="box-overflow kotak">
+                <div className="judul">
+                  <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Admin</h4>
+                </div>
+                <Box sx={{ p: 3 }}>
+                  <Typography>
+                    <div className="w-100">
+                      {isOpen && (
+                        <EditAdmin
+                          data={editData}
+                          setReload={setReload}
+                          handleClose={togglePopUpEdit}
+                        />
+                      )}
+                      <div className="d-flex flex-row justify-content-between mb-3"></div>
+                      <table class="tables">
+                        <thead>
+                          <tr
+                            className="text-center"
+                            style={{
+                              backgroundColor: "#013B75",
+                              color: "white",
+                            }}
+                          >
+                            <th>Nama Lengkap</th>
+                            <th>Email/Username</th>
+                            <th>Password</th>
+                            <th className="aksi">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody
                           className="text-center"
-                          style={{ backgroundColor: "#013B75", color: "white" }}
+                          style={{ color: "#013B75" }}
                         >
-                          <th>Nama Lengkap</th>
-                          <th>Email/Username</th>
-                          <th>Password</th>
-                          <th className="aksi">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        className="text-center"
-                        style={{ color: "#013B75" }}
-                      >
-                        {currentPosts.map((item, index) => (
-                          <ItemAdmin
-                            setReload={setReload}
-                            data={item}
-                            index={index}
-                            toggle={togglePopUpEdit}
-                            sentData={itemData}
-                          ></ItemAdmin>
-                        ))}
-                      </tbody>
-                    </table>
-                    <div className="table-pagination">
-                      <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={posts.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      />
+                          {currentPosts.map((item, index) => (
+                            <ItemAdmin
+                              setReload={setReload}
+                              data={item}
+                              index={index}
+                              toggle={togglePopUpEdit}
+                              sentData={itemData}
+                            ></ItemAdmin>
+                          ))}
+                        </tbody>
+                      </table>
+                      <div className="table-pagination">
+                        <Pagination
+                          postsPerPage={postsPerPage}
+                          totalPosts={posts.length}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Typography>
-              </Box>
-            </Card>
-          </div>
+                  </Typography>
+                </Box>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     </>

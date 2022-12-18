@@ -10,22 +10,21 @@ import "../../assets/styles/overflow.css";
 import "../../assets/styles/transaksi.css";
 import { getTransactions } from "../../api/getTransaksi";
 import Search from "../../components/Search";
-import Loading from "react-loading";
 
 const KelolaTransaksi = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getTransactions();
       setPosts(res.data.data);
       setData(res.data.data);
-      console.log("test1");
+      setLoading(false);
     };
-    fetchPosts();
+    if (loading) fetchPosts();
   }, []);
   const change = () => {
     setCurrentPage(1);
@@ -51,68 +50,76 @@ const KelolaTransaksi = () => {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        <div className="ps-3 pe-3 w-100 main-overflow judulT">
-          <h4 className="mb-4 mt-1 pt-3">Riwayat Transaksi</h4>
-          <div>
-            <CardTopTransaksi />
+        {loading ? (
+          <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
+        ) : (
+          <div className="ps-3 pe-3 w-100 main-overflow judulT">
+            <h4 className="mb-4 mt-1 pt-3">Riwayat Transaksi</h4>
+            <div>
+              <CardTopTransaksi />
+            </div>
 
-          <Box>
-            <Typography>
-              <div className="w-100">
-                <div className="d-flex flex-row justify-content-end mb-3 mt-3">
-                  <Search
-                    posts={posts}
-                    setSearchResults={setSearchResult}
-                    pages="transaksi"
-                    placeHolder="Cari Nama, Email"
-                    change={change}
-                  />
-                </div>
-                <table class="tablesT ">
-                  <thead>
-                    <tr
-                      className="text-center"
-                      style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
-                    >
-                      <th className="tanggal">Tanggal</th>
-                      <th className="email">Email</th>
-                      <th>Tipe</th>
-                      <th>Metode</th>
-                      <th>Produk</th>
-                      <th>Nilai(Rp)</th>
-                      <th>Status</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-center" style={{ color: "#013B75" }}>
-                    {currentPosts?.map((item, index) => (
-                      <ItemRiwayatTransaksi
-                        data={item}
-                        index={index}
-                      ></ItemRiwayatTransaksi>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="table-pagination">
-                  <Pagination
-                    postsPerPage={postsPerPage}
-                    totalPosts={data.length}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  />
-                </div>
+            <Box>
+              <Typography>
+                <div className="w-100">
+                  <div className="d-flex flex-row justify-content-end mb-3 mt-3">
+                    <Search
+                      posts={posts}
+                      setSearchResults={setSearchResult}
+                      pages="transaksi"
+                      placeHolder="Cari Nama, Email"
+                      change={change}
+                    />
+                  </div>
+                  <table class="tablesT ">
+                    <thead>
+                      <tr
+                        className="text-center"
+                        style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
+                      >
+                        <th className="tanggal">Tanggal</th>
+                        <th className="email">Email</th>
+                        <th>Tipe</th>
+                        <th>Metode</th>
+                        <th>Produk</th>
+                        <th>Nilai(Rp)</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-center" style={{ color: "#013B75" }}>
+                      {currentPosts?.map((item, index) => (
+                        <ItemRiwayatTransaksi
+                          data={item}
+                          index={index}
+                        ></ItemRiwayatTransaksi>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="table-pagination">
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={data.length}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                    />
+                  </div>
 
-                {/* <div className="">
+                  {/* <div className="">
                     <Button href="/kelolaPengguna/detaileditpengguna/user">
                       Detail User Tes
                     </Button>
                     User
                   </div> */}
-              </div>
-            </Typography>
-          </Box>
-        </div>
+                </div>
+              </Typography>
+            </Box>
+          </div>
+        )}
       </div>
     </div>
   );
