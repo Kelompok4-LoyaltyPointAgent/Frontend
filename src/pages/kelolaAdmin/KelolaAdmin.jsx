@@ -88,7 +88,7 @@ export default function KelolaAdmin() {
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
                           <th>Password</th>
-                          <th>Aksi</th>
+                          <th className="aksi">Aksi</th>
                         </tr>
                       </thead>
                       <tbody

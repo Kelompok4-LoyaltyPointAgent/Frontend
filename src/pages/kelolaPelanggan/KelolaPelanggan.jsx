@@ -27,9 +27,9 @@ export default function KelolaPelanggan() {
       const res = await getUsers();
       setPosts(res.data.data);
       setData(res.data.data);
+      setLoading(false);
     };
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
 
   const change = () => {
@@ -62,6 +62,7 @@ export default function KelolaPelanggan() {
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
+
           <div className="mt-4 ps-3 pe-3 w-100">
             <Card className="box-overflow kotak">
               <div className="judul">
@@ -108,7 +109,7 @@ export default function KelolaPelanggan() {
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
                           <th>Poin</th>
-                          <th>Aksi</th>
+                          <th className="aksi">Aksi</th>
                         </tr>
                       </thead>
                       <tbody

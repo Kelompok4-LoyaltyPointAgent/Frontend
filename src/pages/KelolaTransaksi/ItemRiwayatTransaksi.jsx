@@ -12,7 +12,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       return "sukses";
     } else if (data.status == "Pending") {
       return "pending";
-    } else if (data.status == "Gagal") {
+    } else if (data.status == "Failed") {
       return "gagal";
     }
   };

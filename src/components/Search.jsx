@@ -14,7 +14,8 @@ const Search = ({ posts, setSearchResults, pages, placeHolder, change }) => {
       resultArray = posts.filter(
         (post) =>
           post.user?.email.includes(e.target.value) ||
-          post.user?.name.includes(e.target.value)
+          post.type.includes(e.target.value) ||
+          post.status.includes(e.target.value)
       );
     } else if (pages == "user") {
       resultArray = posts.filter(

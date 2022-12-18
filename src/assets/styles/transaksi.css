@@ -11,12 +11,20 @@
   font-weight: 1000;
 }
 .tablesT {
+  width: 100%;
   border-radius: 20px;
   border-collapse: collapse;
   border-radius: 1em;
   overflow: hidden;
   table-layout: fixed;
 }
+.tablesT .email {
+  width: 30%;
+}
+.tablesT .tanggal {
+  width: 18%;
+}
+
 .tablesT .dash tr > th {
   font-weight: 1000;
 }
