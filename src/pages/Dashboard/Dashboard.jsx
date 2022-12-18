@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "../../assets/styles/Dashboard.css";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/dashboard.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/transaksi.css";
 import CardDashboard from "./CardDashboard";
 import BarDashboard from "./BarDashboard";
@@ -61,8 +61,8 @@ export default function Dashboard() {
                     fontWeight: "1000",
                   }}
                 >
-                  <th>Tanggal</th>
-                  <th>Nama</th>
+                  <th className="tanggal">Tanggal</th>
+                  <th className="email">Gmail</th>
                   <th>Tipe</th>
                   <th>Metode</th>
                   <th>Produk</th>

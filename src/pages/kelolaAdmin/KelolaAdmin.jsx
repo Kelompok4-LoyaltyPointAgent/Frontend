@@ -6,7 +6,7 @@ import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
 import EditAdmin from "./EditAdmin";
@@ -88,7 +88,7 @@ export default function KelolaAdmin() {
                           <th>Nama Lengkap</th>
                           <th>Email/Username</th>
                           <th>Password</th>
-                          <th>Aksi</th>
+                          <th className="aksi">Aksi</th>
                         </tr>
                       </thead>
                       <tbody

@@ -8,7 +8,7 @@ import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemFAQ from "./itemFAQ";
 import AddData from "./addData";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/stok.css";
 import { getFaqs } from "../../api/getFaqs";
 import { motion } from "framer-motion";
@@ -131,16 +131,16 @@ export default function KelolaFAQ() {
                         change={change}
                       />
                     </div>
-                    <table class="tables mb-4">
+                    <table class="tablesE mb-4">
                       <thead>
                         <tr
                           className="text-center"
                           style={{ backgroundColor: "#013B75", color: "white" }}
                         >
-                          <th>Pertanyaan</th>
-                          <th>Jawaban</th>
+                          <th className="pertanyaan">Pertanyaan</th>
+                          <th className="jawaban">Jawaban</th>
                           <th>Kategori</th>
-                          <th>Aksi</th>
+                          <th className="aksi">Aksi</th>
                         </tr>
                       </thead>
                       <tbody

@@ -6,10 +6,11 @@ import Box from "@mui/material/Box";
 import Pagination from "../../components/Pagination";
 import CardTopTransaksi from "./CardTopTransaksi";
 import ItemRiwayatTransaksi from "./ItemRiwayatTransaksi";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/transaksi.css";
 import { getTransactions } from "../../api/getTransaksi";
 import Search from "../../components/Search";
+import Loading from "react-loading";
 
 const KelolaTransaksi = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,6 +23,7 @@ const KelolaTransaksi = () => {
       const res = await getTransactions();
       setPosts(res.data.data);
       setData(res.data.data);
+      console.log("test1");
     };
     fetchPosts();
   }, []);
@@ -73,8 +75,8 @@ const KelolaTransaksi = () => {
                       className="text-center"
                       style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
                     >
-                      <th>Tanggal</th>
-                      <th>Email</th>
+                      <th className="tanggal">Tanggal</th>
+                      <th className="email">Email</th>
                       <th>Tipe</th>
                       <th>Metode</th>
                       <th>Produk</th>
