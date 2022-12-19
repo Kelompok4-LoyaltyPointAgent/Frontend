@@ -139,7 +139,7 @@ const AddStockPulsa = (props) => {
                 <option required value="Telkomsel">
                   Telkomsel
                 </option>
-                <option required value="Xl">
+                <option required value="XL">
                   Xl
                 </option>
                 <option required value="Indosat">
