@@ -52,7 +52,7 @@ const FeedbacksPage = () => {
                   </span>
 
                   <Card.Body className="d-flex flex-column justify-content-between text-start">
-                    <div>Ini review {item.review}</div>
+                    <div>{item.review}</div>
                     <div className="">
                       <img
                         alt=""
@@ -64,7 +64,7 @@ const FeedbacksPage = () => {
                         }}
                         src={require("../../assets/images/User/userlogo.png")}
                       />
-                      <span className="ms-2 boldF">Kartika {data.user}</span>
+                      <span className="ms-2 boldF">{data.user}</span>
                     </div>
                   </Card.Body>
                 </Card>

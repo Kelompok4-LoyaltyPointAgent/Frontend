@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { getAnalytics } from "../../api/getAnalytics";
+import { Skeleton } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -44,9 +45,15 @@ export function DoughnutDashboard() {
   };
 
   return (
-    <div style={{ width: 250, height: 400 }}>
-      <span className="mb-3">Aktivitas</span>
-      <Doughnut data={data} />
-    </div>
+    <>
+      <div style={{ width: 250, height: 400 }}>
+        <span className="mb-3">Aktivitas</span>
+        {loading ?
+          <Skeleton variant="rounded" width={250} height={350} />
+          :
+          <Doughnut data={data} />
+        }
+      </div>
+    </>
   );
 }

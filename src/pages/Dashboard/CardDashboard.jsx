@@ -6,7 +6,7 @@ import { SlScreenSmartphone } from "react-icons/sl";
 import { IoMdTrendingUp } from "react-icons/io";
 import { getAnalytics } from "../../api/getAnalytics";
 import { numberFormater } from "../../components/numberFormater";
-import AnimatedNumber from "react-animated-number";
+// import AnimatedNumber from "react-animated-number";
 
 const CardDashboard = () => {
   const [posts, setPosts] = useState([]);
@@ -18,12 +18,12 @@ const CardDashboard = () => {
       setPosts(res.data.data);
     };
     fetchPosts();
-    setTimeout(isReload, 5000);
+    // setTimeout(isReload, 5000);
   }, [loading]);
 
-  const isReload = () => {
-    setLoading(!loading);
-  };
+  // const isReload = () => {
+  //   setLoading(!loading);
+  // };
 
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
