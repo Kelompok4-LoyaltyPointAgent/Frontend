@@ -23,7 +23,6 @@ const DetailTransaksi = () => {
     fetchPosts(data);
   }, [id]);
 
-  console.log(data);
   const warna = () => {
     if (data.status == "Success") {
       return "sukses";
@@ -36,6 +35,7 @@ const DetailTransaksi = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
+  console.log(data.product);
   return (
     <>
       <div className="d-flex">
@@ -121,10 +121,6 @@ const DetailTransaksi = () => {
                     </p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
-                    <p className="detail-produk-text">NAMA</p>
-                    <p className="detail-produk-text">-</p>
-                  </div>
-                  <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">NILAI</p>
                     <p className="detail-produk-text">
                       {numberFormater(data.amount)}
@@ -132,7 +128,7 @@ const DetailTransaksi = () => {
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">METODE</p>
-                    <p className="detail-produk-text">{data.method}</p>
+                    <p className="detail-produk-text">{data.method || "-"}</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Status</p>
