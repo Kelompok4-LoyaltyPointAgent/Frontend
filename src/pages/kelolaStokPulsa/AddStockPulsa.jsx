@@ -3,6 +3,7 @@ import { postCredits } from "../../api/postCredits";
 import "../../assets/styles/popUp.css";
 
 const AddStockPulsa = (props) => {
+  const [image, setImage] = useState("");
   const [data, setData] = useState({
     nama: "",
     provider: "Telkomsel",
@@ -58,6 +59,7 @@ const AddStockPulsa = (props) => {
   const handleFile = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
+    setImage(URL.createObjectURL(e.target.files[0]));
     setData({
       ...data,
       [name]: value,
@@ -261,12 +263,22 @@ const AddStockPulsa = (props) => {
               Foto Produk
             </label>
             <div className="col-sm-7">
+              {image ? (
+                <img
+                  src={image}
+                  class="rounded float-start img-thumbnail"
+                  alt="productPicture"
+                />
+              ) : (
+                ""
+              )}
               <input
                 type="file"
                 className="form-control"
                 id="inputFotoProduk"
                 name="fotoProduk"
                 onChange={handleFile}
+                accept="image/*"
                 required
               />
             </div>
@@ -295,7 +307,7 @@ const AddStockPulsa = (props) => {
               for="inputJumlah"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Jumlah
+              Jumlah Pulsa
             </label>
             <div className="col-sm-7">
               <input

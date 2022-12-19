@@ -56,8 +56,7 @@ export default function KelolaPelanggan() {
   const togglePopUp = () => {
     setIsOpen(!isOpen);
   };
-  console.log(currentPosts);
-  console.log(currentPosts[0].length);
+
   return (
     <>
       <div className="d-flex main-con">

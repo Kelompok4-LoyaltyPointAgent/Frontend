@@ -3,6 +3,7 @@ import { updatePulsa } from "../../api/updatePulsa";
 import "../../assets/styles/popUp.css";
 
 const EditProdukPulsa = (props) => {
+  const [image, setImage] = useState("");
   const [data, setData] = useState({
     nama: props.data.name,
     provider: props.data.provider,
@@ -58,6 +59,7 @@ const EditProdukPulsa = (props) => {
   const handleFile = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
+    setImage(URL.createObjectURL(e.target.files[0]));
     setData({
       ...data,
       [name]: value,
@@ -253,6 +255,7 @@ const EditProdukPulsa = (props) => {
                   id="inputRekomendasi"
                   name="rekomendasi"
                   onChange={handleCheck}
+                  checked={data.rekomendasi ? "checked" : ""}
                 />
               </div>
             </div>
@@ -265,12 +268,20 @@ const EditProdukPulsa = (props) => {
               Foto Produk
             </label>
             <div className="col-sm-7">
+              <img
+                src={
+                  data.fotoProduk ? image : props?.data?.product_picture?.url
+                }
+                class="rounded float-start img-thumbnail"
+                alt="productPicture"
+              />
               <input
                 type="file"
                 className="form-control"
                 id="inputFotoProduk"
                 name="fotoProduk"
                 onChange={handleFile}
+                accept="image/*"
               />
             </div>
           </div>
@@ -297,7 +308,7 @@ const EditProdukPulsa = (props) => {
               for="inputJumlah"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-              Jumlah
+              Jumlah Pulsa
             </label>
             <div className="col-sm-7">
               <input

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import "../../assets/styles/popUp.css";
 import { postUser } from "../../api/postUser";
 
@@ -23,28 +24,34 @@ const AddUser = (props) => {
   const addNow = async (e) => {
     e.preventDefault();
     setIsOpen(false);
+    setIsOpen1(false);
     if (data.password.length < 8) {
       setIsOpen1(true);
     } else {
       if (data.password != data.konfirmasiPassword) {
         setIsOpen(true);
       } else {
-        setIsOpen(false);
         try {
           const res = await postUser({
             name: data.name,
             email: data.email,
             password: data.password,
           });
+          props.setReload();
+          props.handleClose();
           console.log(res);
         } catch (error) {
           console.log(error);
+          if (error?.response?.status == 500) {
+            Swal.fire({
+              title: "Failed Add User",
+              text: "Email Already Exist",
+              icon: "warning",
+            });
+          }
         }
-        props.setReload();
-        props.handleClose();
       }
     }
-
   };
 
   return (
