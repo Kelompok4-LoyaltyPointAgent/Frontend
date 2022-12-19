@@ -24,9 +24,9 @@ ChartJS.register(
   Legend
 );
 
-const BarDashboard = () => {
+const BarDashboard = ({ loading }) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingx, setLoading] = useState(true);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getAnalytics();
@@ -34,10 +34,10 @@ const BarDashboard = () => {
     };
     fetchPosts();
     setTimeout(isReload, 5000);
-  }, [loading]);
+  }, [loadingx]);
 
   const isReload = () => {
-    setLoading(!loading);
+    setLoading(!loadingx);
   };
 
   const months = [
@@ -55,7 +55,6 @@ const BarDashboard = () => {
     "Desember",
   ];
   const value = posts.transactions_by_month?.map((item) => item.value);
-  console.log(posts);
   var data = {
     labels: months,
     datasets: [
@@ -95,13 +94,11 @@ const BarDashboard = () => {
 
   return (
     <div className="d-flex flex-row mt-5 mb-2 justify-content-between">
-
       <Card className="ps-3 pe-5">
-
-        <span className="mt-3">Tahun Ini</span>
-        {loading ?
+        <span className="mt-3 boltP">Tahun Ini</span>
+        {loading ? (
           <Skeleton variant="rounded" width={850} height={350} />
-          :
+        ) : (
           <>
             <div style={{ width: 850 }}>
               <Bar data={data} height={300} options={options} />
@@ -110,10 +107,10 @@ const BarDashboard = () => {
               <h4>Produk Terjual</h4>
             </span>
           </>
-        }
+        )}
       </Card>
       <Card className="d-flex p-3">
-        <DoughnutDashboard />
+        <DoughnutDashboard loading={loading} />
       </Card>
     </div>
   );

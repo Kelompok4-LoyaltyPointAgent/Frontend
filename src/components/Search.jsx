@@ -9,7 +9,11 @@ const Search = ({ posts, setSearchResults, pages, placeHolder, change }) => {
     let resultArray;
 
     if (pages == "stock") {
-      resultArray = posts.filter((post) => post.name.includes(e.target.value));
+      resultArray = posts.filter(
+        (post) =>
+          post.name.includes(e.target.value) ||
+          post.provider.includes(e.target.value)
+      );
     } else if (pages == "transaksi") {
       resultArray = posts.filter(
         (post) =>

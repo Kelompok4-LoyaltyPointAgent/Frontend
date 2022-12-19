@@ -52,59 +52,68 @@ const KelolaTransaksi = () => {
       <div className="w-100">
         <NavbarTop />
         <div className="ps-3 pe-3 w-100 main-overflow judulT">
-          <h4 className="mb-4 mt-1 pt-3">{loading ?
-            <Skeleton variant="rounded" width={250} height={40} />
-            :
-            <span>Riwayat Transaksi</span>}
+          <h4 className="mb-4 mt-1 pt-3">
+            {loading ? (
+              <Skeleton variant="rounded" width={250} height={40} />
+            ) : (
+              <span>Riwayat Transaksi</span>
+            )}
           </h4>
           <div>
-            <CardTopTransaksi />
+            <CardTopTransaksi loading={loading} />
           </div>
 
           <Box>
             <Typography>
               <div className="w-100">
                 <div className="d-flex flex-row justify-content-end mb-3 mt-3">
-                  {loading ?
+                  {loading ? (
                     <Skeleton variant="rounded" width={200} height={35} />
-                    :
+                  ) : (
                     <Search
                       posts={posts}
                       setSearchResults={setSearchResult}
                       pages="transaksi"
-                      placeHolder="Cari Nama, Email"
+                      placeHolder="Cari Email, Tipe, Status"
                       change={change}
-                    />}
+                    />
+                  )}
                 </div>
-                {loading ?
-                  <Skeleton variant="rounded" height={350}/>
-                  :
-                    <table class="tablesT ">
-                      <thead>
-                        <tr
-                          className="text-center"
-                          style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
-                        >
-                          <th className="tanggal">Tanggal</th>
-                          <th className="email">Email</th>
-                          <th>Tipe</th>
-                          <th>Metode</th>
-                          <th>Produk</th>
-                          <th>Nilai(Rp)</th>
-                          <th>Status</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-center" style={{ color: "#013B75" }}>
-                        {currentPosts?.map((item, index) => (
+                {loading ? (
+                  <Skeleton variant="rounded" height={350} />
+                ) : (
+                  <table class="tablesT ">
+                    <thead>
+                      <tr
+                        className="text-center"
+                        style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
+                      >
+                        <th className="tanggal">Tanggal</th>
+                        <th className="email">Email</th>
+                        <th>Tipe</th>
+                        <th>Metode</th>
+                        <th>Produk</th>
+                        <th>Nilai(Rp)</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-center" style={{ color: "#013B75" }}>
+                      {currentPosts[0].length != 0 ? (
+                        currentPosts?.map((item, index) => (
                           <ItemRiwayatTransaksi
                             data={item}
                             index={index}
                           ></ItemRiwayatTransaksi>
-                        ))}
-                      </tbody>
-                    </table>
-                  }
+                        ))
+                      ) : (
+                        <span className="position-absolute top-50 start-50 translate-middle fs-3">
+                          Data Tidak Ditemukan
+                        </span>
+                      )}
+                    </tbody>
+                  </table>
+                )}
 
                 <div className="table-pagination">
                   <Pagination
@@ -114,13 +123,6 @@ const KelolaTransaksi = () => {
                     currentPage={currentPage}
                   />
                 </div>
-
-                {/* <div className="">
-                    <Button href="/kelolaPengguna/detaileditpengguna/user">
-                      Detail User Tes
-                    </Button>
-                    User
-                  </div> */}
               </div>
             </Typography>
           </Box>
