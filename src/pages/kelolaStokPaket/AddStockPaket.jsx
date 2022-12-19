@@ -3,6 +3,7 @@ import { postPackages } from "../../api/postPackages";
 import "../../assets/styles/popUp.css";
 
 const AddStockPulsa = (props) => {
+  const [image, setImage] = useState("");
   const [data, setData] = useState({
     nama: "",
     provider: "Telkomsel",
@@ -13,7 +14,6 @@ const AddStockPulsa = (props) => {
     rekomendasi: "",
     fotoProduk: "",
     periodeAktif: "",
-    totalInternet: "",
     mainInternet: "",
     nightInternet: "",
     socialMedia: "",
@@ -66,6 +66,8 @@ const AddStockPulsa = (props) => {
   const handleFile = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
+
+    setImage(URL.createObjectURL(e.target.files[0]));
     setData({
       ...data,
       [name]: value,
@@ -77,6 +79,10 @@ const AddStockPulsa = (props) => {
     console.log(data);
     try {
       let formData = new FormData();
+      const totalInternet =
+        parseInt(data.mainInternet) +
+        parseInt(data.nightInternet) +
+        parseInt(data.socialMedia);
       formData.append("name", data.nama);
       formData.append("provider", data.provider);
       formData.append("price", data.harga);
@@ -86,7 +92,7 @@ const AddStockPulsa = (props) => {
       formData.append("recommended", data.rekomendasi);
       formData.append("product_picture", data.fotoProduk, data.fotoProduk.name);
       formData.append("active_period", data.periodeAktif);
-      formData.append("total_internet", data.totalInternet);
+      formData.append("total_internet", totalInternet);
       formData.append("main_internet", data.mainInternet);
       formData.append("night_internet", data.nightInternet);
       formData.append("social_media", data.socialMedia);
@@ -272,12 +278,22 @@ const AddStockPulsa = (props) => {
               Foto Produk
             </label>
             <div className="col-sm-7">
+              {image ? (
+                <img
+                  src={image}
+                  class="rounded float-start img-thumbnail"
+                  alt="productPicture"
+                />
+              ) : (
+                ""
+              )}
               <input
                 type="file"
                 className="form-control"
                 id="inputFotoProduk"
                 name="fotoProduk"
                 onChange={handleFile}
+                accept="image/*"
                 required
               />
             </div>
@@ -297,25 +313,6 @@ const AddStockPulsa = (props) => {
                 name="periodeAktif"
                 onChange={handleInput}
                 value={data.periodeAktif}
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputTotalInternet"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              Total Internet
-            </label>
-            <div className="col-sm-7">
-              <input
-                type="text"
-                className="form-control"
-                id="inputTotalInternet"
-                name="totalInternet"
-                onChange={handleInput}
-                value={data.totalInternet}
                 required
               />
             </div>
