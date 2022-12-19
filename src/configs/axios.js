@@ -1,11 +1,10 @@
 import Axios, { AxiosRequestConfig } from "axios";
-import storage from "../utils/storage";
 import { CONST } from "../utils/Constants";
 
 const baseURL = CONST.BASE_URL_API;
 
 function authRequestInterceptor(config) {
-  const token = storage.getToken();
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.authorization = `bearer ${token}`;
   }
@@ -24,13 +23,14 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    const prevRequest = error?.config;
-    if (error?.response?.status === 401 && !prevRequest?.sent) {
-      storage.clearToken();
-      // prevRequest.sent = true
-      // const newAccessToken = await refresh()
-      // prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-      // return axios(prevRequest)
+    if (
+      (error?.response?.status === 400 &&
+        error?.response?.data?.message == "missing or malformed jwt") ||
+      (error?.response?.status === 401 &&
+        error?.response?.data?.message == "invalid or expired jwt")
+    ) {
+      localStorage.removeItem("token");
+      window.location.reload();
     }
 
     return Promise.reject(error);

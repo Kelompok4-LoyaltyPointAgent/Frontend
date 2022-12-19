@@ -1,0 +1,46 @@
+.judulT {
+  background-color: #ececee;
+}
+
+.judulT h4 {
+  color: black;
+  font-weight: 1000;
+}
+.judulP h4 {
+  color: black;
+  font-weight: 1000;
+}
+.tablesT {
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+  border-collapse: collapse;
+  overflow: hidden;
+  table-layout: fixed;
+}
+.tablesT .email {
+  width: 30%;
+}
+.tablesT .tanggal {
+  width: 18%;
+}
+
+.tablesT .dash tr > th {
+  font-weight: 1000;
+}
+
+.tablesT tr > th,
+.tablesT tr > td {
+  padding: 8px 0;
+}
+.tablesT thead th:first-child,
+.tablesT tbody td:first-child {
+  text-align: start;
+  padding-left: 50px;
+}
+
+.table-pagination {
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  left: 35%;
+}

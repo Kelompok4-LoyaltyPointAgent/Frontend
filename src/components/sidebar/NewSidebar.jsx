@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineCast } from "react-icons/md";
 import { AiOutlineFileText, AiOutlineQuestionCircle } from "react-icons/ai";
-import { CgUserList } from "react-icons/cg";
+import { CgUserList, CgSmileMouthOpen } from "react-icons/cg";
 import "../sidebar/NewSidebar.css";
 import { motion } from "framer-motion";
 
 const NewSidebar = ({ list }) => {
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(list == 1 ? true : false);
+  const [isOpen3, setIsOpen3] = useState(list == 3 ? true : false);
 
   const sidebarMenu = [
     {
-      route: "/",
+      route: "/dashboard",
       name: "Dashboard",
       icon: <MdOutlineDashboard />,
     },
@@ -54,6 +54,11 @@ const NewSidebar = ({ list }) => {
       name: "Kelola FAQ",
       icon: <AiOutlineQuestionCircle />,
     },
+    {
+      route: "/feedbackspage",
+      name: "Feedback",
+      icon:<CgSmileMouthOpen/>
+    }
   ];
 
   const togglePopUp = (index) => {
@@ -61,87 +66,96 @@ const NewSidebar = ({ list }) => {
   };
 
   const navNormal = (item, index) => {
-    if (index == 1 || index == 3) {
-      if (isOpen1 && index == 1) {
-        return (
-          <>
-            <a
-              key={index}
-              className="list-menu d-flex flex-row active-drop"
-              activeclassName="active"
-              onClick={() => togglePopUp(index)}
-            >
-              <motion.div className="d-flex flex-row gap-2"
-              whileHover={{ scale: 1.1, originX: 0, }}
-              whileTap={{ scale: 0.9 }}>
-              <div className="icon">{item.icon}</div>
-              <div className="list-item">{item.name}</div>
-              </motion.div>
-              
-            </a>
-            {item.dropdown.map((list) => (
-              <NavLink
-                to={list.route}
-                className="list-menu list-drop d-flex flex-row"
-                activeclassName="active"
-              >
-                <motion.div 
-                whileHover={{ scale: 1.1, originX: 0, }}
-                whileTap={{ scale: 0.9 }}
-                className="list-item drop-item">{list.name}
-                </motion.div>
-              </NavLink>
-            ))}
-          </>
-        );
-      } else if (isOpen3 && index == 3) {
-        return (
-          <>
-            <a
-              key={index}
-              className="list-menu d-flex flex-row active-drop"
-              activeclassName="active"
-              onClick={() => togglePopUp(index)}
-            >
-              <motion.div className="d-flex flex-row gap-2"
-              whileHover={{ scale: 1.1, originX: 0, }}
-              whileTap={{ scale: 0.9 }}>
-              <div className="icon">{item.icon}</div>
-              <div className="list-item">{item.name}</div>
-              </motion.div>
-            </a>
-            {item.dropdown.map((list) => (
-              <NavLink
-                to={list.route}
-                className="list-menu list-drop d-flex flex-row"
-                activeclassName="active"
-              >
-                <motion.div 
-                whileHover={{ scale: 1.1, originX: 0, }}
-                whileTap={{ scale: 0.9 }}
-                className="list-item drop-item">{list.name}
-                </motion.div>
-              </NavLink>
-            ))}
-          </>
-        );
-      } else {
-        return (
+    if (index == 1) {
+      return (
+        <>
           <a
             key={index}
-            className="list-menu d-flex flex-row"
+            className={
+              isOpen1 == true
+                ? "list-menu d-flex flex-row active-drop"
+                : "list-menu d-flex flex-row"
+            }
             activeclassName="active"
             onClick={() => togglePopUp(index)}
           >
-             <motion.div className="d-flex flex-row gap-2"
-           whileHover={{ scale: 1.1, originX: 0, }}
-           whileTap={{ scale: 0.9 }}>
-          <div className="icon">{item.icon}</div>
-          <div className="list-item">{item.name}</div>
-          </motion.div>
+            <motion.div
+              className="d-flex flex-row gap-2"
+              whileHover={{ scale: 1.1, originX: 0 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className="icon">{item.icon}</div>
+              <div className="list-item">{item.name}</div>
+            </motion.div>
           </a>
-        );
-      }
+          <div className={isOpen1 == true ? " tampil" : " hilang"}>
+            {item.dropdown.map((list) => (
+              <NavLink
+                to={list.route}
+                className={
+                  isOpen1 == true
+                    ? "list-menu list-drop vision"
+                    : "list-menu list-drop hides"
+                }
+                activeclassName="active"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1, originX: 0 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-item drop-item"
+                >
+                  {list.name}
+                </motion.div>
+              </NavLink>
+            ))}
+          </div>
+        </>
+      );
+    } else if (index == 3) {
+      return (
+        <>
+          <a
+            key={index}
+            className={
+              isOpen3 == true
+                ? "list-menu d-flex flex-row active-drop"
+                : "list-menu d-flex flex-row"
+            }
+            activeclassName="active"
+            onClick={() => togglePopUp(index)}
+          >
+            <motion.div
+              className="d-flex flex-row gap-2"
+              whileHover={{ scale: 1.1, originX: 0 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className="icon">{item.icon}</div>
+              <div className="list-item">{item.name}</div>
+            </motion.div>
+          </a>
+          <div className={isOpen3 == true ? " tampil" : " hilang"}>
+            {item.dropdown.map((list) => (
+              <NavLink
+                to={list.route}
+                className={
+                  isOpen3 == true
+                    ? "list-menu list-drop vision"
+                    : "list-menu list-drop hides"
+                }
+                activeclassName="active"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1, originX: 0 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-item drop-item"
+                >
+                  {list.name}
+                </motion.div>
+              </NavLink>
+            ))}
+          </div>
+        </>
+      );
     } else {
       return (
         <NavLink
@@ -150,13 +164,14 @@ const NewSidebar = ({ list }) => {
           className="list-menu d-flex flex-row"
           activeclassName="active"
         >
-          <motion.div className="d-flex flex-row gap-2"
-           whileHover={{ scale: 1.1, originX: 0, }}
-           whileTap={{ scale: 0.9 }}>
-          <div className="icon">{item.icon}</div>
-          <div className="list-item">{item.name}</div>
+          <motion.div
+            className="d-flex flex-row gap-2"
+            whileHover={{ scale: 1.1, originX: 0 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <div className="icon">{item.icon}</div>
+            <div className="list-item">{item.name}</div>
           </motion.div>
-          
         </NavLink>
       );
     }

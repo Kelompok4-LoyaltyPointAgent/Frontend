@@ -1,10 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks";
 
-const AuthLoggedIn = ({ token, redirectPath = "/", children }) => {
-  if (token) {
+const ProtectedRoute = ({ redirectPath = "/dashboard", children }) => {
+  const { state } = useAuth();
+  if (state.isAuthenticated && state.isLoaded) {
     return <Navigate to={redirectPath} replace />;
   }
-  return children ? children : <Outlet />;
+  return <Outlet />;
 };
 
-export default AuthLoggedIn;
+export default ProtectedRoute;

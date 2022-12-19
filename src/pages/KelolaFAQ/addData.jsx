@@ -1,9 +1,6 @@
-import { Axios } from "axios";
 import { useState } from "react";
 import { postFaqs } from "../../api/postFaqs";
 import "../../assets/styles/PopUp.css";
-import { axios } from "../../configs/axios";
-import { data } from "../Dashboard/DonatDashboard";
 
 const AddData = (props) => {
   const [data, setData] = useState({
@@ -12,28 +9,26 @@ const AddData = (props) => {
     category: "",
   });
   const handleInput = (e) => {
-    const newData = {...data}
-    newData[e.target.id] = e.target.value
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData)
+    console.log(newData);
   };
   const addNow = async (e) => {
     e.preventDefault();
-    try{
-        const res = await postFaqs(
-            {
-            question : data.pertanyaan,
-            answer : data.jawaban,
-            category : data.category
-        })
-        if (res.data.message === "success") {
-            console.log(res)
-            window.location.reload();
-          }
-    }catch (error){
-        console.log(error)
+    try {
+      const res = await postFaqs({
+        question: data.pertanyaan,
+        answer: data.jawaban,
+        category: data.category,
+      });
+      if (res.data.message === "success") {
+        props.setReload();
+        props.handleClose();
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
   };
 
   return (
@@ -59,7 +54,7 @@ const AddData = (props) => {
                 className="form-control"
                 id="pertanyaan"
                 name="pertanyaan"
-                onChange={(e)=> handleInput(e)}
+                onChange={(e) => handleInput(e)}
                 value={data.pertanyaan}
                 required
               />
@@ -73,9 +68,10 @@ const AddData = (props) => {
               Jawaban
             </label>
             <div className="col-sm-7">
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                style={{ height: "130px" }}
                 id="jawaban"
                 name="jawaban"
                 onChange={handleInput}

@@ -1,27 +1,40 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/styles/login.css";
 import { login } from "../api/login";
-import storage from "../utils/storage";
+import { useAuth } from "../hooks";
+import { axios } from "../configs/axios";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { dispatch } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const res = await login({ email, password });
+
       if (res.data.message == "success") {
-        storage.setToken(res.data.data.token);
+        const { data } = await axios.get("/users/me", {
+          headers: { Authorization: `Bearer ${res.data.data.token}` },
+        });
+
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            creds: data.data.name,
+            token: res.data.data.token,
+          },
+        });
+
         Swal.fire({
           title: "Login Succes!",
           text: "Welcome!",
           icon: "success",
-        }).then(function () {
-          window.location.reload();
         });
       }
     } catch (error) {
@@ -75,7 +88,7 @@ export default function Login() {
             </div>
           </form>
           <div className="text-end">
-            <a href="">Lupa Kata Sandi</a>
+            <NavLink to={"/verifikasi"}>Lupa Kata Sandi</NavLink>
           </div>
         </div>
         <div className="tombol">
