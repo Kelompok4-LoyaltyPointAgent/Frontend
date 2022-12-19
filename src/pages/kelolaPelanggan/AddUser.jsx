@@ -24,14 +24,13 @@ const AddUser = (props) => {
   const addNow = async (e) => {
     e.preventDefault();
     setIsOpen(false);
+    setIsOpen1(false);
     if (data.password.length < 8) {
       setIsOpen1(true);
     } else {
-      setIsOpen1(false);
       if (data.password != data.konfirmasiPassword) {
         setIsOpen(true);
       } else {
-        setIsOpen(false);
         try {
           const res = await postUser({
             name: data.name,

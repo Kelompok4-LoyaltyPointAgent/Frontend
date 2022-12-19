@@ -5,6 +5,8 @@ import "../assets/styles/login.css";
 import { resetPassword } from "../api/resetPassword";
 
 export default function Reset() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(false);
   const { token } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({
@@ -12,39 +14,49 @@ export default function Reset() {
     confirm_password: "",
     access_key: token,
   });
-  console.log(data);
+
   const handleInput = (e) => {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
     console.log(newData);
   };
-  console.log(token);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsOpen(false);
+    setIsOpen1(false);
 
-    try {
-      const res = await resetPassword({
-        new_password: data.new_password,
-        confirm_password: data.confirm_password,
-        access_key: data.access_key,
-      });
-      if (res.data.message == "success") {
-        Swal.fire({
-          title: "Selamat!",
-          text: "Password kamu berhasil diganti",
-          icon: "success",
-        }).then(function () {
-          navigate("/login");
-        });
-      }
-    } catch (error) {
-      if (error.response.data.message == "failed") {
-        Swal.fire({
-          title: "Failed Login",
-          text: "Wrong Username or passowrd",
-          icon: "warning",
-        });
+    if (data.password.length < 8) {
+      setIsOpen1(true);
+    } else {
+      if (data.password != data.konfirmasiPassword) {
+        setIsOpen(true);
+      } else {
+        try {
+          const res = await resetPassword({
+            new_password: data.new_password,
+            confirm_password: data.confirm_password,
+            access_key: data.access_key,
+          });
+          if (res.data.message == "success") {
+            Swal.fire({
+              title: "Selamat!",
+              text: "Password kamu berhasil diganti",
+              icon: "success",
+            }).then(function () {
+              navigate("/login");
+            });
+          }
+        } catch (error) {
+          if (error.response.data.message == "failed") {
+            Swal.fire({
+              title: "Failed Change Password",
+              text: "Wrong Username or passowrd",
+              icon: "warning",
+            });
+          }
+        }
       }
     }
   };
@@ -91,7 +103,8 @@ export default function Reset() {
             </div>
             <label>Kode Verifikasi</label>
             <div class="input-group mb-3">
-              <input style={{color:"grey"}}
+              <input
+                style={{ color: "grey" }}
                 id="access_key"
                 name="access_key"
                 value={data.access_key}
