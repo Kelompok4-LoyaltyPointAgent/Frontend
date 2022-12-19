@@ -13,6 +13,7 @@ import "../../assets/styles/pengguna.css";
 import { getPackages } from "../../api/getPackages";
 import { motion } from "framer-motion";
 import Search from "../../components/Search";
+import { Skeleton } from "@mui/material";
 
 export default function StokPaketData() {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,13 +64,6 @@ export default function StokPaketData() {
         <NewSidebar list={3} />
         <div className="w-100">
           <NavbarTop />
-          {loading ? (
-            <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          ) : (
             <div className="pt-4 ps-3 pe-3 w-100 main-overflow ">
               <div>
                 <CardTopPaket />
@@ -83,9 +77,15 @@ export default function StokPaketData() {
                         handleClose={togglePopUp}
                       />
                     )}
-                    <h4 className="pt-3 pb-2">Stok Paket</h4>
+                    <h4 className="pt-3 pb-2">{loading?
+                    <Skeleton variant="rounded" width={200} height={35}/>
+                    :
+                    <span>Paket Data</span>}</h4>
                     <div className="d-flex flex-row justify-content-between mb-3">
-                      <motion.button
+                      {loading?
+                      <Skeleton variant="rounded" width={200} height={35}/>
+                    :
+                    <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.9 }}
                         style={{
@@ -108,49 +108,56 @@ export default function StokPaketData() {
                           }}
                         />
                         Tambah Paket Data
-                      </motion.button>
-                      <Search
+                      </motion.button>}
+                      {loading?
+                      <Skeleton variant="rounded" width={200} height={35}/>
+                    :
+                    <Search
                         posts={posts}
                         setSearchResults={setSearchResult}
                         pages="stock"
                         placeHolder="Cari Nama"
                         change={change}
-                      />
+                      />}
                     </div>
-                    <table class="tablesE ">
-                      <thead
-                        style={{
-                          border: "1px solid",
-                        }}
-                      >
-                        <tr
-                          className="text-center"
-                          style={{
-                            backgroundColor: "#013B75",
-                            color: "#F5F6F7",
-                          }}
-                        >
-                          <th className="text-start">Provider</th>
-                          <th className="nama">Nama Paket</th>
-                          <th>Stok</th>
-                          <th>Hadiah Poin</th>
-                          <th>Harga (Rp)</th>
-                          <th className="aksi">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        className="text-center"
-                        style={{ color: "#013B75" }}
-                      >
-                        {currentPosts.map((item, index) => (
-                          <ItemPaket
-                            setReload={setReload}
-                            data={item}
-                            index={index}
-                          ></ItemPaket>
-                        ))}
-                      </tbody>
-                    </table>
+                    {loading?
+                    <Skeleton variant="rounded" height={370}/>
+                  :
+                  <table class="tablesE ">
+                  <thead
+                    style={{
+                      border: "1px solid",
+                    }}
+                  >
+                    <tr
+                      className="text-center"
+                      style={{
+                        backgroundColor: "#013B75",
+                        color: "#F5F6F7",
+                      }}
+                    >
+                      <th className="text-start">Provider</th>
+                      <th className="nama">Nama Paket</th>
+                      <th>Stok</th>
+                      <th>Hadiah Poin</th>
+                      <th>Harga (Rp)</th>
+                      <th className="aksi">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    className="text-center"
+                    style={{ color: "#013B75" }}
+                  >
+                    {currentPosts.map((item, index) => (
+                      <ItemPaket
+                        setReload={setReload}
+                        data={item}
+                        index={index}
+                      ></ItemPaket>
+                    ))}
+                  </tbody>
+                </table>}
+                   
                     <div className="table-pagination">
                       <Pagination
                         postsPerPage={postsPerPage}
@@ -163,7 +170,6 @@ export default function StokPaketData() {
                 </Typography>
               </Box>
             </div>
-          )}
         </div>
       </div>
     </>

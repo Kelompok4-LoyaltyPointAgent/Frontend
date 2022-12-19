@@ -13,6 +13,7 @@ import "../../assets/styles/stok.css";
 import { getCredit } from "../../api/getCredits";
 import { motion } from "framer-motion";
 import Search from "../../components/Search";
+import { Skeleton } from "@mui/material";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,16 +36,6 @@ export default function StokPulsa() {
     };
     if (loading) fetchPosts();
   }, [loading]);
-
-  // if (loading) {
-  //   return (
-  //     <div class="text-center">
-  //       <div class="spinner-border" role="status">
-  //         <span class="visually-hidden">Loading...</span>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   const change = () => {
     setCurrentPage(1);
@@ -78,52 +69,58 @@ export default function StokPulsa() {
         <NewSidebar list={3} />
         <div className="w-100">
           <NavbarTop />
-          {loading ? (
-            <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
+
+          <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
+            <div>
+              <CardTopPulsa />
             </div>
-          ) : (
-            <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
-              <div>
-                <CardTopPulsa />
-              </div>
-              <Box>
-                <Typography>
-                  <div className="w-100 judulE">
-                    {isOpen && (
-                      <AddStockPulsa
-                        setReload={setReload}
-                        handleClose={togglePopUp}
-                      />
-                    )}
-                    <h4 className="pt-3 pb-2">Stok Pulsa</h4>
-                    <div className="d-flex flex-row justify-content-between mb-3">
-                      <motion.button
-                        whileHover={{ scale: 1.03, originX: 0 }}
-                        whileTap={{ scale: 0.9 }}
-                        style={{
-                          color: "white",
-                          backgroundColor: "#197722",
-                          paddingRight: "10px",
-                          paddingLeft: "10px",
-                          borderRadius: "5px",
-                          borderWidth: "1px",
-                          borderColor: "#197722",
-                        }}
-                        onClick={togglePopUp}
-                      >
-                        <AiOutlinePlusSquare
+            <Box>
+              <Typography>
+                <div className="w-100 judulE">
+                  {isOpen && (
+                    <AddStockPulsa
+                      setReload={setReload}
+                      handleClose={togglePopUp}
+                    />
+                  )}
+                  <h4 className="pt-3 pb-2">{loading ?
+                    <Skeleton variant="rounded" width={150} height={35} />
+                    :
+                    <span>Stok Pulsa</span>}</h4>
+                  <div className="d-flex flex-row justify-content-between mb-3">
+                    {loading ?
+                      <Skeleton variant="rounded" width={200} height={35} />
+                      :
+                      <>
+                        <motion.button
+                          whileHover={{ scale: 1.03, originX: 0 }}
+                          whileTap={{ scale: 0.9 }}
                           style={{
-                            width: "20px",
-                            height: "25px",
-                            paddingBottom: "3px",
-                            marginRight: "10px",
+                            color: "white",
+                            backgroundColor: "#197722",
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                            borderRadius: "5px",
+                            borderWidth: "1px",
+                            borderColor: "#197722",
                           }}
-                        />
-                        Tambah Pulsa
-                      </motion.button>
+                          onClick={togglePopUp}
+                        ><AiOutlinePlusSquare
+                            style={{
+                              width: "20px",
+                              height: "25px",
+                              paddingBottom: "3px",
+                              marginRight: "10px",
+                            }}
+                          />
+                          Tambah Pulsa
+                        </motion.button>
+                      </>
+
+                    }
+                    {loading ?
+                      <Skeleton variant="rounded" width={200} height={35} />
+                      :
                       <Search
                         posts={posts}
                         setSearchResults={setSearchResult}
@@ -131,7 +128,12 @@ export default function StokPulsa() {
                         placeHolder="Cari Nama"
                         change={change}
                       />
-                    </div>
+                    }
+
+                  </div>
+                  {loading ?
+                    <Skeleton variant="rounded" height={370} />
+                    :
                     <table class="tablesE">
                       <thead>
                         <tr
@@ -162,19 +164,20 @@ export default function StokPulsa() {
                         ))}
                       </tbody>
                     </table>
-                    <div className="table-pagination">
-                      <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={data.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      />
-                    </div>
+                  }
+
+                  <div className="table-pagination">
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={data.length}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                    />
                   </div>
-                </Typography>
-              </Box>
-            </div>
-          )}
+                </div>
+              </Typography>
+            </Box>
+          </div>
         </div>
       </div>
     </>

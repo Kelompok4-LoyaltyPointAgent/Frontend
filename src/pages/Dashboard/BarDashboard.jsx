@@ -13,6 +13,7 @@ import { Bar } from "react-chartjs-2";
 import { Card } from "react-bootstrap";
 import { getAnalytics } from "../../api/getAnalytics";
 import { DoughnutDashboard } from "./DonatDashboard";
+import { Skeleton } from "@mui/material";
 
 ChartJS.register(
   CategoryScale,
@@ -94,14 +95,22 @@ const BarDashboard = () => {
 
   return (
     <div className="d-flex flex-row mt-5 mb-2 justify-content-between">
-      <Card className="p-3 pe-5">
-        <span className="mb-3">Tahun Ini</span>
-        <div style={{ width: 850 }}>
-          <Bar data={data} height={300} options={options} />
-        </div>
-        <span className="text-center mt-4">
-          <h4>Produk Terjual</h4>
-        </span>
+
+      <Card className="ps-3 pe-5">
+
+        <span className="mt-3">Tahun Ini</span>
+        {loading ?
+          <Skeleton variant="rounded" width={850} height={350} />
+          :
+          <>
+            <div style={{ width: 850 }}>
+              <Bar data={data} height={300} options={options} />
+            </div>
+            <span className="text-center mt-4">
+              <h4>Produk Terjual</h4>
+            </span>
+          </>
+        }
       </Card>
       <Card className="d-flex p-3">
         <DoughnutDashboard />
