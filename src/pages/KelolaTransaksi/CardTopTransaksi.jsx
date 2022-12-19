@@ -2,7 +2,6 @@ import { Skeleton } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { getTransactions } from "../../api/getTransaksi";
-
 import "../../assets/styles/cardShadow.css";
 
 const CardTopTransaksi = ({ loading }) => {

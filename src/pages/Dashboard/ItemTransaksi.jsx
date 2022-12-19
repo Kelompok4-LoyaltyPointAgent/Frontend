@@ -1,4 +1,4 @@
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import { FiPhone } from "react-icons/fi";
 import { numberFormater } from "../../components/numberFormater";
 

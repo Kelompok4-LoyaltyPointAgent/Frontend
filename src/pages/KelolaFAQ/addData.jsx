@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postFaqs } from "../../api/postFaqs";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const AddData = (props) => {
   const [data, setData] = useState({

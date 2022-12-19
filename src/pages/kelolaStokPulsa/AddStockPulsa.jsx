@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postCredits } from "../../api/postCredits";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const AddStockPulsa = (props) => {
   const [data, setData] = useState({

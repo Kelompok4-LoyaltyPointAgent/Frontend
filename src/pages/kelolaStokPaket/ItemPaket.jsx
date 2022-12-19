@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import Swal from "sweetalert2";
 import { deletePaket } from "../../api/deletePaket";
 import { numberFormater } from "../../components/numberFormater";

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Dropdown, Navbar } from "react-bootstrap";
-import "../assets/styles/NavbarTop.css";
+import "../assets/styles/navbarTop.css";
 import { motion } from "framer-motion";
 import { CgLogOff } from "react-icons/cg";
 import { BsGear } from "react-icons/bs";

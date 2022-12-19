@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import "../../assets/styles/DetailEditProduk.css";
+import "../../assets/styles/detailEditProduk.css";
 import "../../assets/styles/overflow.css";
 import EditProdukPulsa from "./EditProdukPulsa";
 import NewSidebar from "../../components/sidebar/NewSidebar";
@@ -75,7 +75,7 @@ const DetailEditProdukPulsa = () => {
                         backgroundColor: "#fff",
                       }}
                       alt="productPicture"
-                      src={data.product_picture?.url}
+                      src={data.icon?.url}
                     />
                   </Col>
                   <Col
