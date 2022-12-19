@@ -2,7 +2,6 @@ import "../../assets/styles/Button.css";
 
 const ItemAdmin = ({ data, index, sentData, toggle }) => {
 
-
   const editItem = (data) => {
     sentData(data);
     toggle();
