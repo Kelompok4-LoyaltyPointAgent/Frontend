@@ -35,10 +35,6 @@ export default function KelolaAdmin() {
     setLoading(true);
   };
 
-  const setReload = () => {
-    setLoading(true);
-  };
-
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

@@ -57,13 +57,6 @@ const NavbarTop = () => {
               >
                 <Dropdown.Item
                   className="dd-item-admin"
-                  style={{ padding: 0, margin: 0 }}
-                >
-                  <BsGear className="icon-setting" />
-                  Ganti Password
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className="dd-item-admin"
                   onClick={logOut}
                   style={{ padding: 0, margin: 0 }}
                 >
