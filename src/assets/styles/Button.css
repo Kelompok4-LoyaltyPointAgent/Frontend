@@ -4,7 +4,10 @@
   cursor: pointer;
 }
 .file-button:hover {
-  color: aqua;
+  color: white;
+  padding: 2px 3px 2px 3px;
+  background-color: #005985;
+  border-radius: 3px;
 }
 
 .delete-button {
@@ -13,5 +16,8 @@
   cursor: pointer;
 }
 .delete-button:hover {
-  color: aqua;
+  color: white;
+  padding: 2px 3px 2px 3px;
+  background-color: #991628;
+  border-radius: 3px;
 }

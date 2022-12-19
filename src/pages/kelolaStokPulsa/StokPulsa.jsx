@@ -8,11 +8,12 @@ import NavbarTop from "../../components/NavbarTop";
 import AddStockPulsa from "./AddStockPulsa";
 import ItemPulsa from "./ItemPulsa";
 import CardTopPulsa from "./CardTopPulsa";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/stok.css";
 import { getCredit } from "../../api/getCredits";
 import { motion } from "framer-motion";
 import Search from "../../components/Search";
+import { Skeleton } from "@mui/material";
 
 export default function StokPulsa() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +29,14 @@ export default function StokPulsa() {
         const res = await getCredit();
         setPosts(res.data.data);
         setData(res.data.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
+
   const change = () => {
     setCurrentPage(1);
   };
@@ -67,6 +69,7 @@ export default function StokPulsa() {
         <NewSidebar list={3} />
         <div className="w-100">
           <NavbarTop />
+
           <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
             <div>
               <CardTopPulsa />
@@ -80,64 +83,89 @@ export default function StokPulsa() {
                       handleClose={togglePopUp}
                     />
                   )}
-                  <h4 className="pt-3 pb-2">Stok Pulsa</h4>
+                  <h4 className="pt-3 pb-2">{loading ?
+                    <Skeleton variant="rounded" width={150} height={35} />
+                    :
+                    <span>Stok Pulsa</span>}</h4>
                   <div className="d-flex flex-row justify-content-between mb-3">
-                    <motion.button
-                      whileHover={{ scale: 1.03, originX: 0 }}
-                      whileTap={{ scale: 0.9 }}
-                      style={{
-                        color: "white",
-                        backgroundColor: "#197722",
-                        paddingRight: "10px",
-                        paddingLeft: "10px",
-                        borderRadius: "5px",
-                        borderWidth: "1px",
-                        borderColor: "#197722",
-                      }}
-                      onClick={togglePopUp}
-                    >
-                      <AiOutlinePlusSquare
-                        style={{
-                          width: "20px",
-                          height: "25px",
-                          paddingBottom: "3px",
-                          marginRight: "10px",
-                        }}
+                    {loading ?
+                      <Skeleton variant="rounded" width={200} height={35} />
+                      :
+                      <>
+                        <motion.button
+                          whileHover={{ scale: 1.03, originX: 0 }}
+                          whileTap={{ scale: 0.9 }}
+                          style={{
+                            color: "white",
+                            backgroundColor: "#197722",
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                            borderRadius: "5px",
+                            borderWidth: "1px",
+                            borderColor: "#197722",
+                          }}
+                          onClick={togglePopUp}
+                        ><AiOutlinePlusSquare
+                            style={{
+                              width: "20px",
+                              height: "25px",
+                              paddingBottom: "3px",
+                              marginRight: "10px",
+                            }}
+                          />
+                          Tambah Pulsa
+                        </motion.button>
+                      </>
+
+                    }
+                    {loading ?
+                      <Skeleton variant="rounded" width={200} height={35} />
+                      :
+                      <Search
+                        posts={posts}
+                        setSearchResults={setSearchResult}
+                        pages="stock"
+                        placeHolder="Cari Nama"
+                        change={change}
                       />
-                      Tambah Pulsa
-                    </motion.button>
-                    <Search
-                      posts={posts}
-                      setSearchResults={setSearchResult}
-                      pages="stock"
-                      placeHolder="Cari Nama"
-                      change={change}
-                    />
+                    }
+
                   </div>
-                  <table class="tablesE">
-                    <thead>
-                      <tr
+                  {loading ?
+                    <Skeleton variant="rounded" height={370} />
+                    :
+                    <table class="tablesE">
+                      <thead>
+                        <tr
+                          className="text-center"
+                          style={{
+                            backgroundColor: "#013B75",
+                            color: "#F5F6F7",
+                          }}
+                        >
+                          <th className="text-start">Provider</th>
+                          <th className="nama">Nama Produk</th>
+                          <th>Stok</th>
+                          <th>Hadiah Poin</th>
+                          <th>Harga (Rp)</th>
+                          <th className="aksi">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody
                         className="text-center"
-                        style={{ backgroundColor: "#013B75", color: "#F5F6F7" }}
+                        style={{ color: "#013B75" }}
                       >
-                        <th className="text-start">Provider</th>
-                        <th>Nama Produk</th>
-                        <th>Stok</th>
-                        <th>Hadiah Poin</th>
-                        <th>Harga (Rp)</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-center" style={{ color: "#013B75" }}>
-                      {currentPosts?.map((item, index) => (
-                        <ItemPulsa
-                          setReload={setReload}
-                          data={item}
-                          index={index}
-                        ></ItemPulsa>
-                      ))}
-                    </tbody>
-                  </table>
+                        {currentPosts?.map((item, index) => (
+                          <ItemPulsa
+                            setReload={setReload}
+                            data={item}
+                            index={index}
+                          ></ItemPulsa>
+                        ))}
+                      </tbody>
+                    </table>
+                  }
+
                   <div className="table-pagination">
                     <Pagination
                       postsPerPage={postsPerPage}

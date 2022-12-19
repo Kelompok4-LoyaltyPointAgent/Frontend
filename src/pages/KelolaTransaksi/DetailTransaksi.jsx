@@ -3,18 +3,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../../assets/styles/DetailEditProduk.css";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import { numberFormater } from "../../components/numberFormater";
 import { getDetailTransaksi } from "../../api/getDetailTransaksi";
-import '../../assets/styles/warnaTransaksi.css';
+import "../../assets/styles/warnaTransaksi.css";
 
 const DetailTransaksi = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await getDetailTransaksi(id);
@@ -23,7 +23,7 @@ const DetailTransaksi = () => {
     fetchPosts(data);
   }, [id]);
 
-  console.log(data)
+  console.log(data);
   const warna = () => {
     if (data.status == "Success") {
       return "sukses";
@@ -52,7 +52,7 @@ const DetailTransaksi = () => {
                 <Row>
                   <Col sm={2} lg={2} className="d-flex justify-content-end">
                     <i>
-                    <img
+                      <img
                         style={{ height: "120px" }}
                         alt="iconproduk"
                         src={require("../../assets/images/ProdukTransaksi/Frame 33773.png")}
@@ -71,7 +71,15 @@ const DetailTransaksi = () => {
                       <h2>Rp {numberFormater(data.amount)}</h2>
                     </p>
                     <i>
-                    <p style={{fontSize:"24px", padding:"10px 20px 10px 20px"}} className={warna()}>{data.status}</p>
+                      <p
+                        style={{
+                          fontSize: "24px",
+                          padding: "10px 20px 10px 20px",
+                        }}
+                        className={warna()}
+                      >
+                        {data.status}
+                      </p>
                     </i>
                   </Col>
                   <Col
@@ -79,20 +87,20 @@ const DetailTransaksi = () => {
                     lg={2}
                     className="d-flex justify-content-end pe-4 text-center"
                   >
-                        <p
-                          style={{
-                            margin: "0px",
-                            marginTop: "20px",
-                            marginLeft:"1px",
-                            backgroundColor:"#FBB505",
-                            color:"#013B75",
-                            padding:"10px 20px 10px 20px",
-                            height:"45px",
-                            borderRadius:"5px"
-                          }}
-                        >
-                          <h5>{data.type}</h5>
-                        </p>
+                    <p
+                      style={{
+                        margin: "0px",
+                        marginTop: "20px",
+                        marginLeft: "1px",
+                        backgroundColor: "#FBB505",
+                        color: "#013B75",
+                        padding: "10px 20px 10px 20px",
+                        height: "45px",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      <h5>{data.type}</h5>
+                    </p>
                   </Col>
                 </Row>
               </Card.ImgOverlay>
@@ -100,9 +108,7 @@ const DetailTransaksi = () => {
                 <Card.Text className="text-overflow">
                   <div className="mt-2 d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">NAMA</p>
-                    <p className="detail-produk-text">
-                      {data.user?.name}
-                    </p>
+                    <p className="detail-produk-text">{data.user?.name}</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">EMAIL</p>
@@ -116,9 +122,7 @@ const DetailTransaksi = () => {
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">NAMA</p>
-                    <p className="detail-produk-text">
-                      -
-                    </p>
+                    <p className="detail-produk-text">-</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">NILAI</p>
@@ -128,27 +132,19 @@ const DetailTransaksi = () => {
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">METODE</p>
-                    <p className="detail-produk-text">
-                      {data.method}
-                    </p>
+                    <p className="detail-produk-text">{data.method}</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">Status</p>
-                    <p className="detail-produk-text">
-                      {data.status}
-                    </p>
+                    <p className="detail-produk-text">{data.status}</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">TIPE</p>
-                    <p className="detail-produk-text">
-                      {data.type}
-                    </p>
+                    <p className="detail-produk-text">{data.type}</p>
                   </div>
                   <div className="d-flex justify-content-between list-detail">
                     <p className="detail-produk-text">TANGGAL TRANSAKSI</p>
-                    <p className="detail-produk-text">
-                      {data.created_date}
-                    </p>
+                    <p className="detail-produk-text">{data.created_date}</p>
                   </div>
                 </Card.Text>
                 <div

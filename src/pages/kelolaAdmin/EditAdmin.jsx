@@ -43,7 +43,7 @@ const EditAdmin = (props) => {
               for="inputName"
               className="offset-sm-1 col-sm-3 col-form-label"
             >
-                Nama
+              Nama Lengkap
             </label>
             <div className="col-sm-7">
               <input

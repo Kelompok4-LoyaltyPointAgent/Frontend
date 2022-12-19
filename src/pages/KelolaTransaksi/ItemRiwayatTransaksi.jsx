@@ -12,7 +12,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       return "sukses";
     } else if (data.status == "Pending") {
       return "pending";
-    } else if (data.status == "Gagal") {
+    } else if (data.status == "Failed") {
       return "gagal";
     }
   };
@@ -39,9 +39,9 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
           {data.transaction_detail?.number}
         </div>
       </td>
-      <td className="col-1">{data.user?.name}</td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
+      <td className="col-1">{data.product_id ? data.product?.type : "Poin"}</td>
       <td className="col-1">{numberFormater(data.amount)}</td>
       <td className="col-1">
         <p className={warna()}>{data.status}</p>

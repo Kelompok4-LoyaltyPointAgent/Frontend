@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Button, Card } from "react-bootstrap";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { TextField } from "@mui/material";
-import { BiSearch, BiSortDown } from "react-icons/bi";
-import AddUser from "../kelolaPelanggan/AddUser";
+import { Button, Card, Spinner } from "react-bootstrap";
 import ItemAdmin from "./ItemAdmin";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getAdmin } from "../../api/getAdmin";
 import EditAdmin from "./EditAdmin";
-import Search from "../../components/Search";
+import { Skeleton } from "@mui/material";
 
 export default function KelolaAdmin() {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(2);
   const [editData, setEditData] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -30,14 +26,13 @@ export default function KelolaAdmin() {
       const res = await getAdmin();
       setPosts(res.data.data);
       setData(res.data.data);
+      setLoading(false);
     };
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
 
-  console.log(data)
-  const change = () => {
-    setCurrentPage(1);
+  const setReload = () => {
+    setLoading(true);
   };
 
   const setReload = () => {
@@ -70,65 +65,79 @@ export default function KelolaAdmin() {
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
-          <div className="mt-4 ps-3 pe-3 w-100">
-            <Card className="box-overflow kotak">
-              <div className="judul">
-                <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Admin</h4>
-              </div>
-              <Box sx={{ p: 3 }}>
-                <Typography>
-                  <div className="w-100">
-                    {isOpen && (
-                      <EditAdmin
-                        data={editData}
-                        setReload={setReload}
-                        handleClose={togglePopUpEdit}
-                      />
-                    )}
-                    <div className="d-flex flex-row justify-content-end mb-3">
+            <div className="mt-4 ps-3 pe-3 w-100">
+              <Card className="box-overflow kotak">
+                <div className="judul">
+                  <h4 className="mb-4 mt-1 ps-4 pt-3">{
+                    loading ?
+                      <Skeleton variant="rounded" width={170} height={35} />
+                      :
+                      <span>Kelola Admin</span>
+                  }
+                  </h4>
+                </div>
+                <Box sx={{ p: 3 }}>
+                  <Typography>
+                    <div className="w-100">
+                      {isOpen && (
+                        <EditAdmin
+                          data={editData}
+                          setReload={setReload}
+                          handleClose={togglePopUpEdit}
+                        />
+                      )}
+
+
+                      <table class="tables">
+                        {loading ?
+                          <Skeleton variant="rounded" height={150} />
+                          :
+                          <>
+                          <thead>
+                            <tr
+                              className="text-center"
+                              style={{
+                                backgroundColor: "#013B75",
+                                color: "white",
+                              }}
+                            >
+                              <th>Nama Lengkap</th>
+                              <th>Email/Username</th>
+                              <th>Password</th>
+                              <th className="aksi">Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="text-center"
+                            style={{ color: "#013B75" }}
+                          >
+                            {currentPosts.map((item, index) => (
+                              <ItemAdmin
+                                setReload={setReload}
+                                data={item}
+                                index={index}
+                                toggle={togglePopUpEdit}
+                                sentData={itemData}
+                                loading={loading}
+                              ></ItemAdmin>
+                            ))}
+                          </tbody>
+                        </>
+                        }
+                      </table>
+                      <div className="table-pagination">
+                        <Pagination
+                          postsPerPage={postsPerPage}
+                          totalPosts={posts.length}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                        />
+                      </div>
                     </div>
-                    <table class="tables">
-                      <thead>
-                        <tr
-                          className="text-center"
-                          style={{ backgroundColor: "#013B75", color: "white" }}
-                        >
-                          <th>Nama Lengkap</th>
-                          <th>Email/Username</th>
-                          <th>Password</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        className="text-center"
-                        style={{ color: "#013B75" }}
-                      >
-                        {currentPosts.map((item, index) => (
-                          <ItemAdmin setReload={setReload}
-                            data={item}
-                            index={index}
-                            toggle={togglePopUpEdit}
-                            sentData={itemData}>
-                          </ItemAdmin>
-                        ))}
-                      </tbody>
-                    </table>
-                    <div className="d-flex align-items-center">
-                    <div className="table-pagination">
-                      <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={posts.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      />
-                    </div>
-                    </div>
-                    
-                  </div>
-                </Typography>
-              </Box>
-            </Card>
-          </div>
+                  </Typography>
+                </Box>
+              </Card>
+            </div>
         </div>
       </div>
     </>

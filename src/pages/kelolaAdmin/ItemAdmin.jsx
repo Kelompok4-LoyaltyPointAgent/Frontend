@@ -6,7 +6,6 @@ const ItemAdmin = ({ data, index, sentData, toggle }) => {
     sentData(data);
     toggle();
   };
-
   return (
     <tr
       style={
@@ -19,8 +18,11 @@ const ItemAdmin = ({ data, index, sentData, toggle }) => {
       <td className="col-2">{data.email}</td>
       <td className="col-1">*******</td>
       <td className="col-1">
-        <i onClick={() => editItem(data)}
-          className="bi bi-file-earmark-text file-button"></i>
+        <i
+          className="bi bi-file-earmark-text file-button"
+          onClick={() => editItem(data)}
+        ></i>
+
       </td>
     </tr>
   );

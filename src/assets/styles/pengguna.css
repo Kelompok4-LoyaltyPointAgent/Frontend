@@ -13,15 +13,18 @@
   font-weight: 1000;
 }
 .tables {
-  border-radius: 20px;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
   border-collapse: collapse;
-  border-radius: 1em;
   overflow: hidden;
   table-layout: fixed;
 }
 .tables tr > th,
 .tables tr > td {
   padding: 13px 0;
+}
+.tables .aksi {
+  width: 10%;
 }
 
 .tables thead th:first-child,

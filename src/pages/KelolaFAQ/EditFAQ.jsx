@@ -66,9 +66,10 @@ const EditFAQ = (props) => {
               Jawaban
             </label>
             <div className="col-sm-7">
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                style={{ height: "130px" }}
                 id="inputAnswer"
                 name="answer"
                 onChange={handleInput}

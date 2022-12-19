@@ -8,11 +8,12 @@ import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
 import ItemPelanggan from "./ItemPelanggan";
-import "../../assets/styles/Overflow.css";
+import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getUsers } from "../../api/getPengguna";
 import Search from "../../components/Search";
 import Loading from "../../components/Loading";
+import { Skeleton } from "@mui/material";
 
 export default function KelolaPelanggan() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,9 @@ export default function KelolaPelanggan() {
       const res = await getUsers();
       setPosts(res.data.data);
       setData(res.data.data);
+      setLoading(false);
     };
     if (loading) fetchPosts();
-    setLoading(false);
   }, [loading]);
 
   const change = () => {
@@ -65,7 +66,13 @@ export default function KelolaPelanggan() {
           <div className="mt-4 ps-3 pe-3 w-100">
             <Card className="box-overflow kotak">
               <div className="judul">
-                <h4 className="mb-4 mt-1 ps-4 pt-3">Kelola Pengguna</h4>
+                <h4 className="mb-4 mt-1 ps-4 pt-3">
+                  {loading ?
+                    <Skeleton  variant="rounded" width={210} height={35} />
+                    :
+                    <span>Kelola Pengguna</span>
+                  }
+                </h4>
               </div>
               <Box sx={{ pt: 3, pl: 3, pr: 1 }}>
                 <Typography>
@@ -77,7 +84,10 @@ export default function KelolaPelanggan() {
                       />
                     )}
                     <div className="d-flex flex-row justify-content-between mb-3">
-                      <Button variant="success" onClick={togglePopUp}>
+                      {loading?
+                      <Skeleton variant="rounded" width={200} height={35}/>
+                    :
+                    <Button variant="success" onClick={togglePopUp}>
                         <AiOutlinePlusSquare
                           style={{
                             width: "20px",
@@ -88,6 +98,12 @@ export default function KelolaPelanggan() {
                         />
                         Tambah Pengguna
                       </Button>
+                    }
+                      
+                      <div>
+                        {loading?
+                        <Skeleton variant="rounded" width={200} height={35}/>
+                      :
                       <Search
                         posts={posts}
                         setSearchResults={setSearchResult}
@@ -95,36 +111,46 @@ export default function KelolaPelanggan() {
                         placeHolder="Cari Nama,Email"
                         change={change}
                       />
+                      }
+                      </div>
+
+                      
                     </div>
                     <table class="tables">
-                      <thead>
-                        <tr
-                          className="text-center"
-                          style={{
-                            backgroundColor: "#013B75",
-                            color: "white",
-                          }}
-                        >
-                          <th>Nama Lengkap</th>
-                          <th>Email/Username</th>
-                          <th>Poin</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        className="text-center"
-                        style={{ color: "#013B75" }}
-                      >
-                        {currentPosts.map((item, index) => (
-                          <ItemPelanggan
-                            data={item}
-                            index={index}
-                            setReload={setReload}
-                          ></ItemPelanggan>
-                        ))}
-                      </tbody>
-                    </table>
+                      {loading ?
+                        <Skeleton variant="rectangular" height={370}/>
+                        :
+                        <>
+                          <thead>
+                            <tr
+                              className="text-center"
+                              style={{
+                                backgroundColor: "#013B75",
+                                color: "white",
+                              }}
+                            >
+                              <th>Nama Lengkap</th>
+                              <th>Email/Username</th>
+                              <th>Poin</th>
+                              <th className="aksi">Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="text-center"
+                            style={{ color: "#013B75" }}
+                          >
+                            {currentPosts.map((item, index) => (
+                              <ItemPelanggan
+                                data={item}
+                                index={index}
+                                setReload={setReload}
+                              ></ItemPelanggan>
+                            ))}
+                          </tbody>
 
+                        </>
+                      }
+                    </table>
                     <div className="table-pagination">
                       <Pagination
                         postsPerPage={postsPerPage}
