@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updateUser } from "../../api/updateUser";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const EditAdmin = (props) => {
   const [data, setData] = useState({

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { deletePulsa } from "../../api/deletePulsa";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import { numberFormater } from "../../components/numberFormater";
 
 const ItemPulsa = ({ setReload, data, index }) => {

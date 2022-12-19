@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updatePulsa } from "../../api/updatePulsa";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const EditProdukPulsa = (props) => {
   const [data, setData] = useState({

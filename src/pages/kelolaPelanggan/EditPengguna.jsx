@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 import { updateUser } from "../../api/updateUser";
 
 const EditPengguna = (props) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import { FiPhone } from "react-icons/fi";
 import Swal from "sweetalert2";
 import "../../assets/styles/warnaTransaksi.css";

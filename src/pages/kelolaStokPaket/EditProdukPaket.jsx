@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updatePaket } from "../../api/updatePaket";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const EditProdukPaket = (props) => {
   const [data, setData] = useState({
