@@ -72,7 +72,7 @@ export default function StokPulsa() {
 
           <div className="pt-4 ps-3 pe-3 w-100 main-overflow">
             <div>
-              <CardTopPulsa />
+              <CardTopPulsa loading={loading} />
             </div>
             <Box>
               <Typography>
@@ -83,14 +83,17 @@ export default function StokPulsa() {
                       handleClose={togglePopUp}
                     />
                   )}
-                  <h4 className="pt-3 pb-2">{loading ?
-                    <Skeleton variant="rounded" width={150} height={35} />
-                    :
-                    <span>Stok Pulsa</span>}</h4>
+                  <h4 className="pt-3 pb-2">
+                    {loading ? (
+                      <Skeleton variant="rounded" width={150} height={35} />
+                    ) : (
+                      <span>Stok Pulsa</span>
+                    )}
+                  </h4>
                   <div className="d-flex flex-row justify-content-between mb-3">
-                    {loading ?
+                    {loading ? (
                       <Skeleton variant="rounded" width={200} height={35} />
-                      :
+                    ) : (
                       <>
                         <motion.button
                           whileHover={{ scale: 1.03, originX: 0 }}
@@ -105,7 +108,8 @@ export default function StokPulsa() {
                             borderColor: "#197722",
                           }}
                           onClick={togglePopUp}
-                        ><AiOutlinePlusSquare
+                        >
+                          <AiOutlinePlusSquare
                             style={{
                               width: "20px",
                               height: "25px",
@@ -116,24 +120,22 @@ export default function StokPulsa() {
                           Tambah Pulsa
                         </motion.button>
                       </>
-
-                    }
-                    {loading ?
+                    )}
+                    {loading ? (
                       <Skeleton variant="rounded" width={200} height={35} />
-                      :
+                    ) : (
                       <Search
                         posts={posts}
                         setSearchResults={setSearchResult}
                         pages="stock"
-                        placeHolder="Cari Nama"
+                        placeHolder="Cari Provider, Nama"
                         change={change}
                       />
-                    }
-
+                    )}
                   </div>
-                  {loading ?
+                  {loading ? (
                     <Skeleton variant="rounded" height={370} />
-                    :
+                  ) : (
                     <table class="tablesE">
                       <thead>
                         <tr
@@ -155,16 +157,22 @@ export default function StokPulsa() {
                         className="text-center"
                         style={{ color: "#013B75" }}
                       >
-                        {currentPosts?.map((item, index) => (
-                          <ItemPulsa
-                            setReload={setReload}
-                            data={item}
-                            index={index}
-                          ></ItemPulsa>
-                        ))}
+                        {currentPosts[0].length != 0 ? (
+                          currentPosts?.map((item, index) => (
+                            <ItemPulsa
+                              setReload={setReload}
+                              data={item}
+                              index={index}
+                            ></ItemPulsa>
+                          ))
+                        ) : (
+                          <span className="position-absolute top-50 start-50 translate-middle fs-3">
+                            Data Tidak Ditemukan
+                          </span>
+                        )}
                       </tbody>
                     </table>
-                  }
+                  )}
 
                   <div className="table-pagination">
                     <Pagination

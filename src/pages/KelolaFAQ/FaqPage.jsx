@@ -6,14 +6,15 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import Pagination from "../../components/Pagination";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import NavbarTop from "../../components/NavbarTop";
-import ItemFAQ from "./itemFAQ";
-import AddData from "./addData";
+import ItemFAQ from "./ItemFAQ";
+import AddData from "./AddData";
 import "../../assets/styles/overflow.css";
 import "../../assets/styles/stok.css";
 import { getFaqs } from "../../api/getFaqs";
 import { motion } from "framer-motion";
 import EditFAQ from "./EditFAQ";
 import Search from "../../components/Search";
+import { Skeleton } from "@mui/material";
 
 export default function KelolaFAQ() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,37 +76,38 @@ export default function KelolaFAQ() {
         <NewSidebar />
         <div className="w-100">
           <NavbarTop />
-          {loading ? (
-            <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+
+          <div className="mt-4 ps-3 pe-3 w-100">
+            <Card className="box-overflow">
+              <div className="judul">
+                <h4 className="mb-4 mt-1 ps-3 pt-3">
+                  {loading ? (
+                    <Skeleton variant="rounded" width={170} height={35} />
+                  ) : (
+                    <span>Kelola Frequently Asked Question</span>
+                  )}
+                </h4>
               </div>
-            </div>
-          ) : (
-            <div className="mt-4 ps-3 pe-3 w-100">
-              <Card className="box-overflow">
-                <div className="judul">
-                  <h4 className="mb-4 mt-1 ps-3 pt-3">
-                    Kelola Frequently Asked Question
-                  </h4>
-                </div>
-                <Box sx={{ p: 3 }}>
-                  <Typography>
-                    <div className="w-100">
-                      {isOpen && (
-                        <AddData
-                          setReload={setReload}
-                          handleClose={togglePopUp}
-                        />
-                      )}
-                      {isOpen1 && (
-                        <EditFAQ
-                          data={editData}
-                          setReload={setReload}
-                          handleClose={togglePopUpEdit}
-                        />
-                      )}
-                      <div className="d-flex flex-row justify-content-between mb-3">
+              <Box sx={{ p: 3 }}>
+                <Typography>
+                  <div className="w-100">
+                    {isOpen && (
+                      <AddData
+                        setReload={setReload}
+                        handleClose={togglePopUp}
+                      />
+                    )}
+                    {isOpen1 && (
+                      <EditFAQ
+                        data={editData}
+                        setReload={setReload}
+                        handleClose={togglePopUpEdit}
+                      />
+                    )}
+                    <div className="d-flex flex-row justify-content-between mb-3">
+                      {loading ? (
+                        <Skeleton variant="rounded" width={200} height={35} />
+                      ) : (
                         <motion.button
                           whileHover={{ scale: 1.03, originX: 0 }}
                           whileTap={{ scale: 0.9 }}
@@ -130,58 +132,74 @@ export default function KelolaFAQ() {
                           />
                           Tambah Item
                         </motion.button>
+                      )}
+                      {loading ? (
+                        <Skeleton variant="rounded" width={200} height={35} />
+                      ) : (
                         <Search
                           posts={posts}
                           setSearchResults={setSearchResult}
                           pages="faq"
-                          placeHolder="Cari Nama,Email"
+                          placeHolder="Cari Pertanyaan, jawaban"
                           change={change}
                         />
-                      </div>
-                      <table class="tablesE mb-4">
-                        <thead>
-                          <tr
-                            className="text-center"
-                            style={{
-                              backgroundColor: "#013B75",
-                              color: "white",
-                            }}
-                          >
-                            <th className="pertanyaan">Pertanyaan</th>
-                            <th className="jawaban">Jawaban</th>
-                            <th>Kategori</th>
-                            <th className="aksi">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody
-                          className="text-center"
-                          style={{ color: "#013B75" }}
-                        >
-                          {currentPosts.map((item, index) => (
-                            <ItemFAQ
-                              setReload={setReload}
-                              data={item}
-                              index={index}
-                              toggle={togglePopUpEdit}
-                              sentData={itemData}
-                            ></ItemFAQ>
-                          ))}
-                        </tbody>
-                      </table>
-                      <div className="d-flex justify-content-center">
-                        <Pagination
-                          postsPerPage={postsPerPage}
-                          totalPosts={data.length}
-                          paginate={paginate}
-                          currentPage={currentPage}
-                        />
-                      </div>
+                      )}
                     </div>
-                  </Typography>
-                </Box>
-              </Card>
-            </div>
-          )}
+                    <table class="tablesE mb-4">
+                      {loading ? (
+                        <Skeleton variant="rectangular" height={370} />
+                      ) : (
+                        <>
+                          <thead>
+                            <tr
+                              className="text-center"
+                              style={{
+                                backgroundColor: "#013B75",
+                                color: "white",
+                              }}
+                            >
+                              <th className="pertanyaan">Pertanyaan</th>
+                              <th className="jawaban">Jawaban</th>
+                              <th>Kategori</th>
+                              <th className="aksi">Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="text-center"
+                            style={{ color: "#013B75" }}
+                          >
+                            {currentPosts[0].length != 0 ? (
+                              currentPosts.map((item, index) => (
+                                <ItemFAQ
+                                  setReload={setReload}
+                                  data={item}
+                                  index={index}
+                                  toggle={togglePopUpEdit}
+                                  sentData={itemData}
+                                ></ItemFAQ>
+                              ))
+                            ) : (
+                              <span className="position-absolute top-50 start-50 translate-middle fs-3">
+                                Data Tidak Ditemukan
+                              </span>
+                            )}
+                          </tbody>
+                        </>
+                      )}
+                    </table>
+                    <div className="d-flex justify-content-center">
+                      <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={data.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                      />
+                    </div>
+                  </div>
+                </Typography>
+              </Box>
+            </Card>
+          </div>
         </div>
       </div>
     </>

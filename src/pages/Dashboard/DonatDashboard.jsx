@@ -6,9 +6,9 @@ import { Skeleton } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function DoughnutDashboard() {
+export function DoughnutDashboard({ loading }) {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingx, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -17,9 +17,9 @@ export function DoughnutDashboard() {
     };
     fetchPosts();
     setTimeout(isReload, 5000);
-  }, [loading]);
+  }, [loadingx]);
   const isReload = () => {
-    setLoading(!loading);
+    setLoading(!loadingx);
   };
 
   const takeData = posts.transactions_by_type?.map((item) => item);
@@ -47,12 +47,12 @@ export function DoughnutDashboard() {
   return (
     <>
       <div style={{ width: 250, height: 400 }}>
-        <span className="mb-3">Aktivitas</span>
-        {loading ?
+        <span className="mb-3 boltP">Aktivitas</span>
+        {loading ? (
           <Skeleton variant="rounded" width={250} height={350} />
-          :
+        ) : (
           <Doughnut data={data} />
-        }
+        )}
       </div>
     </>
   );

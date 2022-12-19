@@ -5,6 +5,7 @@ import NavbarTop from "../../components/NavbarTop";
 import NewSidebar from "../../components/sidebar/NewSidebar";
 import "../../assets/styles/overflow.css";
 import "../../assets/styles/feedback.css";
+import { Skeleton } from "@mui/material";
 
 const FeedbacksPage = () => {
   const [data, setData] = useState([]);
@@ -24,17 +25,25 @@ const FeedbacksPage = () => {
       <NewSidebar />
       <div className="w-100">
         <NavbarTop />
-        {loading ? (
-          <div class="position-absolute top-50 start-50 translate-middle ms-5 ps-5">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        ) : (
-          <div className="ps-3 pe-3 w-100 pt-3 feedback-overflow judulF">
-            <h4 className="mb-4 mt-1 pt-3 ">Feedback Pelanggan</h4>
-            <div className="d-flex flex-row flex-wrap gap-4 justify-content-center pt-3">
-              {data.map((item) => (
+
+        <div className="ps-3 pe-3 w-100 pt-3 feedback-overflow judulF">
+          <h4 className="mb-4 mt-1 pt-3 ">
+            {loading ? (
+              <Skeleton variant="rounded" width={250} height={35} />
+            ) : (
+              <span>Feedback Pelanggan</span>
+            )}
+          </h4>
+          <div className="d-flex flex-row flex-wrap gap-4 justify-content-center pt-3">
+            {loading ? (
+              <>
+                <Skeleton variant="rounded" width={500} height={250} />
+                <Skeleton variant="rounded" width={500} height={250} />
+                <Skeleton variant="rounded" width={500} height={250} />
+                <Skeleton variant="rounded" width={500} height={250} />
+              </>
+            ) : (
+              data.map((item) => (
                 <Card
                   style={{
                     height: "35vh",
@@ -68,10 +77,10 @@ const FeedbacksPage = () => {
                     </div>
                   </Card.Body>
                 </Card>
-              ))}
-            </div>
+              ))
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

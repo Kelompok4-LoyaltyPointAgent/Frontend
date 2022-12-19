@@ -35,7 +35,7 @@ const EditAdmin = (props) => {
           x
         </span>
         <h2 className="mb-4 mt-2">
-          <center>Edit Faq</center>
+          <center>Edit Admin</center>
         </h2>
         <form onSubmit={addNow}>
           <div className="form-group row mb-2">

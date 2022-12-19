@@ -5,9 +5,9 @@ import { getAnalyticsProduk } from "../../api/getAnalyticsProduk";
 import { numberFormater } from "../../components/numberFormater";
 import { Skeleton } from "@mui/material";
 
-const CardTopPaket = () => {
+const CardTopPaket = ({ loading }) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingx, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,16 +16,16 @@ const CardTopPaket = () => {
     };
     fetchPosts();
     setTimeout(isReload, 5000);
-  }, [loading]);
+  }, [loadingx]);
 
   const isReload = () => {
-    setLoading(!loading);
+    setLoading(!loadingx);
   };
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
-      {loading ?
+      {loading ? (
         <Skeleton variant="rounded" width={400} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -42,10 +42,11 @@ const CardTopPaket = () => {
           <span className="mb-2 ms-2" style={{ color: "#2B669F" }}>
             <h5>{posts.totalProduct}</h5>
           </span>
-        </Card>}
-      {loading ?
+        </Card>
+      )}
+      {loading ? (
         <Skeleton variant="rounded" width={400} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -63,10 +64,10 @@ const CardTopPaket = () => {
             <h5>Rp. {numberFormater(posts.cashoutBalance)}</h5>
           </span>
         </Card>
-      }
-      {loading ?
+      )}
+      {loading ? (
         <Skeleton variant="rounded" width={400} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -84,8 +85,7 @@ const CardTopPaket = () => {
             <h5>{posts.totalProvider}</h5>
           </span>
         </Card>
-      }
-
+      )}
     </div>
   );
 };

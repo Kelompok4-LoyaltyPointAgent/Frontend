@@ -35,7 +35,6 @@ export default function KelolaAdmin() {
     setLoading(true);
   };
 
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let currentPosts = "";
@@ -61,34 +60,33 @@ export default function KelolaAdmin() {
         <NewSidebar list={1} />
         <div className="w-100">
           <NavbarTop />
-            <div className="mt-4 ps-3 pe-3 w-100">
-              <Card className="box-overflow kotak">
-                <div className="judul">
-                  <h4 className="mb-4 mt-1 ps-4 pt-3">{
-                    loading ?
-                      <Skeleton variant="rounded" width={170} height={35} />
-                      :
-                      <span>Kelola Admin</span>
-                  }
-                  </h4>
-                </div>
-                <Box sx={{ p: 3 }}>
-                  <Typography>
-                    <div className="w-100">
-                      {isOpen && (
-                        <EditAdmin
-                          data={editData}
-                          setReload={setReload}
-                          handleClose={togglePopUpEdit}
-                        />
-                      )}
+          <div className="mt-4 ps-3 pe-3 w-100">
+            <Card className="box-overflow kotak">
+              <div className="judul">
+                <h4 className="mb-4 mt-1 ps-4 pt-3">
+                  {loading ? (
+                    <Skeleton variant="rounded" width={170} height={35} />
+                  ) : (
+                    <span>Kelola Admin</span>
+                  )}
+                </h4>
+              </div>
+              <Box sx={{ p: 3 }}>
+                <Typography>
+                  <div className="w-100">
+                    {isOpen && (
+                      <EditAdmin
+                        data={editData}
+                        setReload={setReload}
+                        handleClose={togglePopUpEdit}
+                      />
+                    )}
 
-
-                      <table class="tables">
-                        {loading ?
-                          <Skeleton variant="rounded" height={150} />
-                          :
-                          <>
+                    <table class="tables">
+                      {loading ? (
+                        <Skeleton variant="rounded" height={150} />
+                      ) : (
+                        <>
                           <thead>
                             <tr
                               className="text-center"
@@ -119,21 +117,21 @@ export default function KelolaAdmin() {
                             ))}
                           </tbody>
                         </>
-                        }
-                      </table>
-                      <div className="table-pagination">
-                        <Pagination
-                          postsPerPage={postsPerPage}
-                          totalPosts={posts.length}
-                          paginate={paginate}
-                          currentPage={currentPage}
-                        />
-                      </div>
+                      )}
+                    </table>
+                    <div className="table-pagination">
+                      <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={posts.length}
+                        paginate={paginate}
+                        currentPage={currentPage}
+                      />
                     </div>
-                  </Typography>
-                </Box>
-              </Card>
-            </div>
+                  </div>
+                </Typography>
+              </Box>
+            </Card>
+          </div>
         </div>
       </div>
     </>
