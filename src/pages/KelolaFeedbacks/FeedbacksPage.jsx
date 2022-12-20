@@ -19,7 +19,6 @@ const FeedbacksPage = () => {
     };
     if (loading) fetchPosts();
   }, [loading]);
-  console.log(data);
   return (
     <div className="d-flex">
       <NewSidebar />
@@ -73,7 +72,7 @@ const FeedbacksPage = () => {
                         }}
                         src={require("../../assets/images/User/userlogo.png")}
                       />
-                      <span className="ms-2 boldF">{data.user}</span>
+                      <span className="ms-2 boldF">{item.user?.name}</span>
                     </div>
                   </Card.Body>
                 </Card>

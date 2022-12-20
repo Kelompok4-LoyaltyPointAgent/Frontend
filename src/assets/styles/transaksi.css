@@ -38,9 +38,8 @@
   padding-left: 50px;
 }
 
-.table-pagination {
-  position: absolute;
-  bottom: 0;
+.table-pagination-T {
+  display: flex;
   justify-content: center;
-  left: 35%;
+  margin-top: 50px;
 }

@@ -27,10 +27,10 @@ export default function Reset() {
     setIsOpen(false);
     setIsOpen1(false);
 
-    if (data.password.length < 8) {
+    if (data.new_password.length < 8) {
       setIsOpen1(true);
     } else {
-      if (data.password != data.konfirmasiPassword) {
+      if (data.password != data.confirm_password) {
         setIsOpen(true);
       } else {
         try {
@@ -52,7 +52,6 @@ export default function Reset() {
           if (error.response.data.message == "failed") {
             Swal.fire({
               title: "Failed Change Password",
-              text: "Wrong Username or passowrd",
               icon: "warning",
             });
           }

@@ -170,7 +170,7 @@ export default function StokPaketData() {
                     </table>
                   )}
 
-                  <div className="table-pagination">
+                  <div className="table-pagination-S">
                     <Pagination
                       postsPerPage={postsPerPage}
                       totalPosts={data.length}

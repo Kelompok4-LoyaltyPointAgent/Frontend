@@ -41,7 +41,7 @@ export default function Login() {
       if (error.response.data.message == "failed") {
         Swal.fire({
           title: "Failed Login",
-          text: "Wrong Username or passowrd",
+          text: "Wrong Email or passowrd",
           icon: "warning",
         });
       }
@@ -61,7 +61,7 @@ export default function Login() {
       <div className="forms">
         <div className="space">
           <form>
-            <label>Nama Pengguna</label>
+            <label>Email</label>
             <div class="input-group mb-3">
               <input
                 type="text"
