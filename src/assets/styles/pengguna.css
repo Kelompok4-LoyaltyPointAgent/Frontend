@@ -13,7 +13,6 @@
   font-weight: 1000;
 }
 .tables {
-  width: 100%;
   border-radius: 5px 5px 0px 0px;
   border-collapse: collapse;
   overflow: hidden;
@@ -23,9 +22,6 @@
 .tables tr > td {
   padding: 13px 0;
 }
-.tables .aksi {
-  width: 10%;
-}
 
 .tables thead th:first-child,
 .tables tbody td:first-child {
@@ -33,9 +29,8 @@
   padding-left: 50px;
 }
 
-.table-pagination {
-  position: absolute;
-  bottom: 0;
+.table-pagination-P {
+  display: flex;
   justify-content: center;
-  left: 35%;
+  margin-top: 80px;
 }

@@ -115,7 +115,7 @@ const KelolaTransaksi = () => {
                   </table>
                 )}
 
-                <div className="table-pagination">
+                <div className="table-pagination-T">
                   <Pagination
                     postsPerPage={postsPerPage}
                     totalPosts={data.length}

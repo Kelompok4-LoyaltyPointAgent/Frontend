@@ -96,7 +96,7 @@ export default function KelolaAdmin() {
                               }}
                             >
                               <th>Nama Lengkap</th>
-                              <th>Email/Username</th>
+                              <th>Email</th>
                               <th>Password</th>
                               <th className="aksi">Aksi</th>
                             </tr>
@@ -119,14 +119,6 @@ export default function KelolaAdmin() {
                         </>
                       )}
                     </table>
-                    <div className="table-pagination">
-                      <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={posts.length}
-                        paginate={paginate}
-                        currentPage={currentPage}
-                      />
-                    </div>
                   </div>
                 </Typography>
               </Box>
