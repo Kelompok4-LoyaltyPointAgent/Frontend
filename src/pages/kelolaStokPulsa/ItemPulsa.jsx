@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { deletePulsa } from "../../api/deletePulsa";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import { numberFormater } from "../../components/numberFormater";
 
 const ItemPulsa = ({ setReload, data, index }) => {
@@ -41,13 +41,14 @@ const ItemPulsa = ({ setReload, data, index }) => {
       <td className="col-1 text-start m-1">{data.provider}</td>
       <td className="col-1  m-1">{data.name}</td>
       <td className="col-1 m-1">{data.stock}</td>
-      <td className="col-1 m-1">{numberFormater(data.price_points)}</td>
+      <td className="col-1 m-1">{numberFormater(data.reward_points)}</td>
       <td className="col-1 m-1">{numberFormater(data.price)}</td>
       <td className="col-1 m-1">
         <div className="d-flex flex-row justify-content-center">
           <motion.div
             whileHover={{ scale: 1.1, originX: 0 }}
-            whileTap={{ scale: 0.9 }}>
+            whileTap={{ scale: 0.9 }}
+          >
             <NavLink
               to={`/kelolastok/detaileditproduk/pulsa/${data.id}`}
               key={data.id}
@@ -56,12 +57,12 @@ const ItemPulsa = ({ setReload, data, index }) => {
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.1, originX: 0 }}
-            whileTap={{ scale: 0.9 }}>
+            whileTap={{ scale: 0.9 }}
+          >
             <i
               className="bi bi-trash3 ms-3 delete-button"
               onClick={() => deleteItem(data.id)}
             ></i>
-
           </motion.div>
         </div>
       </td>

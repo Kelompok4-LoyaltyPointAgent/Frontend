@@ -1,4 +1,4 @@
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 
 const ItemAdmin = ({ data, index, sentData, toggle }) => {
 

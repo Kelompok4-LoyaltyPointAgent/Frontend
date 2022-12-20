@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import Swal from "sweetalert2";
 import { deletePaket } from "../../api/deletePaket";
 import { numberFormater } from "../../components/numberFormater";
@@ -41,7 +41,7 @@ const ItemPaket = ({ setReload, data, index }) => {
       <td className="col-1 text-start">{data.provider}</td>
       <td className="col-1">{data.name}</td>
       <td className="col-1">{data.stock}</td>
-      <td className="col-1">{numberFormater(data.price_points)}</td>
+      <td className="col-1">{numberFormater(data.reward_points)}</td>
       <td className="col-1">{numberFormater(data.price)}</td>
       <td className="col-1">
         <div className="d-flex flex-row justify-content-center">

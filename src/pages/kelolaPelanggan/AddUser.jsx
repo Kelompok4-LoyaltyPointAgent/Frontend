@@ -1,9 +1,11 @@
 import { useState } from "react";
-import "../../assets/styles/PopUp.css";
+import Swal from "sweetalert2";
+import "../../assets/styles/popUp.css";
 import { postUser } from "../../api/postUser";
 
 const AddUser = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -22,22 +24,33 @@ const AddUser = (props) => {
   const addNow = async (e) => {
     e.preventDefault();
     setIsOpen(false);
-    if (data.password != data.konfirmasiPassword) {
-      setIsOpen(true);
+    setIsOpen1(false);
+    if (data.password.length < 8) {
+      setIsOpen1(true);
     } else {
-      setIsOpen(false);
-      try {
-        const res = await postUser({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        });
-        console.log(res);
-      } catch (error) {
-        console.log(error);
+      if (data.password != data.konfirmasiPassword) {
+        setIsOpen(true);
+      } else {
+        try {
+          const res = await postUser({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+          });
+          props.setReload();
+          props.handleClose();
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+          if (error?.response?.status == 500) {
+            Swal.fire({
+              title: "Failed Add User",
+              text: "Email Already Exist",
+              icon: "warning",
+            });
+          }
+        }
       }
-      props.setReload();
-      props.handleClose();
     }
   };
 
@@ -127,11 +140,18 @@ const AddUser = (props) => {
               />
             </div>
           </div>
-          {isOpen && (
-            <p className="text-danger">
-              <center>Password Belum Sama</center>
-            </p>
-          )}
+          <div className="d-flex flex-column">
+            {isOpen1 && (
+              <p className="text-danger">
+                <center>Password Harus Lebih dari 8 huruf</center>
+              </p>
+            )}
+            {isOpen && (
+              <p className="text-danger">
+                <center>Password Belum Sama</center>
+              </p>
+            )}
+          </div>
 
           <div className="button mt-4">
             <center>

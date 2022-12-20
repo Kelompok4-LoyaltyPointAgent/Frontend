@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { updatePaket } from "../../api/updatePaket";
-import "../../assets/styles/PopUp.css";
+import "../../assets/styles/popUp.css";
 
 const EditProdukPaket = (props) => {
+  const [image, setImage] = useState("");
   const [data, setData] = useState({
     nama: props.data.name,
     provider: props.data.provider,
@@ -13,7 +14,6 @@ const EditProdukPaket = (props) => {
     rekomendasi: props.data.recommended,
     fotoProduk: "",
     periodeAktif: props.data.package.active_period,
-    totalInternet: props.data.package.total_internet,
     mainInternet: props.data.package.main_internet,
     nightInternet: props.data.package.night_internet,
     socialMedia: props.data.package.social_media,
@@ -33,6 +33,9 @@ const EditProdukPaket = (props) => {
       name == "hadiahDalamPoin" ||
       name == "stock" ||
       name == "periodeAktif" ||
+      name == "mainInternet" ||
+      name == "nightInternet" ||
+      name == "socialMedia" ||
       name == "jumlah" ||
       name == "call" ||
       name == "sms"
@@ -63,16 +66,20 @@ const EditProdukPaket = (props) => {
   const handleFile = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
+    setImage(URL.createObjectURL(e.target.files[0]));
     setData({
       ...data,
       [name]: value,
     });
   };
-
   const addNow = async (e) => {
     e.preventDefault();
     try {
       let formData = new FormData();
+      const totalInternet =
+        parseInt(data.mainInternet) +
+        parseInt(data.nightInternet) +
+        parseInt(data.socialMedia);
       formData.append("name", data.nama);
       formData.append("provider", data.provider);
       formData.append("price", data.harga);
@@ -88,7 +95,7 @@ const EditProdukPaket = (props) => {
         );
       }
       formData.append("active_period", data.periodeAktif);
-      formData.append("total_internet", data.totalInternet);
+      formData.append("total_internet", totalInternet);
       formData.append("main_internet", data.mainInternet);
       formData.append("night_internet", data.nightInternet);
       formData.append("social_media", data.socialMedia);
@@ -262,6 +269,7 @@ const EditProdukPaket = (props) => {
                   id="inputRekomendasi"
                   name="rekomendasi"
                   onChange={handleCheck}
+                  checked={data.rekomendasi ? "checked" : ""}
                 />
               </div>
             </div>
@@ -274,12 +282,20 @@ const EditProdukPaket = (props) => {
               Foto Produk
             </label>
             <div className="col-sm-7">
+              <img
+                src={
+                  data.fotoProduk ? image : props?.data?.product_picture?.url
+                }
+                class="rounded float-start img-thumbnail"
+                alt="productPicture"
+              />
               <input
                 type="file"
                 className="form-control"
                 id="inputFotoProduk"
                 name="fotoProduk"
                 onChange={handleFile}
+                accept="image/*"
               />
             </div>
           </div>
@@ -298,24 +314,6 @@ const EditProdukPaket = (props) => {
                 name="periodeAktif"
                 onChange={handleInput}
                 value={data.periodeAktif}
-              />
-            </div>
-          </div>
-          <div className="form-group row mb-2">
-            <label
-              for="inputTotalInternet"
-              className="offset-sm-1 col-sm-3 col-form-label"
-            >
-              Total Internet
-            </label>
-            <div className="col-sm-7">
-              <input
-                type="text"
-                className="form-control"
-                id="inputTotalInternet"
-                name="totalInternet"
-                onChange={handleInput}
-                value={data.totalInternet}
               />
             </div>
           </div>

@@ -2,12 +2,11 @@ import { Skeleton } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { getTransactions } from "../../api/getTransaksi";
-
 import "../../assets/styles/cardShadow.css";
 
-const CardTopTransaksi = () => {
+const CardTopTransaksi = ({ loading }) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingx, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,10 +15,10 @@ const CardTopTransaksi = () => {
     };
     fetchPosts();
     setTimeout(isReload, 5000);
-  }, [loading]);
+  }, [loadingx]);
 
   const isReload = () => {
-    setLoading(!loading);
+    setLoading(!loadingx);
   };
 
   const sukses = () => {
@@ -40,9 +39,9 @@ const CardTopTransaksi = () => {
 
   return (
     <div className="d-flex flex-row flex-wrap justify-content-between">
-      {loading ?
+      {loading ? (
         <Skeleton variant="rounded" width={240} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -59,10 +58,11 @@ const CardTopTransaksi = () => {
           <span className="mb-2 ms-2" style={{ color: "#E09456" }}>
             <h5>{posts.length}</h5>
           </span>
-        </Card>}
-      {loading ?
+        </Card>
+      )}
+      {loading ? (
         <Skeleton variant="rounded" width={240} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -79,10 +79,11 @@ const CardTopTransaksi = () => {
           <span className="mb-2 ms-2" style={{ color: "#66A46C" }}>
             <h5>{sukses()}</h5>
           </span>
-        </Card>}
-      {loading ?
+        </Card>
+      )}
+      {loading ? (
         <Skeleton variant="rounded" width={240} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -99,10 +100,11 @@ const CardTopTransaksi = () => {
           <span className="mb-2 ms-2" style={{ color: "#5684B2" }}>
             <h5>{pending()}</h5>
           </span>
-        </Card>}
-      {loading ?
+        </Card>
+      )}
+      {loading ? (
         <Skeleton variant="rounded" width={240} height={110} />
-        :
+      ) : (
         <Card
           className="d-flex card-shadow"
           style={{
@@ -119,7 +121,8 @@ const CardTopTransaksi = () => {
           <span className="mb-2 ms-2" style={{ color: "#BB6470" }}>
             <h5>{gagal()}</h5>
           </span>
-        </Card>}
+        </Card>
+      )}
     </div>
   );
 };

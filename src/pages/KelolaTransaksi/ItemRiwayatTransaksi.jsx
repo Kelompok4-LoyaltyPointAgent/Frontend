@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 import { FiPhone } from "react-icons/fi";
 import Swal from "sweetalert2";
 import "../../assets/styles/warnaTransaksi.css";
@@ -25,20 +25,7 @@ const ItemRiwayatTransaksi = ({ data, index }) => {
       }
     >
       <td className="col-1">{data.created_date}</td>
-      <td className="col-1">
-        {data.transaction_detail?.email}
-        <br />
-        <div style={{ color: "#8C8C8C" }}>
-          <FiPhone
-            style={{
-              fontSize: "16px",
-              marginRight: "5px",
-              marginBottom: "4px",
-            }}
-          />
-          {data.transaction_detail?.number}
-        </div>
-      </td>
+      <td className="col-1">{data.transaction_detail?.email}</td>
       <td className="col-1">{data.type}</td>
       <td className="col-1">{data.method}</td>
       <td className="col-1">{data.product_id ? data.product?.type : "Poin"}</td>

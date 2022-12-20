@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { deleteFaq } from "../../api/deleteFaq";
-import "../../assets/styles/Button.css";
+import "../../assets/styles/button.css";
 
 const ItemFAQ = ({ setReload, data, index, toggle, sentData }) => {
   const deleteItem = (id) => {
@@ -40,9 +40,9 @@ const ItemFAQ = ({ setReload, data, index, toggle, sentData }) => {
             : { backgroundColor: "#FEF0CD" }
         }
       >
-        <td className="col-1 text-start">{data.question}</td>
-        <td className="col-1 text-start ps-5">{data.answer}</td>
-        <td className="col-1">{data.category}</td>
+        <td className="col-1 text-start">{data?.question}</td>
+        <td className="col-1 text-start ps-5">{data?.answer}</td>
+        <td className="col-1">{data?.category}</td>
         <td className="col-1">
           <i
             className="bi bi-file-earmark-text file-button"

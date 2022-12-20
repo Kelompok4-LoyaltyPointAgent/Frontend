@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
-import "../../assets/styles/LandingNavbar.css";
-import "../../assets/styles/LandingPage.css";
+import "../../assets/styles/landingNavbar.css";
+import "../../assets/styles/landingPage.css";
 import { Button } from "react-bootstrap";
 import TentangKami from "./TentangKami";
 import Layanan from "./Layanan";

@@ -67,11 +67,11 @@ export default function KelolaPelanggan() {
             <Card className="box-overflow kotak">
               <div className="judul">
                 <h4 className="mb-4 mt-1 ps-4 pt-3">
-                  {loading ?
-                    <Skeleton  variant="rounded" width={210} height={35} />
-                    :
+                  {loading ? (
+                    <Skeleton variant="rounded" width={210} height={35} />
+                  ) : (
                     <span>Kelola Pengguna</span>
-                  }
+                  )}
                 </h4>
               </div>
               <Box sx={{ pt: 3, pl: 3, pr: 1 }}>
@@ -84,42 +84,40 @@ export default function KelolaPelanggan() {
                       />
                     )}
                     <div className="d-flex flex-row justify-content-between mb-3">
-                      {loading?
-                      <Skeleton variant="rounded" width={200} height={35}/>
-                    :
-                    <Button variant="success" onClick={togglePopUp}>
-                        <AiOutlinePlusSquare
-                          style={{
-                            width: "20px",
-                            height: "25px",
-                            paddingBottom: "3px",
-                            marginRight: "10px",
-                          }}
-                        />
-                        Tambah Pengguna
-                      </Button>
-                    }
-                      
-                      <div>
-                        {loading?
-                        <Skeleton variant="rounded" width={200} height={35}/>
-                      :
-                      <Search
-                        posts={posts}
-                        setSearchResults={setSearchResult}
-                        pages="user"
-                        placeHolder="Cari Nama,Email"
-                        change={change}
-                      />
-                      }
-                      </div>
+                      {loading ? (
+                        <Skeleton variant="rounded" width={200} height={35} />
+                      ) : (
+                        <Button variant="success" onClick={togglePopUp}>
+                          <AiOutlinePlusSquare
+                            style={{
+                              width: "20px",
+                              height: "25px",
+                              paddingBottom: "3px",
+                              marginRight: "10px",
+                            }}
+                          />
+                          Tambah Pengguna
+                        </Button>
+                      )}
 
-                      
+                      <div>
+                        {loading ? (
+                          <Skeleton variant="rounded" width={200} height={35} />
+                        ) : (
+                          <Search
+                            posts={posts}
+                            setSearchResults={setSearchResult}
+                            pages="user"
+                            placeHolder="Cari Nama, Email"
+                            change={change}
+                          />
+                        )}
+                      </div>
                     </div>
                     <table class="tables">
-                      {loading ?
-                        <Skeleton variant="rectangular" height={370}/>
-                        :
+                      {loading ? (
+                        <Skeleton variant="rectangular" height={370} />
+                      ) : (
                         <>
                           <thead>
                             <tr
@@ -139,17 +137,22 @@ export default function KelolaPelanggan() {
                             className="text-center"
                             style={{ color: "#013B75" }}
                           >
-                            {currentPosts.map((item, index) => (
-                              <ItemPelanggan
-                                data={item}
-                                index={index}
-                                setReload={setReload}
-                              ></ItemPelanggan>
-                            ))}
+                            {currentPosts[0].length != 0 ? (
+                              currentPosts.map((item, index) => (
+                                <ItemPelanggan
+                                  data={item}
+                                  index={index}
+                                  setReload={setReload}
+                                ></ItemPelanggan>
+                              ))
+                            ) : (
+                              <span className="position-absolute top-50 start-50 translate-middle fs-3">
+                                Data Tidak Ditemukan
+                              </span>
+                            )}
                           </tbody>
-
                         </>
-                      }
+                      )}
                     </table>
                     <div className="table-pagination">
                       <Pagination
