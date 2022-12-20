@@ -25,7 +25,7 @@ export default function Verifikasi() {
         if (error.response.data.message == "failed") {
           Swal.fire({
             title: "Failed Login",
-            text: "Wrong Username or passowrd",
+            text: "Wrong Email",
             icon: "warning",
           });
         }

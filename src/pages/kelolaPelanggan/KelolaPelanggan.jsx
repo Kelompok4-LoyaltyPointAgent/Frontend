@@ -12,7 +12,6 @@ import "../../assets/styles/overflow.css";
 import "../../assets/styles/pengguna.css";
 import { getUsers } from "../../api/getPengguna";
 import Search from "../../components/Search";
-import Loading from "../../components/Loading";
 import { Skeleton } from "@mui/material";
 
 export default function KelolaPelanggan() {
@@ -128,7 +127,7 @@ export default function KelolaPelanggan() {
                               }}
                             >
                               <th>Nama Lengkap</th>
-                              <th>Email/Username</th>
+                              <th>Email</th>
                               <th>Poin</th>
                               <th className="aksi">Aksi</th>
                             </tr>
@@ -154,7 +153,7 @@ export default function KelolaPelanggan() {
                         </>
                       )}
                     </table>
-                    <div className="table-pagination">
+                    <div className="table-pagination-P">
                       <Pagination
                         postsPerPage={postsPerPage}
                         totalPosts={data.length}

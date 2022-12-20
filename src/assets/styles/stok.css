@@ -35,9 +35,8 @@
 .tablesE .aksi {
   width: 10%;
 }
-.table-pagination {
-  position: absolute;
-  bottom: 0;
+.table-pagination-S {
+  display: flex;
   justify-content: center;
-  left: 35%;
+  margin-top: 50px;
 }
