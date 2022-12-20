@@ -19,7 +19,6 @@ export default function Reset() {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData);
   };
 
   const handleSubmit = async (e) => {
@@ -30,7 +29,7 @@ export default function Reset() {
     if (data.new_password.length < 8) {
       setIsOpen1(true);
     } else {
-      if (data.password != data.confirm_password) {
+      if (data.new_password != data.confirm_password) {
         setIsOpen(true);
       } else {
         try {
@@ -69,7 +68,7 @@ export default function Reset() {
       </div>
       <div className="forms">
         <div className="space">
-          <form>
+          <form onSubmit={handleSubmit}>
             <label>Password Baru</label>
             <div class="input-group mb-3">
               <input
@@ -115,16 +114,24 @@ export default function Reset() {
                 disabled
               />
             </div>
+            <div className="d-flex flex-column">
+              {isOpen1 && (
+                <p className="text-danger">
+                  <center>Password Harus Lebih dari 8 huruf</center>
+                </p>
+              )}
+              {isOpen && (
+                <p className="text-danger">
+                  <center>Password Belum Sama</center>
+                </p>
+              )}
+            </div>
+            <div className="tombolA">
+              <button type="submit" className="btn btn-warning">
+                Kirim
+              </button>
+            </div>
           </form>
-        </div>
-        <div className="tombol">
-          <button
-            onClick={handleSubmit}
-            className="btn btn-warning"
-            data-testid="enter"
-          >
-            Kirim
-          </button>
         </div>
       </div>
     </div>
